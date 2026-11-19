@@ -95,7 +95,7 @@
     /* أزرار اختيار المقر / القسم */
     .hubs-nav {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 10px;
       margin-bottom: 20px;
     }
@@ -104,7 +104,7 @@
       background: #171c2b;
       border: 1px solid #2b3450;
       color: #dce3f7;
-      padding: 12px 8px;
+      padding: 12px 10px;
       border-radius: 10px;
       font-size: 13px;
       font-weight: bold;
@@ -133,7 +133,7 @@
       border-bottom: 1px solid #252c40;
     }
 
-    /* كارت السكريبت: صورة -> سكريبت -> زر نسخ */
+    /* كارت السكريبت / الرابط */
     .script-item {
       background: #141824;
       border: 1px solid #252c40;
@@ -172,7 +172,7 @@
       font-family: monospace;
       font-size: 13px;
       direction: ltr;
-      white-space: nowrap;
+      white-space: pre;
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
       margin-bottom: 10px;
@@ -190,7 +190,21 @@
       cursor: pointer;
     }
 
-    /* إعلان 5 ثواني كل 35 ثانية */
+    .open-link-btn {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      background: #4f6bff;
+      color: #fff;
+      text-decoration: none;
+      text-align: center;
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    /* إعلان 6 ثواني كل 25 ثانية */
     .ad-overlay {
       position: fixed;
       inset: 0;
@@ -228,8 +242,32 @@
       max-height: 240px;
       object-fit: cover;
       border-radius: 10px;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
       border: 1px solid #2a334d;
+    }
+
+    .ad-link-box {
+      display: block;
+      width: 100%;
+      padding: 8px 10px;
+      border-radius: 8px;
+      background: #0b0e16;
+      border: 1px solid #232b42;
+      color: #8f9bff;
+      font-family: monospace;
+      font-size: 12px;
+      direction: ltr;
+      margin-bottom: 10px;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+
+    .ad-prize-text {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #ffd166;
+      margin: 0 0 12px;
+      font-weight: bold;
     }
 
     .ad-close-btn {
@@ -267,68 +305,165 @@
 
   <main class="container">
     <div class="hero-box">
-      <h1>مقر سكريبتات NEXUS NETWORK</h1>
-      <p>اختر القسم المطلوب وشاهد الصورة والسكريبت وانسخه بسهولة</p>
+      <h1>مقر سكريبتات NEXUS NETWORK — Scripts Hub</h1>
+      <p>اختر القسم المطلوب وانسخ السكريبت أو افتح الرابط بسهولة</p>
     </div>
 
     <!-- أزرار التنقل بين المقرات -->
     <div class="hubs-nav">
-      <button class="hub-btn active" onclick="openHub('bloxfruits', this)">بلوكس فروت</button>
-      <button class="hub-btn" onclick="openHub('stealegg', this)">سرقة البيض</button>
-      <button class="hub-btn" onclick="openHub('inkgame', this)">إنك جيم (لعبة الحبار)</button>
+      <button class="hub-btn active" onclick="openHub('bloxfruits', this)">بلوكس فروت — Blox Fruits</button>
+      <button class="hub-btn" onclick="openHub('stealegg', this)">سرقة البيض — Steal an Egg</button>
+      <button class="hub-btn" onclick="openHub('inkgame', this)">إنك جيم — Ink Game</button>
+      <button class="hub-btn" onclick="openHub('mm2', this)">إم إم 2 — MM2</button>
+      <button class="hub-btn" onclick="openHub('delta-android', this)">هكر أندرويد دلتا — Delta Android</button>
+      <button class="hub-btn" onclick="openHub('delta-ios', this)">هاك آيفون دلتا — Delta iOS</button>
+      <button class="hub-btn" onclick="openHub('brookhaven', this)">بروك هيفن — Map Brook Haven</button>
+      <button class="hub-btn" onclick="openHub('timebomb', this)">تايم بومب — Map Time Bomb</button>
     </div>
 
-    <!-- مقر 1: بلوكس فروت -->
+    <!-- مقر 1: بلوكس فروت — Blox Fruits -->
     <section class="hub-section active" id="bloxfruits">
-      <h2 class="hub-heading">مقر سكريبتات بلوكس فروت</h2>
+      <h2 class="hub-heading">مقر سكريبتات بلوكس فروت — Blox Fruits</h2>
 
-      <!-- السكريبت الأول في بلوكس فروت: صورة -> سكريبت -> نسخ -->
       <div class="script-item">
-        <div class="script-name">السكريبت الأول — بلوكس فروت (RaitoHub)</div>
-        <img class="script-img" src="./images/18838.jpg" alt="الصورة الأولى لسكريبت بلوكس فروت" />
+        <div class="script-name">1. سكريبت RaitoHub — بلوكس فروت (Blox Fruits)</div>
+        <img class="script-img" src="./images/18838.jpg" alt="RaitoHub" />
         <div class="code-box" id="bf1">loadstring(game:HttpGet("https://raw.githubusercontent.com/Efe0626/RaitoHub/main/Script"))()</div>
         <button class="copy-btn" onclick="copyScript('bf1', this)">نسخ السكريبت</button>
       </div>
 
-      <!-- السكريبت الثاني في بلوكس فروت: صورة -> سكريبت -> نسخ -->
       <div class="script-item">
-        <div class="script-name">السكريبت الثاني — بلوكس فروت (REDZ HUB)</div>
-        <img class="script-img" src="./images/18839.jpg" alt="الصورة الثانية لسكريبت بلوكس فروت" />
+        <div class="script-name">2. سكريبت REDZ HUB — بلوكس فروت (Blox Fruits)</div>
+        <img class="script-img" src="./images/18839.jpg" alt="REDZ HUB" />
         <div class="code-box" id="bf2">loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/BloxFruits/main/redz9999"))()</div>
         <button class="copy-btn" onclick="copyScript('bf2', this)">نسخ السكريبت</button>
       </div>
+
+      <div class="script-item">
+        <div class="script-name">3. سكريبت HoHo Hub — بلوكس فروت (Blox Fruits)</div>
+        <img class="script-img" src="ضع_رابط_صورة_هوهو_هنا.jpg" alt="HoHo Hub" />
+        <div class="code-box" id="bf3">_G.HohoVersion = "v4"
+loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI"))()</div>
+        <button class="copy-btn" onclick="copyScript('bf3', this)">نسخ السكريبت</button>
+      </div>
     </section>
 
-    <!-- مقر 2: سرقة البيض -->
+    <!-- مقر 2: سرقة البيض — Steal an Egg -->
     <section class="hub-section" id="stealegg">
-      <h2 class="hub-heading">مقر سكريبتات سرقة البيض</h2>
+      <h2 class="hub-heading">مقر سكريبتات سرقة البيض — Steal an Egg</h2>
 
-      <!-- السكريبت الأول: صورة -> سكريبت -> نسخ -->
       <div class="script-item">
-        <div class="script-name">السكريبت الأول — سرقة البيض</div>
-        <img class="script-img" src="./images/18835.jpg" alt="الصورة الأولى لسكريبت سرقة البيض" />
+        <div class="script-name">1. سكريبت NYX — سرقة البيض (Steal an Egg)</div>
+        <img class="script-img" src="./images/18835.jpg" alt="NYX" />
         <div class="code-box" id="se1">loadstring(game:HttpGet("https://raw.githubusercontent.com/syss1211/Tenshi-script/main/NYX.lua"))()</div>
         <button class="copy-btn" onclick="copyScript('se1', this)">نسخ السكريبت</button>
       </div>
 
-      <!-- السكريبت الثاني: صورة -> سكريبت -> نسخ -->
       <div class="script-item">
-        <div class="script-name">السكريبت الثاني — سرقة البيض</div>
-        <img class="script-img" src="./images/18836.jpg" alt="الصورة الثانية لسكريبت سرقة البيض" />
+        <div class="script-name">2. سكريبت ChilliHub v8 — سرقة البيض (Steal an Egg)</div>
+        <img class="script-img" src="./images/18836.jpg" alt="ChilliHub v8" />
         <div class="code-box" id="se2">loadstring(game:HttpGet("https://raw.githubusercontent.com/napun67/stealanegg/refs/heads/main/chillihubv8.lua"))()</div>
         <button class="copy-btn" onclick="copyScript('se2', this)">نسخ السكريبت</button>
       </div>
-    </section>
-
-    <!-- مقر 3: إنك جيم (لعبة الحبار) -->
-    <section class="hub-section" id="inkgame">
-      <h2 class="hub-heading">مقر سكريبتات إنك جيم (لعبة الحبار)</h2>
 
       <div class="script-item">
-        <div class="script-name">سكريبت إنك جيم (لعبة الحبار) #1</div>
-        <img class="script-img" src="ضع_رابط_صورة_انك_جيم_1_هنا.jpg" alt="صورة سكريبت إنك جيم 1" />
+        <div class="script-name">3. سكريبت Sena v6.2 Hub — سرقة البيض (Steal an Egg)</div>
+        <img class="script-img" src="./images/sena-v6-2.jpg" alt="Sena v6.2 Hub" />
+        <div class="code-box" id="se3">loadstring(game:HttpGet("https://raw.githubusercontent.com/LSSOPS/OpenSource/refs/heads/main/Senav6.2Hub_Steal_An_Egg.lua"))()</div>
+        <button class="copy-btn" onclick="copyScript('se3', this)">نسخ السكريبت</button>
+      </div>
+    </section>
+
+    <!-- مقر 3: إنك جيم — Ink Game -->
+    <section class="hub-section" id="inkgame">
+      <h2 class="hub-heading">مقر سكريبتات إنك جيم — Ink Game</h2>
+
+      <div class="script-item">
+        <div class="script-name">1. سكريبت إنك جيم — Ink Game</div>
+        <img class="script-img" src="ضع_رابط_صورة_انك_جيم_1_هنا.jpg" alt="Ink Game" />
         <div class="code-box" id="ig1">loadstring(game:HttpGet("https://example.com/inkgame1.lua"))()</div>
         <button class="copy-btn" onclick="copyScript('ig1', this)">نسخ السكريبت</button>
+      </div>
+    </section>
+
+    <!-- مقر 4: إم إم 2 — MM2 -->
+    <section class="hub-section" id="mm2">
+      <h2 class="hub-heading">مقر سكريبتات إم إم 2 — MM2</h2>
+
+      <div class="script-item">
+        <div class="script-name">1. سكريبت Aether Hub — إم إم 2 (MM2)</div>
+        <img class="script-img" src="ضع_رابط_صورة_ام_ام_2_هنا.jpg" alt="Aether Hub MM2" />
+        <div class="code-box" id="mm1">loadstring(game:HttpGet("https://raw.githubusercontent.com/vzyxer/Aether-Hub-Global-Roblox-Script-Hub/refs/heads/main/Murder%20Mystery%202"))()</div>
+        <button class="copy-btn" onclick="copyScript('mm1', this)">نسخ السكريبت</button>
+      </div>
+
+      <div class="script-item">
+        <div class="script-name">2. سكريبت TrollX V2 — إم إم 2 (MM2)</div>
+        <img class="script-img" src="ضع_رابط_صورة_ترول_اكس_هنا.jpg" alt="TrollX V2 MM2" />
+        <div class="code-box" id="mm2">loadstring(game:HttpGet("https://raw.githubusercontent.com/ahmidd409/TrollX-V2/refs/heads/main/Mm2TKX"))()</div>
+        <button class="copy-btn" onclick="copyScript('mm2', this)">نسخ السكريبت</button>
+      </div>
+    </section>
+
+    <!-- مقر 5: هكر أندرويد دلتا — Delta Android -->
+    <section class="hub-section" id="delta-android">
+      <h2 class="hub-heading">هكر أندرويد دلتا — Delta Android</h2>
+
+      <div class="script-item">
+        <div class="script-name">1. رابط تحميل دلتا أندرويد — Delta Android Executor</div>
+        <div class="code-box" id="da1">https://deltaexploits.dev/delta-executor-android</div>
+        <a class="open-link-btn" href="https://deltaexploits.dev/delta-executor-android" target="_blank">فتح الرابط</a>
+        <button class="copy-btn" onclick="copyScript('da1', this)">نسخ الرابط</button>
+      </div>
+    </section>
+
+    <!-- مقر 6: هاك آيفون دلتا — Delta iOS -->
+    <section class="hub-section" id="delta-ios">
+      <h2 class="hub-heading">هاك آيفون دلتا — Delta iOS</h2>
+
+      <div class="script-item">
+        <div class="script-name">1. رابط تحميل دلتا آيفون — Delta iOS Executor</div>
+        <div class="code-box" id="di1">https://deltaexploits.gg/delta-executor-ios</div>
+        <a class="open-link-btn" href="https://deltaexploits.gg/delta-executor-ios" target="_blank">فتح الرابط</a>
+        <button class="copy-btn" onclick="copyScript('di1', this)">نسخ الرابط</button>
+      </div>
+    </section>
+
+    <!-- مقر 7: بروك هيفن — Map Brook Haven -->
+    <section class="hub-section" id="brookhaven">
+      <h2 class="hub-heading">مقر سكريبتات بروك هيفن — Map Brook Haven</h2>
+
+      <div class="script-item">
+        <div class="script-name">1. سكريبت SP Hub — بروك هيفن (Map Brook Haven)</div>
+        <img class="script-img" src="ضع_رابط_صورة_بروك_هيفن_هنا.jpg" alt="Brook Haven SP Hub" />
+        <div class="code-box" id="bh1">loadstring(game:HttpGet("https://raw.githubusercontent.com/as6cd0/SP_Hub/refs/heads/main/Brookhaven"))()</div>
+        <button class="copy-btn" onclick="copyScript('bh1', this)">نسخ السكريبت</button>
+      </div>
+
+      <div class="script-item">
+        <div class="script-name">2. سكريبت آيس — بروك هيفن (Map Brook Haven)</div>
+        <img class="script-img" src="ضع_رابط_صورة_ايس_بروك_هيفن_هنا.jpg" alt="Brook Haven Ice" />
+        <div class="code-box" id="bh2">loadstring(game:HttpGet("https://scriptblox.com/raw/Brookhaven-RP-JulHub-by-Thestrongestman0080-13794"))()</div>
+        <button class="copy-btn" onclick="copyScript('bh2', this)">نسخ السكريبت</button>
+      </div>
+
+      <div class="script-item">
+        <div class="script-name">3. سكريبت سكنات بروك هيفن — Brookhaven Skins</div>
+        <img class="script-img" src="ضع_رابط_صورة_سكنات_بروك_هيفن_هنا.jpg" alt="Brookhaven Skins" />
+        <div class="code-box" id="bh3">loadstring(game:HttpGet("https://rawscripts.net/raw/Brookhaven-RP-Brookhave-English-20211"))()</div>
+        <button class="copy-btn" onclick="copyScript('bh3', this)">نسخ السكريبت</button>
+      </div>
+    </section>
+
+    <!-- مقر 8: تايم بومب — Map Time Bomb -->
+    <section class="hub-section" id="timebomb">
+      <h2 class="hub-heading">مقر سكريبتات تايم بومب — Map Time Bomb</h2>
+
+      <div class="script-item">
+        <div class="script-name">1. سكريبت Time Bomb — تايم بومب (Map Time Bomb)</div>
+        <img class="script-img" src="ضع_رابط_صورة_تايم_بومب_هنا.jpg" alt="Time Bomb" />
+        <div class="code-box" id="tb1">loadstring(game:HttpGet("https://rawscripts.net/raw/Timebomb-Duels-Alpha-Time-Bomb-Script-49198"))()</div>
+        <button class="copy-btn" onclick="copyScript('tb1', this)">نسخ السكريبت</button>
       </div>
     </section>
   </main>
@@ -339,13 +474,15 @@
     <div class="footer-copy">جميع الحقوق محفوظة &copy; NEXUS NETWORK</div>
   </footer>
 
-  <!-- نافذة الإعلان (5 ثواني كل 35 ثانية) -->
+  <!-- نافذة الإعلان (6 ثواني كل 25 ثانية) -->
   <div class="ad-overlay" id="adOverlay">
     <div class="ad-card">
-      <div class="ad-timer" id="adTimer">إعلان سيرفر الديسكورد — متبقي 5 ثواني</div>
+      <div class="ad-timer" id="adTimer">إعلان سيرفر الديسكورد — متبقي 6 ثواني</div>
       <img class="ad-img" src="./images/discord-ad.jpg" alt="NEXUS NETWORK Discord" />
+      <div class="ad-link-box">https://discord.gg/vAqnEarDk</div>
+      <p class="ad-prize-text">جائزة 100 روبوكس اول ما تدخل 15 واحد في السيرفر دوت.</p>
       <a class="discord-btn" href="https://discord.gg/vAqnEarDk" target="_blank">دخول سيرفر الديسكورد</a>
-      <button class="ad-close-btn" id="adCloseBtn" onclick="closeAd()" disabled>انتظر 5 ثواني...</button>
+      <button class="ad-close-btn" id="adCloseBtn" onclick="closeAd()" disabled>انتظر 6 ثواني...</button>
     </div>
   </div>
 
@@ -368,7 +505,7 @@
       });
     }
 
-    // إعلان لمدة 5 ثواني يظهر كل 35 ثانية
+    // إعلان لمدة 6 ثواني يظهر كل 25 ثانية
     let adCountdown = null;
 
     function triggerAd() {
@@ -376,7 +513,7 @@
       const timerText = document.getElementById("adTimer");
       const closeBtn = document.getElementById("adCloseBtn");
 
-      let seconds = 5;
+      let seconds = 6;
       overlay.classList.add("show");
       closeBtn.disabled = true;
       closeBtn.textContent = `انتظر ${seconds} ثواني...`;
@@ -401,9 +538,8 @@
       document.getElementById("adOverlay").classList.remove("show");
     }
 
-    // تشغيل الإعلان كل 35 ثانية
-    setInterval(triggerAd, 35000);
+    // تشغيل الإعلان كل 25 ثانية
+    setInterval(triggerAd, 25000);
   </script>
 </body>
 </html>
-
