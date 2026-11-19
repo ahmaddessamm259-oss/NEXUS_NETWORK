@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <title>NEXUS NETWORK — Scripts Hub</title>
   <style>
     * {
@@ -19,7 +20,6 @@
       font-family: Tahoma, Arial, sans-serif;
     }
 
-    /* القائمة العلوية والسفلية */
     .top-bar, .bottom-bar {
       width: 100%;
       background: #141824;
@@ -92,7 +92,6 @@
       color: #a4aec7;
     }
 
-    /* أزرار اختيار المقر / القسم */
     .hubs-nav {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -122,10 +121,6 @@
       display: none;
     }
 
-    .hub-section.active {
-      display: block;
-    }
-
     .hub-heading {
       font-size: 18px;
       color: #18b976;
@@ -134,7 +129,6 @@
       border-bottom: 1px solid #252c40;
     }
 
-    /* كارت السكريبت / الرابط */
     .script-item {
       background: #141824;
       border: 1px solid #252c40;
@@ -205,7 +199,6 @@
       margin-bottom: 10px;
     }
 
-    /* إعلان 3 ثواني يظهر عند النسخ أو فتح الرابط ويختفي تلقائياً */
     .ad-overlay {
       position: fixed;
       inset: 0;
@@ -271,7 +264,6 @@
 </head>
 <body>
 
-  <!-- القائمة العلوية + رابط الديسكورد -->
   <header class="top-bar">
     <div class="brand-title">NEXUS NETWORK</div>
     <a class="discord-btn" href="https://discord.gg/vAqnEarDk" target="_blank">ديسكورد NEXUS</a>
@@ -283,20 +275,19 @@
       <p>اختر القسم المطلوب وانسخ السكريبت أو افتح الرابط بسهولة</p>
     </div>
 
-    <!-- أزرار التنقل بين المقرات -->
     <div class="hubs-nav">
-      <button type="button" class="hub-btn active" onclick="showTab('bloxfruits', this)">بلوكس فروت — Blox Fruits</button>
-      <button type="button" class="hub-btn" onclick="showTab('stealegg', this)">سرقة البيض — Steal an Egg</button>
-      <button type="button" class="hub-btn" onclick="showTab('inkgame', this)">إنك جيم — Ink Game</button>
-      <button type="button" class="hub-btn" onclick="showTab('mm2', this)">إم إم 2 — MM2</button>
-      <button type="button" class="hub-btn" onclick="showTab('delta-android', this)">هكر أندرويد دلتا — Delta Android</button>
-      <button type="button" class="hub-btn" onclick="showTab('delta-ios', this)">هاك آيفون دلتا — Delta iOS</button>
-      <button type="button" class="hub-btn" onclick="showTab('brookhaven', this)">بروك هيفن — Map Brook Haven</button>
-      <button type="button" class="hub-btn" onclick="showTab('timebomb', this)">تايم بومب — Map Time Bomb</button>
+      <button type="button" class="hub-btn active" id="btn-bloxfruits" onclick="selectSection('bloxfruits')">بلوكس فروت — Blox Fruits</button>
+      <button type="button" class="hub-btn" id="btn-stealegg" onclick="selectSection('stealegg')">سرقة البيض — Steal an Egg</button>
+      <button type="button" class="hub-btn" id="btn-inkgame" onclick="selectSection('inkgame')">إنك جيم — Ink Game</button>
+      <button type="button" class="hub-btn" id="btn-mm2" onclick="selectSection('mm2')">إم إم 2 — MM2</button>
+      <button type="button" class="hub-btn" id="btn-delta-android" onclick="selectSection('delta-android')">هكر أندرويد دلتا — Delta Android</button>
+      <button type="button" class="hub-btn" id="btn-delta-ios" onclick="selectSection('delta-ios')">هاك آيفون دلتا — Delta iOS</button>
+      <button type="button" class="hub-btn" id="btn-brookhaven" onclick="selectSection('brookhaven')">بروك هيفن — Map Brook Haven</button>
+      <button type="button" class="hub-btn" id="btn-timebomb" onclick="selectSection('timebomb')">تايم بومب — Map Time Bomb</button>
+      <button type="button" class="hub-btn" id="btn-all" onclick="selectSection('all')">عرض كل الأقسام</button>
     </div>
 
-    <!-- مقر 1: بلوكس فروت — Blox Fruits -->
-    <section class="hub-section active" id="bloxfruits">
+    <section class="hub-section" id="bloxfruits" style="display: block;">
       <h2 class="hub-heading">مقر سكريبتات بلوكس فروت — Blox Fruits</h2>
 
       <div class="script-item">
@@ -322,7 +313,6 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_H/main/L
       </div>
     </section>
 
-    <!-- مقر 2: سرقة البيض — Steal an Egg -->
     <section class="hub-section" id="stealegg">
       <h2 class="hub-heading">مقر سكريبتات سرقة البيض — Steal an Egg</h2>
 
@@ -404,7 +394,6 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_H/main/L
       </div>
     </section>
 
-    <!-- مقر 3: إنك جيم — Ink Game -->
     <section class="hub-section" id="inkgame">
       <h2 class="hub-heading">مقر سكريبتات إنك جيم — Ink Game</h2>
 
@@ -423,7 +412,6 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_H/main/L
       </div>
     </section>
 
-    <!-- مقر 4: إم إم 2 — MM2 -->
     <section class="hub-section" id="mm2">
       <h2 class="hub-heading">مقر سكريبتات إم إم 2 — MM2</h2>
 
@@ -442,7 +430,6 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_H/main/L
       </div>
     </section>
 
-    <!-- مقر 5: هكر أندرويد دلتا — Delta Android -->
     <section class="hub-section" id="delta-android">
       <h2 class="hub-heading">هكر أندرويد دلتا — Delta Android</h2>
 
@@ -454,7 +441,6 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_H/main/L
       </div>
     </section>
 
-    <!-- مقر 6: هاك آيفون دلتا — Delta iOS -->
     <section class="hub-section" id="delta-ios">
       <h2 class="hub-heading">هاك آيفون دلتا — Delta iOS</h2>
 
@@ -466,7 +452,6 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_H/main/L
       </div>
     </section>
 
-    <!-- مقر 7: بروك هيفن — Map Brook Haven -->
     <section class="hub-section" id="brookhaven">
       <h2 class="hub-heading">مقر سكريبتات بروك هيفن — Map Brook Haven</h2>
 
@@ -492,7 +477,6 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_H/main/L
       </div>
     </section>
 
-    <!-- مقر 8: تايم بومب — Map Time Bomb -->
     <section class="hub-section" id="timebomb">
       <h2 class="hub-heading">مقر سكريبتات تايم بومب — Map Time Bomb</h2>
 
@@ -507,4 +491,10 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_H/main/L
         <div class="script-name">2. سكريبت PhantomX — تايم بومب (Map Time Bomb)</div>
         <img class="script-img" src="ضع_رابط_صورة_فانتوم_اكس_هنا.jpg" alt="PhantomX" />
         <div class="code-box" id="tb2">loadstring(game:HttpGet("https://raw.githubusercontent.com/Cypher666-oss/Ld-/main/PhantomXLd.lua.txt"))()</div>
-        <button type="button" class="copy-btn" onc
+        <button type="button" class="copy-btn" onclick="copyCode('tb2', this)">نسخ السكريبت</button>
+      </div>
+
+      <div class="script-item">
+        <div class="script-name">3. سكريبت Autofarm — تايم بومب (Map Time Bomb)</div>
+        <img class="script-img" src="ضع_رابط_صورة_اوتوفارم_هنا.jpg" alt="Autofarm" />
+        <div class="code-box" id="tb3">
