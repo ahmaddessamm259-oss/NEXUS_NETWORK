@@ -12,8 +12,8 @@
     html, body {
       margin: 0;
       padding: 0;
+      width: 100%;
       max-width: 100%;
-      overflow-x: hidden;
       background-color: #0b0d13;
       color: #ffffff;
       font-family: Tahoma, Arial, sans-serif;
@@ -63,69 +63,52 @@
       font-weight: bold;
     }
 
-    .container {
+    /* صف أفقي لكل الأقسام: اسحب الشاشة شمال ويمين */
+    .maps-track {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
       width: 100%;
-      max-width: 720px;
-      margin: 20px auto;
-      padding: 0 14px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
     }
 
-    .hero-box {
+    .map-column {
+      flex: 0 0 100%;
+      width: 100%;
+      min-width: 100%;
+      scroll-snap-align: start;
+      padding: 18px 14px 24px;
+      border-left: 2px solid #252c40;
+    }
+
+    .map-header-box {
       background: #141824;
-      border: 1px solid #252c40;
-      border-radius: 12px;
-      padding: 18px;
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .hero-box h1 {
-      margin: 0 0 8px;
-      font-size: 22px;
-      color: #8f9bff;
-    }
-
-    .hero-box p {
-      margin: 0;
-      font-size: 13px;
-      color: #a4aec7;
-    }
-
-    .hubs-nav {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-      margin-bottom: 20px;
-    }
-
-    .hub-btn {
-      background: #171c2b;
       border: 1px solid #2b3450;
-      color: #dce3f7;
-      padding: 12px 10px;
-      border-radius: 10px;
-      font-size: 13px;
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin-bottom: 18px;
+      text-align: center;
+    }
+
+    .map-badge {
+      font-size: 12px;
+      color: #8f9bff;
+      margin-bottom: 6px;
       font-weight: bold;
-      cursor: pointer;
-      touch-action: manipulation;
     }
 
-    .hub-btn.active {
-      background: #4f6bff;
-      border-color: #7c92ff;
-      color: #fff;
-    }
-
-    .hub-section {
-      display: none;
-    }
-
-    .hub-heading {
+    .map-heading {
       font-size: 18px;
       color: #18b976;
-      margin: 0 0 14px;
-      padding-bottom: 6px;
-      border-bottom: 1px solid #252c40;
+      margin: 0 0 6px;
+    }
+
+    .swipe-hint {
+      font-size: 12px;
+      color: #9ba5c2;
+      margin: 0;
     }
 
     .script-item {
@@ -174,7 +157,7 @@
 
     .copy-btn {
       width: 100%;
-      padding: 10px;
+      padding: 11px;
       border: none;
       border-radius: 8px;
       background: #18b976;
@@ -187,7 +170,7 @@
     .open-link-btn {
       display: block;
       width: 100%;
-      padding: 10px;
+      padding: 11px;
       border-radius: 8px;
       background: #4f6bff;
       color: #fff;
@@ -281,25 +264,15 @@
     <a class="discord-btn" href="https://discord.gg/vAqnEarDk" target="_blank">ديسكورد NEXUS</a>
   </header>
 
-  <main class="container">
-    <div class="hero-box">
-      <h1>مقر سكريبتات NEXUS NETWORK — Scripts Hub</h1>
-      <p>اختر القسم المطلوب وانسخ السكريبت أو افتح الرابط بسهولة</p>
-    </div>
+  <main class="maps-track">
 
-    <div class="hubs-nav">
-      <button type="button" class="hub-btn active" id="btn-bloxfruits" onclick="openHub('bloxfruits', this)">بلوكس فروت — Blox Fruits</button>
-      <button type="button" class="hub-btn" id="btn-stealegg" onclick="openHub('stealegg', this)">سرقة البيض — Steal an Egg</button>
-      <button type="button" class="hub-btn" id="btn-inkgame" onclick="openHub('inkgame', this)">إنك جيم — Ink Game</button>
-      <button type="button" class="hub-btn" id="btn-mm2" onclick="openHub('mm2', this)">إم إم 2 — MM2</button>
-      <button type="button" class="hub-btn" id="btn-delta-android" onclick="openHub('delta-android', this)">هكر أندرويد دلتا — Delta Android</button>
-      <button type="button" class="hub-btn" id="btn-delta-ios" onclick="openHub('delta-ios', this)">هاك آيفون دلتا — Delta iOS</button>
-      <button type="button" class="hub-btn" id="btn-brookhaven" onclick="openHub('brookhaven', this)">بروك هيفن — Map Brook Haven</button>
-      <button type="button" class="hub-btn" id="btn-timebomb" onclick="openHub('timebomb', this)">تايم بومب — Map Time Bomb</button>
-    </div>
-
-    <section class="hub-section" id="bloxfruits" style="display: block;">
-      <h2 class="hub-heading">مقر سكريبتات بلوكس فروت — Blox Fruits</h2>
+    <!-- 1: بلوكس فروت -->
+    <section class="map-column" id="bloxfruits">
+      <div class="map-header-box">
+        <div class="map-badge">المكان المخصص — NEXUS NETWORK</div>
+        <h2 class="map-heading">ماب بلوكس فروت — Blox Fruits</h2>
+        <p class="swipe-hint">اسحب الشاشة شمال للماب التالي ←</p>
+      </div>
 
       <div class="script-item">
         <div class="script-name">1. سكريبت RaitoHub — بلوكس فروت (Blox Fruits)</div>
@@ -324,8 +297,13 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_H/main/L
       </div>
     </section>
 
-    <section class="hub-section" id="stealegg">
-      <h2 class="hub-heading">مقر سكريبتات سرقة البيض — Steal an Egg</h2>
+    <!-- 2: سرقة البيض -->
+    <section class="map-column" id="stealegg">
+      <div class="map-header-box">
+        <div class="map-badge">المكان المخصص — NEXUS NETWORK</div>
+        <h2 class="map-heading">ماب سرقة البيض — Steal an Egg</h2>
+        <p class="swipe-hint">اسحب الشاشة شمال للماب التالي ←</p>
+      </div>
 
       <div class="script-item">
         <div class="script-name">1. سكريبت NYX — سرقة البيض (Steal an Egg)</div>
@@ -405,8 +383,13 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_H/main/L
       </div>
     </section>
 
-    <section class="hub-section" id="inkgame">
-      <h2 class="hub-heading">مقر سكريبتات إنك جيم — Ink Game</h2>
+    <!-- 3: إنك جيم -->
+    <section class="map-column" id="inkgame">
+      <div class="map-header-box">
+        <div class="map-badge">المكان المخصص — NEXUS NETWORK</div>
+        <h2 class="map-heading">ماب إنك جيم — Ink Game</h2>
+        <p class="swipe-hint">اسحب الشاشة شمال للماب التالي ←</p>
+      </div>
 
       <div class="script-item">
         <div class="script-name">1. سكريبتات خارقة للفوز التلقائي — Auto Win</div>
@@ -423,8 +406,13 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_H/main/L
       </div>
     </section>
 
-    <section class="hub-section" id="mm2">
-      <h2 class="hub-heading">مقر سكريبتات إم إم 2 — MM2</h2>
+    <!-- 4: إم إم 2 -->
+    <section class="map-column" id="mm2">
+      <div class="map-header-box">
+        <div class="map-badge">المكان المخصص — NEXUS NETWORK</div>
+        <h2 class="map-heading">ماب إم إم 2 — MM2</h2>
+        <p class="swipe-hint">اسحب الشاشة شمال للماب التالي ←</p>
+      </div>
 
       <div class="script-item">
         <div class="script-name">1. سكريبت Aether Hub — إم إم 2 (MM2)</div>
@@ -441,8 +429,13 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_H/main/L
       </div>
     </section>
 
-    <section class="hub-section" id="delta-android">
-      <h2 class="hub-heading">هكر أندرويد دلتا — Delta Android</h2>
+    <!-- 5: دلتا أندرويد -->
+    <section class="map-column" id="delta-android">
+      <div class="map-header-box">
+        <div class="map-badge">المكان المخصص — NEXUS NETWORK</div>
+        <h2 class="map-heading">هكر أندرويد دلتا — Delta Android</h2>
+        <p class="swipe-hint">اسحب الشاشة شمال للماب التالي ←</p>
+      </div>
 
       <div class="script-item">
         <div class="script-name">1. رابط تحميل دلتا أندرويد — Delta Android Executor</div>
@@ -452,8 +445,13 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_H/main/L
       </div>
     </section>
 
-    <section class="hub-section" id="delta-ios">
-      <h2 class="hub-heading">هاك آيفون دلتا — Delta iOS</h2>
+    <!-- 6: دلتا آيفون -->
+    <section class="map-column" id="delta-ios">
+      <div class="map-header-box">
+        <div class="map-badge">المكان المخصص — NEXUS NETWORK</div>
+        <h2 class="map-heading">هاك آيفون دلتا — Delta iOS</h2>
+        <p class="swipe-hint">اسحب الشاشة شمال للماب التالي ←</p>
+      </div>
 
       <div class="script-item">
         <div class="script-name">1. رابط تحميل دلتا آيفون — Delta iOS Executor</div>
@@ -463,8 +461,13 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_H/main/L
       </div>
     </section>
 
-    <section class="hub-section" id="brookhaven">
-      <h2 class="hub-heading">مقر سكريبتات بروك هيفن — Map Brook Haven</h2>
+    <!-- 7: بروك هيفن -->
+    <section class="map-column" id="brookhaven">
+      <div class="map-header-box">
+        <div class="map-badge">المكان المخصص — NEXUS NETWORK</div>
+        <h2 class="map-heading">ماب بروك هيفن — Map Brook Haven</h2>
+        <p class="swipe-hint">اسحب الشاشة شمال للماب التالي ←</p>
+      </div>
 
       <div class="script-item">
         <div class="script-name">1. سكريبت SP Hub — بروك هيفن (Map Brook Haven)</div>
@@ -488,8 +491,13 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_H/main/L
       </div>
     </section>
 
-    <section class="hub-section" id="timebomb">
-      <h2 class="hub-heading">مقر سكريبتات تايم بومب — Map Time Bomb</h2>
+    <!-- 8: تايم بومب -->
+    <section class="map-column" id="timebomb">
+      <div class="map-header-box">
+        <div class="map-badge">المكان المخصص — NEXUS NETWORK</div>
+        <h2 class="map-heading">ماب تايم بومب — Map Time Bomb</h2>
+        <p class="swipe-hint">اسحب يمين للرجوع للمابات السابقة</p>
+      </div>
 
       <div class="script-item">
         <div class="script-name">1. سكريبت Time Bomb — تايم بومب (Map Time Bomb)</div>
@@ -506,5 +514,4 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_H/main/L
       </div>
 
       <div class="script-item">
-        <div class="script-name">3. سكريبت Autofarm — تايم بومب (Map Time Bomb)</div>
-        <img class="script-img" src="ضع_راب
+        <div class="script-name">3. سكري
