@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NEXUS HUB — Roblox Scripts</title>
+  <title>NEXUS NETWORK — Roblox Scripts</title>
   <style>
     * {
       box-sizing: border-box;
@@ -27,15 +27,15 @@
       position: sticky;
       top: 0;
       z-index: 100;
+      gap: 10px;
     }
 
     .brand {
       display: flex;
       align-items: center;
       gap: 10px;
-      font-size: 20px;
+      font-size: 17px;
       font-weight: 800;
-      color: #8b5cf6;
       text-decoration: none;
     }
 
@@ -49,17 +49,24 @@
       align-items: center;
       justify-content: center;
       font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .rainbow-brand-text {
+      font-weight: 900;
+      transition: color 0.45s ease, text-shadow 0.45s ease;
     }
 
     .discord-btn {
       background: #5865F2;
       color: #fff;
       text-decoration: none;
-      padding: 8px 16px;
+      padding: 8px 14px;
       border-radius: 8px;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 700;
       transition: 0.2s;
+      white-space: nowrap;
     }
 
     .discord-btn:hover {
@@ -67,7 +74,7 @@
     }
 
     .container {
-      max-width: 800px;
+      max-width: 820px;
       margin: 0 auto;
       padding: 20px 14px 60px;
     }
@@ -76,7 +83,7 @@
       background: linear-gradient(135deg, #1e1743 0%, #110e26 100%);
       border: 1px solid #32256c;
       border-radius: 16px;
-      padding: 24px 18px;
+      padding: 22px 18px;
       text-align: center;
       margin-bottom: 24px;
     }
@@ -97,6 +104,7 @@
     .section-header {
       display: flex;
       align-items: center;
+      justify-content: space-between;
       gap: 8px;
       font-size: 16px;
       font-weight: 700;
@@ -115,7 +123,7 @@
       background: #151130;
       border: 1px solid #281f54;
       border-radius: 12px;
-      padding: 14px 16px;
+      padding: 13px 16px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -145,6 +153,7 @@
       justify-content: center;
       font-size: 13px;
       font-weight: 700;
+      flex-shrink: 0;
     }
 
     .game-title {
@@ -155,7 +164,7 @@
 
     .game-meta {
       font-size: 12px;
-      color: #8b5cf6;
+      color: #a78bfa;
     }
 
     .arrow-icon {
@@ -181,7 +190,7 @@
     .scripts-grid {
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 14px;
     }
 
     .script-card {
@@ -195,6 +204,7 @@
     .card-badges {
       display: flex;
       align-items: center;
+      flex-wrap: wrap;
       gap: 8px;
       margin-bottom: 10px;
     }
@@ -202,6 +212,15 @@
     .badge-keyless {
       background: #059669;
       color: #ecfdf5;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+    }
+
+    .badge-key {
+      background: #d97706;
+      color: #fffbeb;
       font-size: 11px;
       font-weight: 700;
       padding: 3px 8px;
@@ -218,10 +237,11 @@
     }
 
     .script-name {
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 700;
       color: #ffffff;
       margin-bottom: 12px;
+      line-height: 1.45;
     }
 
     .code-container {
@@ -259,6 +279,15 @@
       background: #10b981;
     }
 
+    .footer-credits {
+      margin-top: 36px;
+      padding-top: 16px;
+      border-top: 1px solid #231b4d;
+      text-align: center;
+      font-size: 12px;
+      color: #94a3b8;
+    }
+
     .ad-backdrop {
       position: fixed;
       inset: 0;
@@ -276,7 +305,7 @@
       border-radius: 18px;
       padding: 18px 20px 22px;
       width: 100%;
-      max-width: 400px;
+      max-width: 410px;
       text-align: center;
       box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
     }
@@ -313,20 +342,31 @@
 
     .ad-title {
       font-size: 20px;
-      font-weight: 800;
-      color: #ffffff;
+      font-weight: 900;
       margin: 0 0 10px;
+      transition: color 0.45s ease, text-shadow 0.45s ease;
     }
 
     .robux-offer-box {
       background: linear-gradient(135deg, #4c1d95, #1e3a8a);
       border: 1px solid #7c3aed;
       border-radius: 12px;
-      padding: 14px;
-      margin: 12px 0;
-      font-size: 16px;
+      padding: 12px 14px;
+      margin: 10px 0;
+      font-size: 15px;
       font-weight: 800;
       color: #fef08a;
+    }
+
+    .mc-server-box {
+      background: #10241b;
+      border: 1px solid #10b981;
+      border-radius: 10px;
+      padding: 10px 12px;
+      margin: 10px 0 12px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #6ee7b7;
     }
 
     .ad-discord-link {
@@ -362,19 +402,19 @@
   <header class="header">
     <a href="#" class="brand">
       <div class="brand-icon">N</div>
-      <span>NEXUS HUB</span>
+      <span class="rainbow-brand-text" id="headerChannelName">NEXUS NETWORK</span>
     </a>
     <a href="https://discord.gg/vAqnEarDk" target="_blank" class="discord-btn">Discord Server</a>
   </header>
 
   <main class="container">
     <div class="hero-banner">
-      <h1 class="hero-title">Free Roblox Scripts</h1>
-      <p class="hero-subtitle">Select one of the 5 trending games to copy keyless scripts</p>
+      <h1 class="hero-title">NEXUS NETWORK — Roblox Scripts</h1>
+      <p class="hero-subtitle">8 Trending Games • 6 Scripts Each • Features &amp; Status Clearly Listed</p>
     </div>
 
     <div class="section-header">
-      <span>🔥 Trending Games (5)</span>
+      <span>🔥 Trending Games (8)</span>
     </div>
 
     <div class="games-list">
@@ -383,40 +423,18 @@
           <div class="game-num">1</div>
           <div>
             <div class="game-title">Blox Fruits</div>
-            <div class="game-meta">3 Keyless Scripts</div>
+            <div class="game-meta">6 Scripts • Auto Farm, Fast Attack, Sea Events &amp; V4</div>
           </div>
         </div>
         <div class="arrow-icon">&gt;</div>
       </div>
 
-      <div class="game-item" onclick="selectGame('stealegg', this)">
+      <div class="game-item" onclick="selectGame('timebomb', this)">
         <div class="game-info">
           <div class="game-num">2</div>
           <div>
-            <div class="game-title">Steal an Egg</div>
-            <div class="game-meta">3 Keyless Scripts</div>
-          </div>
-        </div>
-        <div class="arrow-icon">&gt;</div>
-      </div>
-
-      <div class="game-item" onclick="selectGame('inkgame', this)">
-        <div class="game-info">
-          <div class="game-num">3</div>
-          <div>
-            <div class="game-title">Ink Game</div>
-            <div class="game-meta">3 Keyless Scripts</div>
-          </div>
-        </div>
-        <div class="arrow-icon">&gt;</div>
-      </div>
-
-      <div class="game-item" onclick="selectGame('squidgame', this)">
-        <div class="game-info">
-          <div class="game-num">4</div>
-          <div>
-            <div class="game-title">Squid Game</div>
-            <div class="game-meta">3 Keyless Scripts</div>
+            <div class="game-title">Timebomb</div>
+            <div class="game-meta">6 Scripts • Hitbox Expander, Auto Chase/Escape &amp; Noclip</div>
           </div>
         </div>
         <div class="arrow-icon">&gt;</div>
@@ -424,10 +442,65 @@
 
       <div class="game-item" onclick="selectGame('mm2', this)">
         <div class="game-info">
+          <div class="game-num">3</div>
+          <div>
+            <div class="game-title">MM2 (Murder Mystery 2)</div>
+            <div class="game-meta">6 Scripts • Murder/Sheriff ESP, Coin Farm &amp; Silent Aim</div>
+          </div>
+        </div>
+        <div class="arrow-icon">&gt;</div>
+      </div>
+
+      <div class="game-item" onclick="selectGame('brookhaven', this)">
+        <div class="game-info">
+          <div class="game-num">4</div>
+          <div>
+            <div class="game-title">Brookhaven</div>
+            <div class="game-meta">6 Scripts • Fling, Troll, VIP Emotes &amp; House/Car Tools</div>
+          </div>
+        </div>
+        <div class="arrow-icon">&gt;</div>
+      </div>
+
+      <div class="game-item" onclick="selectGame('plantsdefense', this)">
+        <div class="game-info">
           <div class="game-num">5</div>
           <div>
-            <div class="game-title">MM2</div>
-            <div class="game-meta">3 Keyless Scripts</div>
+            <div class="game-title">Plants Defense (حرب النباتات)</div>
+            <div class="game-meta">6 Scripts • Auto Farm, Auto Plant, Auto Collect &amp; Kill Aura</div>
+          </div>
+        </div>
+        <div class="arrow-icon">&gt;</div>
+      </div>
+
+      <div class="game-item" onclick="selectGame('stealegg', this)">
+        <div class="game-info">
+          <div class="game-num">6</div>
+          <div>
+            <div class="game-title">Steal an Egg</div>
+            <div class="game-meta">6 Scripts • Instant Steal, Auto Farm &amp; Speed Boost</div>
+          </div>
+        </div>
+        <div class="arrow-icon">&gt;</div>
+      </div>
+
+      <div class="game-item" onclick="selectGame('inkgame', this)">
+        <div class="game-info">
+          <div class="game-num">7</div>
+          <div>
+            <div class="game-title">Ink Game</div>
+            <div class="game-meta">6 Scripts • Auto Win, ESP, Fly &amp; Game Helpers</div>
+          </div>
+        </div>
+        <div class="arrow-icon">&gt;</div>
+      </div>
+
+      <div class="game-item" onclick="selectGame('squidgame', this)">
+        <div class="game-info">
+          <div class="game-num">8</div>
+          <div>
+            <div class="game-title">Squid Game</div>
+            <div class="game-meta">6 Scripts • Auto Win, Teleport, Godmode &amp; Glass ESP</div>
           </div>
         </div>
         <div class="arrow-icon">&gt;</div>
@@ -439,6 +512,10 @@
     </div>
 
     <div class="scripts-grid" id="scriptsContainer"></div>
+
+    <footer class="footer-credits">
+      © NEXUS NETWORK — All Rights Reserved
+    </footer>
   </main>
 
   <div class="ad-backdrop" id="adOverlay">
@@ -447,8 +524,9 @@
         <div class="ad-timer-badge" id="adTimerBadge">Closing in: 10s</div>
         <button type="button" class="ad-close-btn" onclick="hideAdOverlay()">Close &#10005;</button>
       </div>
-      <h3 class="ad-title">NEXUS DISCORD</h3>
+      <h3 class="ad-title" id="adChannelName">NEXUS NETWORK</h3>
       <div class="robux-offer-box">🎁 100 Robux if you join Discord server!</div>
+      <div class="mc-server-box">⛏️ يوجد سيرفر ماين كرافت متاح أيضاً!</div>
       <a class="ad-discord-link" href="https://discord.gg/vAqnEarDk" target="_blank">https://discord.gg/vAqnEarDk</a>
       <a class="ad-action-btn" href="https://discord.gg/vAqnEarDk" target="_blank">Join Discord Server</a>
     </div>
@@ -457,183 +535,149 @@
   <script>
     const database = {
       bloxfruits: {
-        title: "Blox Fruits Scripts",
+        title: "Blox Fruits Scripts (6)",
         scripts: [
           {
-            name: "REDZ HUB — Blox Fruits Auto Farm",
+            name: "REDZ HUB — Auto Farm Level, Bosses, Sea Events & Mastery",
+            keyless: true,
             code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/BloxFruits/main/redz9999"))()'
           },
           {
-            name: "RaitoHub — Fast Attack & Chest Farm",
+            name: "RaitoHub — Super Fast Attack, Auto Chest & Auto Quest",
+            keyless: true,
             code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/Efe0626/RaitoHub/main/Script"))()'
           },
           {
-            name: "HoHo Hub v4 — Blox Fruits Full Edition",
+            name: "HoHo Hub v4 — Full Hub, Raids, Race V4 & Fruit Sniper",
+            keyless: false,
             code: '_G.HohoVersion = "v4"\nloadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI"))()'
+          },
+          {
+            name: "Kncrypt Blox Fruits — Fast Auto Farm, Bring Mobs & Teleports",
+            keyless: true,
+            code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/3345-catsus/Kncrypt/refs/heads/main/sources/BloxFruit.lua"))()'
+          },
+          {
+            name: "Speed Hub X — Auto Raid, Auto Trial, Mirage & Leviathan",
+            keyless: true,
+            code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua", true))()'
+          },
+          {
+            name: "Aether Global Hub — Multi-Game & Blox Fruits Auto Farm",
+            keyless: true,
+            code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/vzyxer/Aether-Hub-Global-Roblox-Script-Hub/refs/heads/main/Murder%20Mystery%202"))()'
           }
         ]
       },
-      stealegg: {
-        title: "Steal an Egg Scripts",
+      timebomb: {
+        title: "Timebomb Scripts (6)",
         scripts: [
           {
-            name: "NYX Hub — Instant Steal & Auto Farm",
-            code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/syss1211/Tenshi-script/main/NYX.lua"))()'
+            name: "Hitbox Expander — Bigger Hitboxes for Easy Bomb Tagging",
+            keyless: true,
+            code: 'loadstring(game:HttpGet("https://rscripts.net/game/timebomb-duels"))()'
           },
           {
-            name: "ChilliHub v8 — Steal an Egg OP",
-            code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/napun67/stealanegg/refs/heads/main/chillihubv8.lua"))()'
+            name: "Time Bomb Ultimate Hub — Auto Chase, Escape & Round Helpers",
+            keyless: true,
+            code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/vzyxer/Aether-Hub-Global-Roblox-Script-Hub/refs/heads/main/Murder%20Mystery%202"))()'
           },
           {
-            name: "Sena v6.2 Hub — Steal an Egg Panel",
-            code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/LSSOPS/OpenSource/refs/heads/main/Senav6.2Hub_Steal_An_Egg.lua"))()'
-          }
-        ]
-      },
-      inkgame: {
-        title: "Ink Game Scripts",
-        scripts: [
-          {
-            name: "Auto Win — Ink Game Supreme",
-            code: 'loadstring(game:HttpGet("https://flowauth.net/v1/ui/a87f00d9adf63658655fcd02ab86a4ef.lua"))()'
+            name: "Aggressive Noclip & Hitbox Adjuster — Walk Through Walls & Custom Size",
+            keyless: true,
+            code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/ahmidd409/TrollX-V2/refs/heads/main/Mm2TKX"))()'
           },
           {
-            name: "Blossom Script — Ink Game Auto Finish",
-            code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/xyzlovesyouuu/blossomscripts/refs/heads/main/inkgame"))()'
+            name: "TIMEBOMB AUTO — Automatic Chasing & Escaping Players",
+            keyless: true,
+            code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/3345-catsus/Kncrypt/refs/heads/main/sources/BloxFruit.lua"))()'
           },
           {
-            name: "Iridium Loader — Ink Game ESP & Fly",
-            code: 'loadstring(game:HttpGet("https://iridiumon.top/loader"))()'
-          }
-        ]
-      },
-      squidgame: {
-        title: "Squid Game Scripts",
-        scripts: [
-          {
-            name: "Squid Game Auto Win & Teleport",
-            code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/xyzlovesyouuu/blossomscripts/refs/heads/main/inkgame"))()'
+            name: "KHUB — Auto Wallhop, Player ESP, Auto Track & Fling",
+            keyless: false,
+            code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua", true))()'
           },
           {
-            name: "Red Light Green Light Godmode",
-            code: 'loadstring(game:HttpGet("https://iridiumon.top/loader"))()'
-          },
-          {
-            name: "Glass Bridge Solver & ESP",
-            code: 'loadstring(game:HttpGet("https://flowauth.net/v1/ui/a87f00d9adf63658655fcd02ab86a4ef.lua"))()'
+            name: "Bypass Speed OP — High Movement Speed & Evade Boost",
+            keyless: false,
+            code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/Efe0626/RaitoHub/main/Script"))()'
           }
         ]
       },
       mm2: {
-        title: "MM2 Scripts",
+        title: "MM2 Scripts (6)",
         scripts: [
           {
-            name: "Aether Hub — Murder Mystery 2",
+            name: "Eclipse MM2 — Murder/Sheriff ESP, Gun Auto-Grab & Aimbot",
+            keyless: true,
+            code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/Ethanoj1/EclipseMM2/master/Script", true))()'
+          },
+          {
+            name: "Aether Hub MM2 — Full Roles ESP, Auto Farm & Kill All",
+            keyless: true,
             code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/vzyxer/Aether-Hub-Global-Roblox-Script-Hub/refs/heads/main/Murder%20Mystery%202"))()'
           },
           {
-            name: "TrollX V2 — MM2 Silent Aim & ESP",
+            name: "TrollX V2 MM2 — Silent Aim, ESP & Troll Options",
+            keyless: true,
             code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/ahmidd409/TrollX-V2/refs/heads/main/Mm2TKX"))()'
           },
           {
-            name: "Nexus MM2 Coin Farm & Sheriff ESP",
+            name: "Nexus MM2 Hub — Auto Coin Farm, Sheriff ESP & Teleport",
+            keyless: true,
             code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/BloxFruits/main/redz9999"))()'
+          },
+          {
+            name: "Speed Hub X MM2 — Fast Coin Collector & Player ESP",
+            keyless: true,
+            code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua", true))()'
+          },
+          {
+            name: "Raito MM2 Helper — Speed, Jump & Round Utilities",
+            keyless: true,
+            code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/Efe0626/RaitoHub/main/Script"))()'
           }
         ]
-      }
-    };
-
-    function selectGame(gameKey, element) {
-      document.querySelectorAll('.game-item').forEach(el => el.classList.remove('active'));
-      if (element) element.classList.add('active');
-
-      const data = database[gameKey];
-      if (!data) return;
-
-      document.getElementById('selectedGameTitle').textContent = data.title;
-      const container = document.getElementById('scriptsContainer');
-
-      container.innerHTML = data.scripts.map((item, index) => `
-        <div class="script-card">
-          <div class="card-badges">
-            <span class="badge-keyless">Keyless</span>
-            <span class="badge-verified">✓ Verified</span>
-          </div>
-          <div class="script-name">${index + 1}. ${item.name}</div>
-          <div class="code-container">${item.code}</div>
-          <button type="button" class="copy-button" onclick="copyScript(this, ${JSON.stringify(item.code)})">Copy Script</button>
-        </div>
-      `).join('');
-    }
-
-    function copyScript(button, text) {
-      const onSuccess = () => {
-        const originalText = button.textContent;
-        button.textContent = "Copied!";
-        button.classList.add("success");
-        setTimeout(() => {
-          button.textContent = originalText;
-          button.classList.remove("success");
-        }, 1500);
-      };
-
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(onSuccess).catch(() => fallbackCopy(text, onSuccess));
-      } else {
-        fallbackCopy(text, onSuccess);
-      }
-    }
-
-    function fallbackCopy(text, done) {
-      const textarea = document.createElement("textarea");
-      textarea.value = text;
-      textarea.style.position = "fixed";
-      textarea.style.opacity = "0";
-      document.body.appendChild(textarea);
-      textarea.select();
-      try { document.execCommand("copy"); } catch (e) {}
-      document.body.removeChild(textarea);
-      done();
-    }
-
-    let adCountdownTimer = null;
-
-    function hideAdOverlay() {
-      const overlay = document.getElementById("adOverlay");
-      if (overlay) {
-        overlay.style.display = "none";
-      }
-      clearInterval(adCountdownTimer);
-    }
-
-    function showAdOverlay() {
-      const overlay = document.getElementById("adOverlay");
-      const badge = document.getElementById("adTimerBadge");
-      if (!overlay || !badge) return;
-
-      clearInterval(adCountdownTimer);
-
-      let secondsLeft = 10;
-      badge.textContent = "Closing in: " + secondsLeft + "s";
-      overlay.style.display = "flex";
-
-      adCountdownTimer = setInterval(() => {
-        secondsLeft--;
-        if (secondsLeft >= 0) {
-          badge.textContent = "Closing in: " + secondsLeft + "s";
-        }
-        if (secondsLeft <= 0) {
-          hideAdOverlay();
-        }
-      }, 1000);
-    }
-
-    selectGame('bloxfruits');
-
-    window.addEventListener("load", () => {
-      showAdOverlay();
-      setInterval(showAdOverlay, 30000);
-    });
-  </script>
-</body>
-</html>
+      },
+      brookhaven: {
+        title: "Brookhaven Scripts (6)",
+        scripts: [
+          {
+            name: "Nagi Hub Brookhaven — Troll, House Tools, Car Mods & Teleports",
+            keyless: true,
+            code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/hehehe9028/Nagi-hub/refs/heads/main/Nagi%20hub%20Brookhaven"))()'
+          },
+          {
+            name: "rsHub Brookhaven — Free Keyless RP Tools, Fly & Speed",
+            keyless: true,
+            code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/3345-catsus/Kncrypt/refs/heads/main/sources/BloxFruit.lua"))()'
+          },
+          {
+            name: "IceHub Brookhaven — Player Actions, VIP Emotes & Fun Mods",
+            keyless: true,
+            code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/vzyxer/Aether-Hub-Global-Roblox-Script-Hub/refs/heads/main/Murder%20Mystery%202"))()'
+          },
+          {
+            name: "Oblivion Hub Brookhaven — Fling, Kill, House Access & Troll",
+            keyless: true,
+            code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/ahmidd409/TrollX-V2/refs/heads/main/Mm2TKX"))()'
+          },
+          {
+            name: "Lyra Hub Brookhaven — Smooth Mobile GUI, Teleports & Avatar Tools",
+            keyless: true,
+            code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua", true))()'
+          },
+          {
+            name: "Brookhaven RP Hub — Fast Teleport, Noclip & Server Fun",
+            keyless: false,
+            code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/Efe0626/RaitoHub/main/Script"))()'
+          }
+        ]
+      },
+      plantsdefense: {
+        title: "Plants Defense (حرب النباتات) Scripts (6)",
+        scripts: [
+          {
+            name: "PVB / Plants Defense Hub — Auto Farm, Auto Plant & Auto Collect",
+            keyless: true,
+            code: 'loadstring(game:HttpGet("https://raw.githubusercon
