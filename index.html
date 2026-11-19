@@ -77,7 +77,7 @@
       border-radius: 12px;
       padding: 18px;
       text-align: center;
-      margin-bottom: 14px;
+      margin-bottom: 20px;
     }
 
     .hero-box h1 {
@@ -90,82 +90,6 @@
       margin: 0;
       font-size: 13px;
       color: #a4aec7;
-    }
-
-    /* خانة البحث السريع عن السكريبتات */
-    .search-wrapper {
-      position: relative;
-      margin-bottom: 20px;
-    }
-
-    .search-input {
-      width: 100%;
-      padding: 13px 15px;
-      border-radius: 10px;
-      border: 1px solid #2f3a5c;
-      background: #141824;
-      color: #ffffff;
-      font-size: 14px;
-      font-family: Tahoma, Arial, sans-serif;
-      outline: none;
-    }
-
-    .search-input:focus {
-      border-color: #7c92ff;
-    }
-
-    .search-results {
-      position: absolute;
-      top: calc(100% + 6px);
-      left: 0;
-      right: 0;
-      background: #141824;
-      border: 1px solid #354166;
-      border-radius: 10px;
-      max-height: 280px;
-      overflow-y: auto;
-      z-index: 90;
-      display: none;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.55);
-    }
-
-    .search-results.show {
-      display: block;
-    }
-
-    .search-result-item {
-      padding: 11px 14px;
-      border-bottom: 1px solid #22293d;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-    }
-
-    .search-result-item:last-child {
-      border-bottom: none;
-    }
-
-    .search-result-item:hover {
-      background: #1d2336;
-    }
-
-    .search-result-title {
-      font-size: 13px;
-      font-weight: bold;
-      color: #ffffff;
-    }
-
-    .search-result-hub {
-      font-size: 11px;
-      color: #7ef9c7;
-    }
-
-    .search-empty {
-      padding: 12px 14px;
-      font-size: 13px;
-      color: #a4aec7;
-      text-align: center;
     }
 
     /* أزرار اختيار المقر / القسم */
@@ -217,12 +141,6 @@
       border-radius: 12px;
       padding: 14px;
       margin-bottom: 18px;
-      transition: border-color 0.25s ease, box-shadow 0.25s ease;
-    }
-
-    .script-item.highlight-card {
-      border-color: #18b976;
-      box-shadow: 0 0 0 2px rgba(24, 185, 118, 0.35);
     }
 
     .script-name {
@@ -365,28 +283,16 @@
       <p>اختر القسم المطلوب وانسخ السكريبت أو افتح الرابط بسهولة</p>
     </div>
 
-    <!-- قائمة البحث الفوري عن السكريبتات -->
-    <div class="search-wrapper" id="searchWrapper">
-      <input
-        type="text"
-        class="search-input"
-        id="scriptSearchInput"
-        placeholder="ابحث عن اسم السكريبت المطلوب هنا..."
-      />
-      <div class="search-results" id="searchResults"></div>
-    </div>
-
     <!-- أزرار التنقل بين المقرات -->
-    <div class="hubs-nav" id="hubsNav">
-      <button type="button" class="hub-btn active" data-hub="bloxfruits">بلوكس فروت — Blox Fruits</button>
-      <button type="button" class="hub-btn" data-hub="stealegg">سرقة البيض — Steal an Egg</button>
-      <button type="button" class="hub-btn" data-hub="inkgame">إنك جيم — Ink Game</button>
-      <button type="button" class="hub-btn" data-hub="mm2">إم إم 2 — MM2</button>
-      <button type="button" class="hub-btn" data-hub="delta-android">هكر أندرويد دلتا — Delta Android</button>
-      <button type="button" class="hub-btn" data-hub="delta-ios">هاك آيفون دلتا — Delta iOS</button>
-      <button type="button" class="hub-btn" data-hub="brookhaven">بروك هيفن — Map Brook Haven</button>
-      <button type="button" class="hub-btn" data-hub="timebomb">تايم بومب — Map Time Bomb</button>
-      <button type="button" class="hub-btn" data-hub="universal">عام — Universal AvatarZ</button>
+    <div class="hubs-nav">
+      <button type="button" class="hub-btn active" onclick="showTab('bloxfruits', this)">بلوكس فروت — Blox Fruits</button>
+      <button type="button" class="hub-btn" onclick="showTab('stealegg', this)">سرقة البيض — Steal an Egg</button>
+      <button type="button" class="hub-btn" onclick="showTab('inkgame', this)">إنك جيم — Ink Game</button>
+      <button type="button" class="hub-btn" onclick="showTab('mm2', this)">إم إم 2 — MM2</button>
+      <button type="button" class="hub-btn" onclick="showTab('delta-android', this)">هكر أندرويد دلتا — Delta Android</button>
+      <button type="button" class="hub-btn" onclick="showTab('delta-ios', this)">هاك آيفون دلتا — Delta iOS</button>
+      <button type="button" class="hub-btn" onclick="showTab('brookhaven', this)">بروك هيفن — Map Brook Haven</button>
+      <button type="button" class="hub-btn" onclick="showTab('timebomb', this)">تايم بومب — Map Time Bomb</button>
     </div>
 
     <!-- مقر 1: بلوكس فروت — Blox Fruits -->
@@ -397,14 +303,14 @@
         <div class="script-name">1. سكريبت RaitoHub — بلوكس فروت (Blox Fruits)</div>
         <img class="script-img" src="./images/18838.jpg" alt="RaitoHub" />
         <div class="code-box" id="bf1">loadstring(game:HttpGet("https://raw.githubusercontent.com/Efe0626/RaitoHub/main/Script"))()</div>
-        <button type="button" class="copy-btn" data-copy-target="bf1">نسخ السكريبت</button>
+        <button type="button" class="copy-btn" onclick="copyCode('bf1', this)">نسخ السكريبت</button>
       </div>
 
       <div class="script-item">
         <div class="script-name">2. سكريبت REDZ HUB — بلوكس فروت (Blox Fruits)</div>
         <img class="script-img" src="./images/18839.jpg" alt="REDZ HUB" />
         <div class="code-box" id="bf2">loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/BloxFruits/main/redz9999"))()</div>
-        <button type="button" class="copy-btn" data-copy-target="bf2">نسخ السكريبت</button>
+        <button type="button" class="copy-btn" onclick="copyCode('bf2', this)">نسخ السكريبت</button>
       </div>
 
       <div class="script-item">
@@ -412,7 +318,7 @@
         <img class="script-img" src="ضع_رابط_صورة_هوهو_هنا.jpg" alt="HoHo Hub" />
         <div class="code-box" id="bf3">_G.HohoVersion = "v4"
 loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI"))()</div>
-        <button type="button" class="copy-btn" data-copy-target="bf3">نسخ السكريبت</button>
+        <button type="button" class="copy-btn" onclick="copyCode('bf3', this)">نسخ السكريبت</button>
       </div>
     </section>
 
@@ -424,77 +330,77 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_H/main/L
         <div class="script-name">1. سكريبت NYX — سرقة البيض (Steal an Egg)</div>
         <img class="script-img" src="./images/18835.jpg" alt="NYX" />
         <div class="code-box" id="se1">loadstring(game:HttpGet("https://raw.githubusercontent.com/syss1211/Tenshi-script/main/NYX.lua"))()</div>
-        <button type="button" class="copy-btn" data-copy-target="se1">نسخ السكريبت</button>
+        <button type="button" class="copy-btn" onclick="copyCode('se1', this)">نسخ السكريبت</button>
       </div>
 
       <div class="script-item">
         <div class="script-name">2. سكريبت ChilliHub v8 — سرقة البيض (Steal an Egg)</div>
         <img class="script-img" src="./images/18836.jpg" alt="ChilliHub v8" />
         <div class="code-box" id="se2">loadstring(game:HttpGet("https://raw.githubusercontent.com/napun67/stealanegg/refs/heads/main/chillihubv8.lua"))()</div>
-        <button type="button" class="copy-btn" data-copy-target="se2">نسخ السكريبت</button>
+        <button type="button" class="copy-btn" onclick="copyCode('se2', this)">نسخ السكريبت</button>
       </div>
 
       <div class="script-item">
         <div class="script-name">3. سكريبت Sena v6.2 Hub — سرقة البيض (Steal an Egg)</div>
         <img class="script-img" src="./images/sena-v6-2.jpg" alt="Sena v6.2 Hub" />
         <div class="code-box" id="se3">loadstring(game:HttpGet("https://raw.githubusercontent.com/LSSOPS/OpenSource/refs/heads/main/Senav6.2Hub_Steal_An_Egg.lua"))()</div>
-        <button type="button" class="copy-btn" data-copy-target="se3">نسخ السكريبت</button>
+        <button type="button" class="copy-btn" onclick="copyCode('se3', this)">نسخ السكريبت</button>
       </div>
 
       <div class="script-item">
         <div class="script-name">4. سرقة تلقائي — Auto Steal</div>
         <img class="script-img" src="ضع_رابط_صورة_سرقة_تلقائي_1_هنا.jpg" alt="Auto Steal 1" />
         <div class="code-box" id="se4">loadstring(game:HttpGet("https://iridiumon.top/loader"))()</div>
-        <button type="button" class="copy-btn" data-copy-target="se4">نسخ السكريبت</button>
+        <button type="button" class="copy-btn" onclick="copyCode('se4', this)">نسخ السكريبت</button>
       </div>
 
       <div class="script-item">
         <div class="script-name">5. سرقة تلقائي — Auto Steal</div>
         <img class="script-img" src="ضع_رابط_صورة_سرقة_تلقائي_2_هنا.jpg" alt="Auto Steal 2" />
         <div class="code-box" id="se5">loadstring(game:HttpGet("https://flowauth.net/v1/ui/a87f00d9adf63658655fcd02ab86a4ef.lua"))()</div>
-        <button type="button" class="copy-btn" data-copy-target="se5">نسخ السكريبت</button>
+        <button type="button" class="copy-btn" onclick="copyCode('se5', this)">نسخ السكريبت</button>
       </div>
 
       <div class="script-item">
         <div class="script-name">6. سكريبت Miranda hub — سرقة البيض (Steal an Egg)</div>
         <img class="script-img" src="ضع_رابط_صورة_ميراندا_هنا.jpg" alt="Miranda hub" />
         <div class="code-box" id="se6">loadstring(game:HttpGet("https://raw.githubusercontent.com/miirandahub/loader/main/afkk"))()</div>
-        <button type="button" class="copy-btn" data-copy-target="se6">نسخ السكريبت</button>
+        <button type="button" class="copy-btn" onclick="copyCode('se6', this)">نسخ السكريبت</button>
       </div>
 
       <div class="script-item">
         <div class="script-name">7. سكربت 𝑠𝑜𝑢𝑟𝑐𝑒 ℎ𝑢𝑏 ❤️‍🔥 — سرقة البيض (Steal an Egg)</div>
         <img class="script-img" src="ضع_رابط_صورة_سورس_هاب_هنا.jpg" alt="source hub" />
         <div class="code-box" id="se7">loadstring(game:HttpGet("https://gist.githubusercontent.com/sourceshubs/1737c14cdba5c6fb472a995d555a50f1/raw/SourcesHubInstantStealNew"))()</div>
-        <button type="button" class="copy-btn" data-copy-target="se7">نسخ السكريبت</button>
+        <button type="button" class="copy-btn" onclick="copyCode('se7', this)">نسخ السكريبت</button>
       </div>
 
       <div class="script-item">
         <div class="script-name">8. سكريبت Polluted hub — سرقة البيض (Steal an Egg)</div>
         <img class="script-img" src="ضع_رابط_صورة_بولوتيد_هاب_هنا.jpg" alt="Polluted hub" />
         <div class="code-box" id="se8">loadstring(game:HttpGet("https://raw.githubusercontent.com/PollutedHub/Sae/main/SaePolluted"))()</div>
-        <button type="button" class="copy-btn" data-copy-target="se8">نسخ السكريبت</button>
+        <button type="button" class="copy-btn" onclick="copyCode('se8', this)">نسخ السكريبت</button>
       </div>
 
       <div class="script-item">
         <div class="script-name">9. سكربت 𝑣𝑖𝑟𝑒𝑥 ℎ𝑢𝑏 ❤️‍🔥 — سرقة البيض (Steal an Egg)</div>
         <img class="script-img" src="ضع_رابط_صورة_فيركس_هاب_هنا.jpg" alt="virex hub" />
         <div class="code-box" id="se9">loadstring(game:HttpGet("https://gist.githubusercontent.com/virexx55/6be38618d0b5dc80e395c330a320ef8a/raw/768999d2094134ea4a73d6eee020e5325fd61f21/virex.hib"))()</div>
-        <button type="button" class="copy-btn" data-copy-target="se9">نسخ السكريبت</button>
+        <button type="button" class="copy-btn" onclick="copyCode('se9', this)">نسخ السكريبت</button>
       </div>
 
       <div class="script-item">
         <div class="script-name">10. سكريبت Steal Panel — سرقة البيض (Steal an Egg)</div>
         <img class="script-img" src="ضع_رابط_صورة_ستيل_بانل_هنا.jpg" alt="Steal Panel" />
         <div class="code-box" id="se10">loadstring(game:HttpGet("https://raw.githubusercontent.com/Figgyscript/Figgy/main/Figgyhub"))()</div>
-        <button type="button" class="copy-btn" data-copy-target="se10">نسخ السكريبت</button>
+        <button type="button" class="copy-btn" onclick="copyCode('se10', this)">نسخ السكريبت</button>
       </div>
 
       <div class="script-item">
         <div class="script-name">11. سكريبت Tenshi beta — سرقة البيض (Steal an Egg)</div>
         <img class="script-img" src="ضع_رابط_صورة_تينشي_بيتا_هنا.jpg" alt="Tenshi beta" />
         <div class="code-box" id="se11">loadstring(game:HttpGet("https://raw.githubusercontent.com/syss1211/Tenshi-script/main/NYX.lua"))()</div>
-        <button type="button" class="copy-btn" data-copy-target="se11">نسخ السكريبت</button>
+        <button type="button" class="copy-btn" onclick="copyCode('se11', this)">نسخ السكريبت</button>
       </div>
     </section>
 
@@ -506,14 +412,14 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_H/main/L
         <div class="script-name">1. سكريبتات خارقة للفوز التلقائي — Auto Win</div>
         <img class="script-img" src="ضع_رابط_صورة_فوز_تلقائي_1_هنا.jpg" alt="Auto Win 1" />
         <div class="code-box" id="ig1">loadstring(game:HttpGet("https://flowauth.net/v1/ui/a87f00d9adf63658655fcd02ab86a4ef.lua"))()</div>
-        <button type="button" class="copy-btn" data-copy-target="ig1">نسخ السكريبت</button>
+        <button type="button" class="copy-btn" onclick="copyCode('ig1', this)">نسخ السكريبت</button>
       </div>
 
       <div class="script-item">
         <div class="script-name">2. سكريبتات خارقة للفوز التلقائي — Auto Win</div>
         <img class="script-img" src="ضع_رابط_صورة_فوز_تلقائي_2_هنا.jpg" alt="Auto Win 2" />
         <div class="code-box" id="ig2">loadstring(game:HttpGet("https://raw.githubusercontent.com/xyzlovesyouuu/blossomscripts/refs/heads/main/inkgame"))()</div>
-        <button type="button" class="copy-btn" data-copy-target="ig2">نسخ السكريبت</button>
+        <button type="button" class="copy-btn" onclick="copyCode('ig2', this)">نسخ السكريبت</button>
       </div>
     </section>
 
@@ -525,14 +431,14 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_H/main/L
         <div class="script-name">1. سكريبت Aether Hub — إم إم 2 (MM2)</div>
         <img class="script-img" src="ضع_رابط_صورة_ام_ام_2_هنا.jpg" alt="Aether Hub MM2" />
         <div class="code-box" id="mm1">loadstring(game:HttpGet("https://raw.githubusercontent.com/vzyxer/Aether-Hub-Global-Roblox-Script-Hub/refs/heads/main/Murder%20Mystery%202"))()</div>
-        <button type="button" class="copy-btn" data-copy-target="mm1">نسخ السكريبت</button>
+        <button type="button" class="copy-btn" onclick="copyCode('mm1', this)">نسخ السكريبت</button>
       </div>
 
       <div class="script-item">
         <div class="script-name">2. سكريبت TrollX V2 — إم إم 2 (MM2)</div>
         <img class="script-img" src="ضع_رابط_صورة_ترول_اكس_هنا.jpg" alt="TrollX V2 MM2" />
         <div class="code-box" id="mm2">loadstring(game:HttpGet("https://raw.githubusercontent.com/ahmidd409/TrollX-V2/refs/heads/main/Mm2TKX"))()</div>
-        <button type="button" class="copy-btn" data-copy-target="mm2">نسخ السكريبت</button>
+        <button type="button" class="copy-btn" onclick="copyCode('mm2', this)">نسخ السكريبت</button>
       </div>
     </section>
 
@@ -543,8 +449,8 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_H/main/L
       <div class="script-item">
         <div class="script-name">1. رابط تحميل دلتا أندرويد — Delta Android Executor</div>
         <div class="code-box" id="da1">https://deltaexploits.dev/delta-executor-android</div>
-        <a class="open-link-btn" href="https://deltaexploits.dev/delta-executor-android" target="_blank">فتح الرابط</a>
-        <button type="button" class="copy-btn" data-copy-target="da1">نسخ الرابط</button>
+        <a class="open-link-btn" href="https://deltaexploits.dev/delta-executor-android" target="_blank" onclick="showThreeSecAd()">فتح الرابط</a>
+        <button type="button" class="copy-btn" onclick="copyCode('da1', this)">نسخ الرابط</button>
       </div>
     </section>
 
@@ -555,8 +461,8 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_H/main/L
       <div class="script-item">
         <div class="script-name">1. رابط تحميل دلتا آيفون — Delta iOS Executor</div>
         <div class="code-box" id="di1">https://deltaexploits.gg/delta-executor-ios</div>
-        <a class="open-link-btn" href="https://deltaexploits.gg/delta-executor-ios" target="_blank">فتح الرابط</a>
-        <button type="button" class="copy-btn" data-copy-target="di1">نسخ الرابط</button>
+        <a class="open-link-btn" href="https://deltaexploits.gg/delta-executor-ios" target="_blank" onclick="showThreeSecAd()">فتح الرابط</a>
+        <button type="button" class="copy-btn" onclick="copyCode('di1', this)">نسخ الرابط</button>
       </div>
     </section>
 
@@ -568,10 +474,37 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_H/main/L
         <div class="script-name">1. سكريبت SP Hub — بروك هيفن (Map Brook Haven)</div>
         <img class="script-img" src="ضع_رابط_صورة_بروك_هيفن_هنا.jpg" alt="Brook Haven SP Hub" />
         <div class="code-box" id="bh1">loadstring(game:HttpGet("https://raw.githubusercontent.com/as6cd0/SP_Hub/refs/heads/main/Brookhaven"))()</div>
-        <button type="button" class="copy-btn" data-copy-target="bh1">نسخ السكريبت</button>
+        <button type="button" class="copy-btn" onclick="copyCode('bh1', this)">نسخ السكريبت</button>
       </div>
 
       <div class="script-item">
         <div class="script-name">2. سكريبت آيس — بروك هيفن (Map Brook Haven)</div>
         <img class="script-img" src="ضع_رابط_صورة_ايس_بروك_هيفن_هنا.jpg" alt="Brook Haven Ice" />
-        <div class="code-box" id="bh2">loadstring(ga
+        <div class="code-box" id="bh2">loadstring(game:HttpGet("https://scriptblox.com/raw/Brookhaven-RP-JulHub-by-Thestrongestman0080-13794"))()</div>
+        <button type="button" class="copy-btn" onclick="copyCode('bh2', this)">نسخ السكريبت</button>
+      </div>
+
+      <div class="script-item">
+        <div class="script-name">3. سكريبت سكنات بروك هيفن — Brookhaven Skins</div>
+        <img class="script-img" src="ضع_رابط_صورة_سكنات_بروك_هيفن_هنا.jpg" alt="Brookhaven Skins" />
+        <div class="code-box" id="bh3">loadstring(game:HttpGet("https://rawscripts.net/raw/Brookhaven-RP-Brookhave-English-20211"))()</div>
+        <button type="button" class="copy-btn" onclick="copyCode('bh3', this)">نسخ السكريبت</button>
+      </div>
+    </section>
+
+    <!-- مقر 8: تايم بومب — Map Time Bomb -->
+    <section class="hub-section" id="timebomb">
+      <h2 class="hub-heading">مقر سكريبتات تايم بومب — Map Time Bomb</h2>
+
+      <div class="script-item">
+        <div class="script-name">1. سكريبت Time Bomb — تايم بومب (Map Time Bomb)</div>
+        <img class="script-img" src="ضع_رابط_صورة_تايم_بومب_هنا.jpg" alt="Time Bomb" />
+        <div class="code-box" id="tb1">loadstring(game:HttpGet("https://rawscripts.net/raw/Timebomb-Duels-Alpha-Time-Bomb-Script-49198"))()</div>
+        <button type="button" class="copy-btn" onclick="copyCode('tb1', this)">نسخ السكريبت</button>
+      </div>
+
+      <div class="script-item">
+        <div class="script-name">2. سكريبت PhantomX — تايم بومب (Map Time Bomb)</div>
+        <img class="script-img" src="ضع_رابط_صورة_فانتوم_اكس_هنا.jpg" alt="PhantomX" />
+        <div class="code-box" id="tb2">loadstring(game:HttpGet("https://raw.githubusercontent.com/Cypher666-oss/Ld-/main/PhantomXLd.lua.txt"))()</div>
+        <button type="button" class="copy-btn" onc
