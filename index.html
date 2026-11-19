@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,7 +14,7 @@
       padding: 0;
       background: #090814;
       color: #e2e8f0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
     }
 
     .header {
@@ -274,22 +274,41 @@
       background: #151130;
       border: 1px solid #3c2d7d;
       border-radius: 18px;
-      padding: 24px 20px;
+      padding: 18px 20px 22px;
       width: 100%;
       max-width: 400px;
       text-align: center;
       box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
     }
 
-    .ad-header-badge {
-      display: inline-block;
-      background: #31256c;
+    .ad-top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #281f54;
+    }
+
+    .ad-timer-badge {
+      background: #2b215c;
       color: #c4b5fd;
-      font-size: 12px;
-      font-weight: 700;
-      padding: 4px 12px;
+      font-size: 13px;
+      font-weight: 800;
+      padding: 6px 12px;
       border-radius: 999px;
-      margin-bottom: 12px;
+    }
+
+    .ad-close-btn {
+      background: #ef4444;
+      color: #ffffff;
+      border: none;
+      border-radius: 8px;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 800;
+      cursor: pointer;
     }
 
     .ad-title {
@@ -304,7 +323,7 @@
       border: 1px solid #7c3aed;
       border-radius: 12px;
       padding: 14px;
-      margin: 14px 0;
+      margin: 12px 0;
       font-size: 16px;
       font-weight: 800;
       color: #fef08a;
@@ -335,12 +354,6 @@
       border-radius: 8px;
       font-size: 14px;
       font-weight: 700;
-      margin-bottom: 12px;
-    }
-
-    .ad-timer-info {
-      font-size: 12px;
-      color: #94a3b8;
     }
   </style>
 </head>
@@ -348,20 +361,20 @@
 
   <header class="header">
     <a href="#" class="brand">
-      <div class="brand-icon">S</div>
+      <div class="brand-icon">N</div>
       <span>NEXUS HUB</span>
     </a>
-    <a href="https://discord.gg/vAqnEarDk" target="_blank" class="discord-btn">سيرفر الديسكورد</a>
+    <a href="https://discord.gg/vAqnEarDk" target="_blank" class="discord-btn">Discord Server</a>
   </header>
 
   <main class="container">
     <div class="hero-banner">
       <h1 class="hero-title">Free Roblox Scripts</h1>
-      <p class="hero-subtitle">اختر الماب لعرض أفضل 3 سكريبتات شائعة بدون نظام مفاتيح</p>
+      <p class="hero-subtitle">Select one of the 5 trending games to copy keyless scripts</p>
     </div>
 
     <div class="section-header">
-      <span>🔥</span> Trending Games
+      <span>🔥 Trending Games (5)</span>
     </div>
 
     <div class="games-list">
@@ -369,81 +382,82 @@
         <div class="game-info">
           <div class="game-num">1</div>
           <div>
-            <div class="game-title">بلوكس فروت (Blox Fruits)</div>
-            <div class="game-meta">3 سكريبتات جاهزة</div>
+            <div class="game-title">Blox Fruits</div>
+            <div class="game-meta">3 Keyless Scripts</div>
           </div>
         </div>
-        <div class="arrow-icon">←</div>
+        <div class="arrow-icon">&gt;</div>
       </div>
 
       <div class="game-item" onclick="selectGame('stealegg', this)">
         <div class="game-info">
           <div class="game-num">2</div>
           <div>
-            <div class="game-title">سرقة البيض (Steal an Egg)</div>
-            <div class="game-meta">3 سكريبتات جاهزة</div>
+            <div class="game-title">Steal an Egg</div>
+            <div class="game-meta">3 Keyless Scripts</div>
           </div>
         </div>
-        <div class="arrow-icon">←</div>
+        <div class="arrow-icon">&gt;</div>
       </div>
 
       <div class="game-item" onclick="selectGame('inkgame', this)">
         <div class="game-info">
           <div class="game-num">3</div>
           <div>
-            <div class="game-title">إنك جيم (Ink Game)</div>
-            <div class="game-meta">3 سكريبتات جاهزة</div>
+            <div class="game-title">Ink Game</div>
+            <div class="game-meta">3 Keyless Scripts</div>
           </div>
         </div>
-        <div class="arrow-icon">←</div>
+        <div class="arrow-icon">&gt;</div>
       </div>
 
       <div class="game-item" onclick="selectGame('squidgame', this)">
         <div class="game-info">
           <div class="game-num">4</div>
           <div>
-            <div class="game-title">لعبة الحبار (Squid Game)</div>
-            <div class="game-meta">3 سكريبتات جاهزة</div>
+            <div class="game-title">Squid Game</div>
+            <div class="game-meta">3 Keyless Scripts</div>
           </div>
         </div>
-        <div class="arrow-icon">←</div>
+        <div class="arrow-icon">&gt;</div>
       </div>
 
       <div class="game-item" onclick="selectGame('mm2', this)">
         <div class="game-info">
           <div class="game-num">5</div>
           <div>
-            <div class="game-title">إم إم 2 (MM2)</div>
-            <div class="game-meta">3 سكريبتات جاهزة</div>
+            <div class="game-title">MM2</div>
+            <div class="game-meta">3 Keyless Scripts</div>
           </div>
         </div>
-        <div class="arrow-icon">←</div>
+        <div class="arrow-icon">&gt;</div>
       </div>
     </div>
 
     <div class="scripts-header">
-      <div class="scripts-title" id="selectedGameTitle">سكريبتات بلوكس فروت (Blox Fruits)</div>
+      <div class="scripts-title" id="selectedGameTitle">Blox Fruits Scripts</div>
     </div>
 
     <div class="scripts-grid" id="scriptsContainer"></div>
   </main>
 
-  <!-- إعلان الديسكورد 10 ثواني كل 30 ثانية -->
   <div class="ad-backdrop" id="adOverlay">
     <div class="ad-modal">
-      <div class="ad-header-badge">إعلان مميز</div>
+      <div class="ad-top-bar">
+        <div class="ad-timer-badge" id="adTimerBadge">Closing in: 10s</div>
+        <button type="button" class="ad-close-btn" onclick="hideAdOverlay()">Close &#10005;</button>
+      </div>
       <h3 class="ad-title">NEXUS DISCORD</h3>
-      <div class="robux-offer-box">🎁 100 Robux لو دخلت السيرفر دلوقتي!</div>
+      <div class="robux-offer-box">🎁 100 Robux if you join Discord server!</div>
       <a class="ad-discord-link" href="https://discord.gg/vAqnEarDk" target="_blank">https://discord.gg/vAqnEarDk</a>
-      <a class="ad-action-btn" href="https://discord.gg/vAqnEarDk" target="_blank">انضم لسيرفر الديسكورد</a>
-      <div class="ad-timer-info" id="adTimerText">يغلق تلقائياً خلال 10 ثواني</div>
+      <a class="ad-action-btn" href="https://discord.gg/vAqnEarDk" target="_blank">Join Discord Server</a>
     </div>
   </div>
 
   <script>
     const database = {
       bloxfruits: {
-        title: "سكريبتات بلوكس فروت (Blox Fruits)",
+        title: "Blox Fruits Scripts",
         scripts: [
           {
             name: "REDZ HUB — Blox Fruits Auto Farm",
@@ -460,7 +474,7 @@
         ]
       },
       stealegg: {
-        title: "سكريبتات سرقة البيض (Steal an Egg)",
+        title: "Steal an Egg Scripts",
         scripts: [
           {
             name: "NYX Hub — Instant Steal & Auto Farm",
@@ -477,7 +491,7 @@
         ]
       },
       inkgame: {
-        title: "سكريبتات إنك جيم (Ink Game)",
+        title: "Ink Game Scripts",
         scripts: [
           {
             name: "Auto Win — Ink Game Supreme",
@@ -494,7 +508,7 @@
         ]
       },
       squidgame: {
-        title: "سكريبتات لعبة الحبار (Squid Game)",
+        title: "Squid Game Scripts",
         scripts: [
           {
             name: "Squid Game Auto Win & Teleport",
@@ -511,7 +525,7 @@
         ]
       },
       mm2: {
-        title: "سكريبتات إم إم 2 (MM2)",
+        title: "MM2 Scripts",
         scripts: [
           {
             name: "Aether Hub — Murder Mystery 2",
@@ -531,10 +545,10 @@
 
     function selectGame(gameKey, element) {
       document.querySelectorAll('.game-item').forEach(el => el.classList.remove('active'));
-      if(element) element.classList.add('active');
+      if (element) element.classList.add('active');
 
       const data = database[gameKey];
-      if(!data) return;
+      if (!data) return;
 
       document.getElementById('selectedGameTitle').textContent = data.title;
       const container = document.getElementById('scriptsContainer');
@@ -547,7 +561,7 @@
           </div>
           <div class="script-name">${index + 1}. ${item.name}</div>
           <div class="code-container">${item.code}</div>
-          <button class="copy-button" onclick="copyScript(this, ${JSON.stringify(item.code)})">نسخ السكريبت</button>
+          <button type="button" class="copy-button" onclick="copyScript(this, ${JSON.stringify(item.code)})">Copy Script</button>
         </div>
       `).join('');
     }
@@ -555,7 +569,7 @@
     function copyScript(button, text) {
       const onSuccess = () => {
         const originalText = button.textContent;
-        button.textContent = "تم النسخ ✓";
+        button.textContent = "Copied!";
         button.classList.add("success");
         setTimeout(() => {
           button.textContent = originalText;
@@ -582,41 +596,43 @@
       done();
     }
 
-    let adTimeout = null;
-    let adInterval = null;
+    let adCountdownTimer = null;
 
-    function triggerAdOverlay() {
+    function hideAdOverlay() {
       const overlay = document.getElementById("adOverlay");
-      const timerText = document.getElementById("adTimerText");
-      if (!overlay) return;
+      if (overlay) {
+        overlay.style.display = "none";
+      }
+      clearInterval(adCountdownTimer);
+    }
 
-      clearTimeout(adTimeout);
-      clearInterval(adInterval);
+    function showAdOverlay() {
+      const overlay = document.getElementById("adOverlay");
+      const badge = document.getElementById("adTimerBadge");
+      if (!overlay || !badge) return;
 
-      let timeLeft = 10;
-      timerText.textContent = "يغلق تلقائياً خلال " + timeLeft + " ثواني";
+      clearInterval(adCountdownTimer);
+
+      let secondsLeft = 10;
+      badge.textContent = "Closing in: " + secondsLeft + "s";
       overlay.style.display = "flex";
 
-      adInterval = setInterval(() => {
-        timeLeft--;
-        if (timeLeft > 0) {
-          timerText.textContent = "يغلق تلقائياً خلال " + timeLeft + " ثواني";
-        } else {
-          clearInterval(adInterval);
+      adCountdownTimer = setInterval(() => {
+        secondsLeft--;
+        if (secondsLeft >= 0) {
+          badge.textContent = "Closing in: " + secondsLeft + "s";
+        }
+        if (secondsLeft <= 0) {
+          hideAdOverlay();
         }
       }, 1000);
-
-      adTimeout = setTimeout(() => {
-        overlay.style.display = "none";
-        clearInterval(adInterval);
-      }, 10000);
     }
 
     selectGame('bloxfruits');
 
     window.addEventListener("load", () => {
-      triggerAdOverlay();
-      setInterval(triggerAdOverlay, 30000);
+      showAdOverlay();
+      setInterval(showAdOverlay, 30000);
     });
   </script>
 </body>
