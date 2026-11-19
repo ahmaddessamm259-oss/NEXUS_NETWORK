@@ -3,100 +3,407 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NEXUS NETWORK</title>
+  <title>NEXUS NETWORK — Scripts Hub</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #0f1218;
-      color: #ffffff;
-      text-align: center;
-      margin: 0;
-      padding: 20px;
-    }
-    .box {
-      max-width: 520px;
-      margin: 25px auto;
-      background: #181d27;
-      padding: 22px;
-      border-radius: 14px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
-    }
-    a.discord-btn {
-      display: inline-block;
-      background: #5865F2;
-      color: #ffffff;
-      text-decoration: none;
-      padding: 11px 20px;
-      border-radius: 9px;
-      font-weight: bold;
-      margin: 8px 0;
-    }
-    input, button {
-      width: 90%;
-      padding: 12px;
-      margin-top: 10px;
-      border-radius: 9px;
-      border: none;
-      font-size: 15px;
+    * {
       box-sizing: border-box;
     }
-    input {
-      background: #232a38;
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      max-width: 100%;
+      overflow-x: hidden;
+      background-color: #0b0d13;
       color: #ffffff;
+      font-family: Tahoma, Arial, sans-serif;
     }
-    button {
-      background: #00b894;
-      color: #ffffff;
+
+    /* القائمة العلوية والسفلية */
+    .top-bar, .bottom-bar {
+      width: 100%;
+      background: #141824;
+      border-color: #252c40;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .top-bar {
+      border-bottom: 1px solid #252c40;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .bottom-bar {
+      border-top: 1px solid #252c40;
+      margin-top: 30px;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .brand-title {
+      font-weight: bold;
+      font-size: 16px;
+      color: #8f9bff;
+    }
+
+    .discord-btn {
+      display: inline-block;
+      background: #5865F2;
+      color: #fff;
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 720px;
+      margin: 20px auto;
+      padding: 0 14px;
+    }
+
+    .hero-box {
+      background: #141824;
+      border: 1px solid #252c40;
+      border-radius: 12px;
+      padding: 18px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .hero-box h1 {
+      margin: 0 0 8px;
+      font-size: 22px;
+      color: #8f9bff;
+    }
+
+    .hero-box p {
+      margin: 0;
+      font-size: 13px;
+      color: #a4aec7;
+    }
+
+    /* أزرار اختيار المقر / القسم */
+    .hubs-nav {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .hub-btn {
+      background: #171c2b;
+      border: 1px solid #2b3450;
+      color: #dce3f7;
+      padding: 12px 8px;
+      border-radius: 10px;
+      font-size: 13px;
       font-weight: bold;
       cursor: pointer;
     }
-    .footer {
-      margin-top: 30px;
+
+    .hub-btn.active {
+      background: #4f6bff;
+      border-color: #7c92ff;
+      color: #fff;
+    }
+
+    .hub-section {
+      display: none;
+    }
+
+    .hub-section.active {
+      display: block;
+    }
+
+    .hub-heading {
+      font-size: 18px;
+      color: #18b976;
+      margin: 0 0 14px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid #252c40;
+    }
+
+    /* كارت السكريبت: صورة -> سكريبت -> زر نسخ */
+    .script-item {
+      background: #141824;
+      border: 1px solid #252c40;
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 18px;
+    }
+
+    .script-name {
+      font-size: 15px;
+      font-weight: bold;
+      color: #ffffff;
+      margin-bottom: 10px;
+    }
+
+    .script-img {
+      display: block;
+      width: 100%;
+      max-height: 280px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 1px solid #262f47;
+      margin-bottom: 12px;
+      background: #0d1018;
+    }
+
+    .code-box {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      padding: 11px;
+      border-radius: 8px;
+      background: #0b0e16;
+      border: 1px solid #232b42;
+      color: #7ef9c7;
+      font-family: monospace;
+      font-size: 13px;
+      direction: ltr;
+      white-space: nowrap;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin-bottom: 10px;
+    }
+
+    .copy-btn {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      background: #18b976;
+      color: #fff;
       font-size: 14px;
-      color: #b2bec3;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    /* إعلان 5 ثواني كل 35 ثانية */
+    .ad-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(6, 8, 13, 0.94);
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .ad-overlay.show {
+      display: flex;
+    }
+
+    .ad-card {
+      width: 100%;
+      max-width: 440px;
+      background: #141824;
+      border: 1px solid #354166;
+      border-radius: 14px;
+      padding: 18px;
+      text-align: center;
+    }
+
+    .ad-timer {
+      font-size: 14px;
+      color: #ffd166;
+      margin-bottom: 12px;
+      font-weight: bold;
+    }
+
+    .ad-img {
+      width: 100%;
+      max-height: 240px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 14px;
+      border: 1px solid #2a334d;
+    }
+
+    .ad-close-btn {
+      width: 100%;
+      padding: 11px;
+      border: none;
+      border-radius: 8px;
+      background: #4f6bff;
+      color: #fff;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .ad-close-btn:disabled {
+      background: #333b52;
+      cursor: not-allowed;
+    }
+
+    .footer-copy {
+      font-size: 12px;
+      color: #8c96b0;
+      margin-top: 8px;
     }
   </style>
 </head>
 <body>
 
-  <!-- رابط الديسكورد فوق -->
-  <div>
-    <a class="discord-btn" href="https://discord.gg/TNAjadyGt" target="_blank">
-      انضم لسيرفر NEXUS NETWORK على ديسكورد
-    </a>
-  </div>
+  <!-- القائمة العلوية + رابط الديسكورد -->
+  <header class="top-bar">
+    <div class="brand-title">NEXUS NETWORK</div>
+    <a class="discord-btn" href="https://discord.gg/vAqnEarDk" target="_blank">ديسكورد NEXUS</a>
+  </header>
 
-  <!-- مكان التخطي في منتصف الموقع -->
-  <div class="box">
-    <h2>NEXUS NETWORK</h2>
-    <p>حط الرابط هنا عشان يتخطاه</p>
-    <input type="text" id="targetUrl" placeholder="الصق الرابط هنا..." />
-    <button onclick="handleBypass()">تخطي الآن</button>
-    <p id="result"></p>
-  </div>
-
-  <!-- رابط الديسكورد تحت + الحقوق -->
-  <div class="footer">
-    <div>
-      <a class="discord-btn" href="https://discord.gg/TNAjadyGt" target="_blank">
-        سيرفر الديسكورد الرسمي
-      </a>
+  <main class="container">
+    <div class="hero-box">
+      <h1>مقر سكريبتات NEXUS NETWORK</h1>
+      <p>اختر القسم المطلوب وشاهد الصورة والسكريبت وانسخه بسهولة</p>
     </div>
-    <p>جميع الحقوق محفوظة © NEXUS NETWORK - أحمد</p>
+
+    <!-- أزرار التنقل بين المقرات -->
+    <div class="hubs-nav">
+      <button class="hub-btn active" onclick="openHub('bloxfruits', this)">بلوكس فروت</button>
+      <button class="hub-btn" onclick="openHub('stealegg', this)">سرقة البيض</button>
+      <button class="hub-btn" onclick="openHub('inkgame', this)">إنك جيم (لعبة الحبار)</button>
+    </div>
+
+    <!-- مقر 1: بلوكس فروت -->
+    <section class="hub-section active" id="bloxfruits">
+      <h2 class="hub-heading">مقر سكريبتات بلوكس فروت</h2>
+
+      <!-- السكريبت الأول في بلوكس فروت: صورة -> سكريبت -> نسخ -->
+      <div class="script-item">
+        <div class="script-name">السكريبت الأول — بلوكس فروت (RaitoHub)</div>
+        <img class="script-img" src="./images/18838.jpg" alt="الصورة الأولى لسكريبت بلوكس فروت" />
+        <div class="code-box" id="bf1">loadstring(game:HttpGet("https://raw.githubusercontent.com/Efe0626/RaitoHub/main/Script"))()</div>
+        <button class="copy-btn" onclick="copyScript('bf1', this)">نسخ السكريبت</button>
+      </div>
+
+      <!-- السكريبت الثاني في بلوكس فروت: صورة -> سكريبت -> نسخ -->
+      <div class="script-item">
+        <div class="script-name">السكريبت الثاني — بلوكس فروت (REDZ HUB)</div>
+        <img class="script-img" src="./images/18839.jpg" alt="الصورة الثانية لسكريبت بلوكس فروت" />
+        <div class="code-box" id="bf2">loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/BloxFruits/main/redz9999"))()</div>
+        <button class="copy-btn" onclick="copyScript('bf2', this)">نسخ السكريبت</button>
+      </div>
+    </section>
+
+    <!-- مقر 2: سرقة البيض -->
+    <section class="hub-section" id="stealegg">
+      <h2 class="hub-heading">مقر سكريبتات سرقة البيض</h2>
+
+      <!-- السكريبت الأول: صورة -> سكريبت -> نسخ -->
+      <div class="script-item">
+        <div class="script-name">السكريبت الأول — سرقة البيض</div>
+        <img class="script-img" src="./images/18835.jpg" alt="الصورة الأولى لسكريبت سرقة البيض" />
+        <div class="code-box" id="se1">loadstring(game:HttpGet("https://raw.githubusercontent.com/syss1211/Tenshi-script/main/NYX.lua"))()</div>
+        <button class="copy-btn" onclick="copyScript('se1', this)">نسخ السكريبت</button>
+      </div>
+
+      <!-- السكريبت الثاني: صورة -> سكريبت -> نسخ -->
+      <div class="script-item">
+        <div class="script-name">السكريبت الثاني — سرقة البيض</div>
+        <img class="script-img" src="./images/18836.jpg" alt="الصورة الثانية لسكريبت سرقة البيض" />
+        <div class="code-box" id="se2">loadstring(game:HttpGet("https://raw.githubusercontent.com/napun67/stealanegg/refs/heads/main/chillihubv8.lua"))()</div>
+        <button class="copy-btn" onclick="copyScript('se2', this)">نسخ السكريبت</button>
+      </div>
+    </section>
+
+    <!-- مقر 3: إنك جيم (لعبة الحبار) -->
+    <section class="hub-section" id="inkgame">
+      <h2 class="hub-heading">مقر سكريبتات إنك جيم (لعبة الحبار)</h2>
+
+      <div class="script-item">
+        <div class="script-name">سكريبت إنك جيم (لعبة الحبار) #1</div>
+        <img class="script-img" src="ضع_رابط_صورة_انك_جيم_1_هنا.jpg" alt="صورة سكريبت إنك جيم 1" />
+        <div class="code-box" id="ig1">loadstring(game:HttpGet("https://example.com/inkgame1.lua"))()</div>
+        <button class="copy-btn" onclick="copyScript('ig1', this)">نسخ السكريبت</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- القائمة السفلية + رابط الديسكورد -->
+  <footer class="bottom-bar">
+    <a class="discord-btn" href="https://discord.gg/vAqnEarDk" target="_blank">انضم لسيرفر NEXUS NETWORK على ديسكورد</a>
+    <div class="footer-copy">جميع الحقوق محفوظة &copy; NEXUS NETWORK</div>
+  </footer>
+
+  <!-- نافذة الإعلان (5 ثواني كل 35 ثانية) -->
+  <div class="ad-overlay" id="adOverlay">
+    <div class="ad-card">
+      <div class="ad-timer" id="adTimer">إعلان سيرفر الديسكورد — متبقي 5 ثواني</div>
+      <img class="ad-img" src="./images/discord-ad.jpg" alt="NEXUS NETWORK Discord" />
+      <a class="discord-btn" href="https://discord.gg/vAqnEarDk" target="_blank">دخول سيرفر الديسكورد</a>
+      <button class="ad-close-btn" id="adCloseBtn" onclick="closeAd()" disabled>انتظر 5 ثواني...</button>
+    </div>
   </div>
 
   <script>
-    function handleBypass() {
-      const val = document.getElementById("targetUrl").value.trim();
-      const res = document.getElementById("result");
-      if (!val) {
-        res.textContent = "من فضلك ضع رابطاً أولاً.";
-        return;
-      }
-      // هنا يتم ربط أداة أو خدمة التخطي الفعلي لاحقاً
-      res.textContent = "تم استلام الرابط: " + val;
+    function openHub(hubId, btnElement) {
+      document.querySelectorAll(".hub-section").forEach(sec => sec.classList.remove("active"));
+      document.querySelectorAll(".hub-btn").forEach(btn => btn.classList.remove("active"));
+      document.getElementById(hubId).classList.add("active");
+      btnElement.classList.add("active");
     }
-  </script>
 
+    function copyScript(elementId, btnElement) {
+      const text = document.getElementById(elementId).textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        const oldText = btnElement.textContent;
+        btnElement.textContent = "تم النسخ ✓";
+        setTimeout(() => {
+          btnElement.textContent = oldText;
+        }, 1500);
+      });
+    }
+
+    // إعلان لمدة 5 ثواني يظهر كل 35 ثانية
+    let adCountdown = null;
+
+    function triggerAd() {
+      const overlay = document.getElementById("adOverlay");
+      const timerText = document.getElementById("adTimer");
+      const closeBtn = document.getElementById("adCloseBtn");
+
+      let seconds = 5;
+      overlay.classList.add("show");
+      closeBtn.disabled = true;
+      closeBtn.textContent = `انتظر ${seconds} ثواني...`;
+      timerText.textContent = `إعلان سيرفر الديسكورد — متبقي ${seconds} ثواني`;
+
+      clearInterval(adCountdown);
+      adCountdown = setInterval(() => {
+        seconds--;
+        if (seconds > 0) {
+          closeBtn.textContent = `انتظر ${seconds} ثواني...`;
+          timerText.textContent = `إعلان سيرفر الديسكورد — متبقي ${seconds} ثواني`;
+        } else {
+          clearInterval(adCountdown);
+          timerText.textContent = "يمكنك الآن إغلاق الإعلان";
+          closeBtn.disabled = false;
+          closeBtn.textContent = "إغلاق";
+        }
+      }, 1000);
+    }
+
+    function closeAd() {
+      document.getElementById("adOverlay").classList.remove("show");
+    }
+
+    // تشغيل الإعلان كل 35 ثانية
+    setInterval(triggerAd, 35000);
+  </script>
 </body>
 </html>
+
