@@ -3,515 +3,621 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NEXUS NETWORK — Scripts Hub</title>
+  <title>NEXUS HUB — Roblox Scripts</title>
   <style>
     * {
       box-sizing: border-box;
     }
 
-    html, body {
+    body {
       margin: 0;
       padding: 0;
-      width: 100%;
-      max-width: 100%;
-      background-color: #0b0d13;
-      color: #ffffff;
-      font-family: Tahoma, Arial, sans-serif;
+      background: #090814;
+      color: #e2e8f0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     }
 
-    .top-bar, .bottom-bar {
-      width: 100%;
-      background: #141824;
-      border-color: #252c40;
-      padding: 12px 16px;
+    .header {
+      background: #110e26;
+      border-bottom: 1px solid #231b4d;
+      padding: 14px 18px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .top-bar {
-      border-bottom: 1px solid #252c40;
       position: sticky;
       top: 0;
-      z-index: 50;
+      z-index: 100;
     }
 
-    .bottom-bar {
-      border-top: 1px solid #252c40;
-      margin-top: 30px;
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 20px;
+      font-weight: 800;
+      color: #8b5cf6;
+      text-decoration: none;
+    }
+
+    .brand-icon {
+      background: #6d28d9;
+      color: #fff;
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
       justify-content: center;
-      flex-direction: column;
-      text-align: center;
-    }
-
-    .brand-title {
-      font-weight: bold;
-      font-size: 16px;
-      color: #8f9bff;
+      font-size: 18px;
     }
 
     .discord-btn {
-      display: inline-block;
       background: #5865F2;
       color: #fff;
       text-decoration: none;
-      padding: 8px 14px;
+      padding: 8px 16px;
       border-radius: 8px;
       font-size: 13px;
-      font-weight: bold;
+      font-weight: 700;
+      transition: 0.2s;
     }
 
-    /* صف أفقي لكل الأقسام: اسحب الشاشة شمال ويمين */
-    .maps-track {
-      display: flex;
-      flex-direction: row;
-      align-items: flex-start;
-      width: 100%;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
+    .discord-btn:hover {
+      background: #4752c4;
     }
 
-    .map-column {
-      flex: 0 0 100%;
-      width: 100%;
-      min-width: 100%;
-      scroll-snap-align: start;
-      padding: 18px 14px 24px;
-      border-left: 2px solid #252c40;
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px 14px 60px;
     }
 
-    .map-header-box {
-      background: #141824;
-      border: 1px solid #2b3450;
-      border-radius: 12px;
-      padding: 14px 16px;
-      margin-bottom: 18px;
+    .hero-banner {
+      background: linear-gradient(135deg, #1e1743 0%, #110e26 100%);
+      border: 1px solid #32256c;
+      border-radius: 16px;
+      padding: 24px 18px;
       text-align: center;
+      margin-bottom: 24px;
     }
 
-    .map-badge {
-      font-size: 12px;
-      color: #8f9bff;
-      margin-bottom: 6px;
-      font-weight: bold;
+    .hero-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: #ffffff;
+      margin: 0 0 8px;
     }
 
-    .map-heading {
-      font-size: 18px;
-      color: #18b976;
-      margin: 0 0 6px;
-    }
-
-    .swipe-hint {
-      font-size: 12px;
-      color: #9ba5c2;
+    .hero-subtitle {
+      font-size: 13px;
+      color: #94a3b8;
       margin: 0;
     }
 
-    .script-item {
-      background: #141824;
-      border: 1px solid #252c40;
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 16px;
+      font-weight: 700;
+      color: #f1f5f9;
+      margin-bottom: 12px;
+    }
+
+    .games-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 28px;
+    }
+
+    .game-item {
+      background: #151130;
+      border: 1px solid #281f54;
       border-radius: 12px;
-      padding: 14px;
-      margin-bottom: 18px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .game-item:hover, .game-item.active {
+      background: #231a54;
+      border-color: #7c3aed;
+    }
+
+    .game-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .game-num {
+      background: #2e2365;
+      color: #a78bfa;
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .game-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .game-meta {
+      font-size: 12px;
+      color: #8b5cf6;
+    }
+
+    .arrow-icon {
+      color: #64748b;
+      font-size: 16px;
+    }
+
+    .scripts-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #231b4d;
+    }
+
+    .scripts-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #a78bfa;
+    }
+
+    .scripts-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .script-card {
+      background: #130f2a;
+      border: 1px solid #261e4f;
+      border-radius: 14px;
+      overflow: hidden;
+      padding: 16px;
+    }
+
+    .card-badges {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .badge-keyless {
+      background: #059669;
+      color: #ecfdf5;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+    }
+
+    .badge-verified {
+      background: #2563eb;
+      color: #eff6ff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
     }
 
     .script-name {
-      font-size: 15px;
-      font-weight: bold;
+      font-size: 16px;
+      font-weight: 700;
       color: #ffffff;
-      margin-bottom: 10px;
-    }
-
-    .script-img {
-      display: block;
-      width: 100%;
-      max-height: 280px;
-      object-fit: cover;
-      border-radius: 8px;
-      border: 1px solid #262f47;
       margin-bottom: 12px;
-      background: #0d1018;
     }
 
-    .code-box {
-      display: block;
-      width: 100%;
-      max-width: 100%;
-      padding: 11px;
+    .code-container {
+      background: #090715;
+      border: 1px solid #1e173e;
       border-radius: 8px;
-      background: #0b0e16;
-      border: 1px solid #232b42;
-      color: #7ef9c7;
+      padding: 12px;
       font-family: monospace;
-      font-size: 13px;
+      font-size: 12px;
+      color: #6ee7b7;
       direction: ltr;
       white-space: pre;
       overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
 
-    .copy-btn {
+    .copy-button {
       width: 100%;
-      padding: 11px;
+      background: #7c3aed;
+      color: #ffffff;
       border: none;
       border-radius: 8px;
-      background: #18b976;
-      color: #fff;
-      font-size: 14px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .open-link-btn {
-      display: block;
-      width: 100%;
       padding: 11px;
-      border-radius: 8px;
-      background: #4f6bff;
-      color: #fff;
-      text-decoration: none;
-      text-align: center;
       font-size: 14px;
-      font-weight: bold;
-      margin-bottom: 10px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s;
     }
 
-    /* إعلان يظهر كل 30 ثانية لمدة 10 ثواني */
-    .ad-overlay {
+    .copy-button:hover {
+      background: #6d28d9;
+    }
+
+    .copy-button.success {
+      background: #10b981;
+    }
+
+    .ad-backdrop {
       position: fixed;
       inset: 0;
-      background: rgba(6, 8, 13, 0.92);
-      z-index: 9999;
+      background: rgba(5, 4, 12, 0.92);
+      z-index: 99999;
       display: none;
       align-items: center;
       justify-content: center;
       padding: 16px;
     }
 
-    .ad-overlay.show {
-      display: flex;
-    }
-
-    .ad-card {
+    .ad-modal {
+      background: #151130;
+      border: 1px solid #3c2d7d;
+      border-radius: 18px;
+      padding: 24px 20px;
       width: 100%;
       max-width: 400px;
-      background: #141824;
-      border: 1px solid #354166;
-      border-radius: 14px;
-      padding: 20px;
       text-align: center;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+    }
+
+    .ad-header-badge {
+      display: inline-block;
+      background: #31256c;
+      color: #c4b5fd;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-bottom: 12px;
     }
 
     .ad-title {
-      font-size: 18px;
-      color: #8f9bff;
+      font-size: 20px;
+      font-weight: 800;
+      color: #ffffff;
       margin: 0 0 10px;
-      font-weight: bold;
     }
 
-    .ad-discord-title {
-      font-size: 14px;
-      color: #dce3f7;
-      margin: 0 0 8px;
-      font-weight: bold;
+    .robux-offer-box {
+      background: linear-gradient(135deg, #4c1d95, #1e3a8a);
+      border: 1px solid #7c3aed;
+      border-radius: 12px;
+      padding: 14px;
+      margin: 14px 0;
+      font-size: 16px;
+      font-weight: 800;
+      color: #fef08a;
     }
 
-    .ad-link-box {
+    .ad-discord-link {
       display: block;
-      width: 100%;
-      padding: 9px 10px;
-      border-radius: 8px;
-      background: #0b0e16;
-      border: 1px solid #232b42;
-      color: #8f9bff;
+      background: #090715;
+      border: 1px solid #281f54;
+      color: #a78bfa;
       text-decoration: none;
+      padding: 10px;
+      border-radius: 8px;
       font-family: monospace;
       font-size: 13px;
       direction: ltr;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
       overflow-x: auto;
       white-space: nowrap;
     }
 
-    .close-ad-btn {
-      background: #283048;
-      color: #fff;
-      border: none;
+    .ad-action-btn {
+      display: block;
+      background: #5865F2;
+      color: #ffffff;
+      text-decoration: none;
+      padding: 12px;
       border-radius: 8px;
-      padding: 8px 16px;
-      font-size: 13px;
-      font-weight: bold;
-      cursor: pointer;
-      margin-top: 8px;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 12px;
     }
 
-    .footer-copy {
+    .ad-timer-info {
       font-size: 12px;
-      color: #8c96b0;
-      margin-top: 8px;
+      color: #94a3b8;
     }
   </style>
 </head>
 <body>
 
-  <header class="top-bar">
-    <div class="brand-title">NEXUS NETWORK</div>
-    <a class="discord-btn" href="https://discord.gg/vAqnEarDk" target="_blank">ديسكورد NEXUS</a>
+  <header class="header">
+    <a href="#" class="brand">
+      <div class="brand-icon">S</div>
+      <span>NEXUS HUB</span>
+    </a>
+    <a href="https://discord.gg/vAqnEarDk" target="_blank" class="discord-btn">سيرفر الديسكورد</a>
   </header>
 
-  <main class="maps-track">
+  <main class="container">
+    <div class="hero-banner">
+      <h1 class="hero-title">Free Roblox Scripts</h1>
+      <p class="hero-subtitle">اختر الماب لعرض أفضل 3 سكريبتات شائعة بدون نظام مفاتيح</p>
+    </div>
 
-    <!-- 1: بلوكس فروت -->
-    <section class="map-column" id="bloxfruits">
-      <div class="map-header-box">
-        <div class="map-badge">المكان المخصص — NEXUS NETWORK</div>
-        <h2 class="map-heading">ماب بلوكس فروت — Blox Fruits</h2>
-        <p class="swipe-hint">اسحب الشاشة شمال للماب التالي ←</p>
+    <div class="section-header">
+      <span>🔥</span> Trending Games
+    </div>
+
+    <div class="games-list">
+      <div class="game-item active" onclick="selectGame('bloxfruits', this)">
+        <div class="game-info">
+          <div class="game-num">1</div>
+          <div>
+            <div class="game-title">بلوكس فروت (Blox Fruits)</div>
+            <div class="game-meta">3 سكريبتات جاهزة</div>
+          </div>
+        </div>
+        <div class="arrow-icon">←</div>
       </div>
 
-      <div class="script-item">
-        <div class="script-name">1. سكريبت RaitoHub — بلوكس فروت (Blox Fruits)</div>
-        <img class="script-img" src="./images/18838.jpg" alt="RaitoHub" />
-        <div class="code-box" id="bf1">loadstring(game:HttpGet("https://raw.githubusercontent.com/Efe0626/RaitoHub/main/Script"))()</div>
-        <button type="button" class="copy-btn" onclick="copyScript('bf1', this)">نسخ السكريبت</button>
+      <div class="game-item" onclick="selectGame('stealegg', this)">
+        <div class="game-info">
+          <div class="game-num">2</div>
+          <div>
+            <div class="game-title">سرقة البيض (Steal an Egg)</div>
+            <div class="game-meta">3 سكريبتات جاهزة</div>
+          </div>
+        </div>
+        <div class="arrow-icon">←</div>
       </div>
 
-      <div class="script-item">
-        <div class="script-name">2. سكريبت REDZ HUB — بلوكس فروت (Blox Fruits)</div>
-        <img class="script-img" src="./images/18839.jpg" alt="REDZ HUB" />
-        <div class="code-box" id="bf2">loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/BloxFruits/main/redz9999"))()</div>
-        <button type="button" class="copy-btn" onclick="copyScript('bf2', this)">نسخ السكريبت</button>
+      <div class="game-item" onclick="selectGame('inkgame', this)">
+        <div class="game-info">
+          <div class="game-num">3</div>
+          <div>
+            <div class="game-title">إنك جيم (Ink Game)</div>
+            <div class="game-meta">3 سكريبتات جاهزة</div>
+          </div>
+        </div>
+        <div class="arrow-icon">←</div>
       </div>
 
-      <div class="script-item">
-        <div class="script-name">3. سكريبت HoHo Hub — بلوكس فروت (Blox Fruits)</div>
-        <img class="script-img" src="ضع_رابط_صورة_هوهو_هنا.jpg" alt="HoHo Hub" />
-        <div class="code-box" id="bf3">_G.HohoVersion = "v4"
-loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI"))()</div>
-        <button type="button" class="copy-btn" onclick="copyScript('bf3', this)">نسخ السكريبت</button>
-      </div>
-    </section>
-
-    <!-- 2: سرقة البيض -->
-    <section class="map-column" id="stealegg">
-      <div class="map-header-box">
-        <div class="map-badge">المكان المخصص — NEXUS NETWORK</div>
-        <h2 class="map-heading">ماب سرقة البيض — Steal an Egg</h2>
-        <p class="swipe-hint">اسحب الشاشة شمال للماب التالي ←</p>
+      <div class="game-item" onclick="selectGame('squidgame', this)">
+        <div class="game-info">
+          <div class="game-num">4</div>
+          <div>
+            <div class="game-title">لعبة الحبار (Squid Game)</div>
+            <div class="game-meta">3 سكريبتات جاهزة</div>
+          </div>
+        </div>
+        <div class="arrow-icon">←</div>
       </div>
 
-      <div class="script-item">
-        <div class="script-name">1. سكريبت NYX — سرقة البيض (Steal an Egg)</div>
-        <img class="script-img" src="./images/18835.jpg" alt="NYX" />
-        <div class="code-box" id="se1">loadstring(game:HttpGet("https://raw.githubusercontent.com/syss1211/Tenshi-script/main/NYX.lua"))()</div>
-        <button type="button" class="copy-btn" onclick="copyScript('se1', this)">نسخ السكريبت</button>
+      <div class="game-item" onclick="selectGame('mm2', this)">
+        <div class="game-info">
+          <div class="game-num">5</div>
+          <div>
+            <div class="game-title">إم إم 2 (MM2)</div>
+            <div class="game-meta">3 سكريبتات جاهزة</div>
+          </div>
+        </div>
+        <div class="arrow-icon">←</div>
       </div>
+    </div>
 
-      <div class="script-item">
-        <div class="script-name">2. سكريبت ChilliHub v8 — سرقة البيض (Steal an Egg)</div>
-        <img class="script-img" src="./images/18836.jpg" alt="ChilliHub v8" />
-        <div class="code-box" id="se2">loadstring(game:HttpGet("https://raw.githubusercontent.com/napun67/stealanegg/refs/heads/main/chillihubv8.lua"))()</div>
-        <button type="button" class="copy-btn" onclick="copyScript('se2', this)">نسخ السكريبت</button>
-      </div>
+    <div class="scripts-header">
+      <div class="scripts-title" id="selectedGameTitle">سكريبتات بلوكس فروت (Blox Fruits)</div>
+    </div>
 
-      <div class="script-item">
-        <div class="script-name">3. سكريبت Sena v6.2 Hub — سرقة البيض (Steal an Egg)</div>
-        <img class="script-img" src="./images/sena-v6-2.jpg" alt="Sena v6.2 Hub" />
-        <div class="code-box" id="se3">loadstring(game:HttpGet("https://raw.githubusercontent.com/LSSOPS/OpenSource/refs/heads/main/Senav6.2Hub_Steal_An_Egg.lua"))()</div>
-        <button type="button" class="copy-btn" onclick="copyScript('se3', this)">نسخ السكريبت</button>
-      </div>
+    <div class="scripts-grid" id="scriptsContainer"></div>
+  </main>
 
-      <div class="script-item">
-        <div class="script-name">4. سرقة تلقائي — Auto Steal</div>
-        <img class="script-img" src="ضع_رابط_صورة_سرقة_تلقائي_1_هنا.jpg" alt="Auto Steal 1" />
-        <div class="code-box" id="se4">loadstring(game:HttpGet("https://iridiumon.top/loader"))()</div>
-        <button type="button" class="copy-btn" onclick="copyScript('se4', this)">نسخ السكريبت</button>
-      </div>
+  <!-- إعلان الديسكورد 10 ثواني كل 30 ثانية -->
+  <div class="ad-backdrop" id="adOverlay">
+    <div class="ad-modal">
+      <div class="ad-header-badge">إعلان مميز</div>
+      <h3 class="ad-title">NEXUS DISCORD</h3>
+      <div class="robux-offer-box">🎁 100 Robux لو دخلت السيرفر دلوقتي!</div>
+      <a class="ad-discord-link" href="https://discord.gg/vAqnEarDk" target="_blank">https://discord.gg/vAqnEarDk</a>
+      <a class="ad-action-btn" href="https://discord.gg/vAqnEarDk" target="_blank">انضم لسيرفر الديسكورد</a>
+      <div class="ad-timer-info" id="adTimerText">يغلق تلقائياً خلال 10 ثواني</div>
+    </div>
+  </div>
 
-      <div class="script-item">
-        <div class="script-name">5. سرقة تلقائي — Auto Steal</div>
-        <img class="script-img" src="ضع_رابط_صورة_سرقة_تلقائي_2_هنا.jpg" alt="Auto Steal 2" />
-        <div class="code-box" id="se5">loadstring(game:HttpGet("https://flowauth.net/v1/ui/a87f00d9adf63658655fcd02ab86a4ef.lua"))()</div>
-        <button type="button" class="copy-btn" onclick="copyScript('se5', this)">نسخ السكريبت</button>
-      </div>
+  <script>
+    const database = {
+      bloxfruits: {
+        title: "سكريبتات بلوكس فروت (Blox Fruits)",
+        scripts: [
+          {
+            name: "REDZ HUB — Blox Fruits Auto Farm",
+            code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/BloxFruits/main/redz9999"))()'
+          },
+          {
+            name: "RaitoHub — Fast Attack & Chest Farm",
+            code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/Efe0626/RaitoHub/main/Script"))()'
+          },
+          {
+            name: "HoHo Hub v4 — Blox Fruits Full Edition",
+            code: '_G.HohoVersion = "v4"\nloadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI"))()'
+          }
+        ]
+      },
+      stealegg: {
+        title: "سكريبتات سرقة البيض (Steal an Egg)",
+        scripts: [
+          {
+            name: "NYX Hub — Instant Steal & Auto Farm",
+            code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/syss1211/Tenshi-script/main/NYX.lua"))()'
+          },
+          {
+            name: "ChilliHub v8 — Steal an Egg OP",
+            code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/napun67/stealanegg/refs/heads/main/chillihubv8.lua"))()'
+          },
+          {
+            name: "Sena v6.2 Hub — Steal an Egg Panel",
+            code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/LSSOPS/OpenSource/refs/heads/main/Senav6.2Hub_Steal_An_Egg.lua"))()'
+          }
+        ]
+      },
+      inkgame: {
+        title: "سكريبتات إنك جيم (Ink Game)",
+        scripts: [
+          {
+            name: "Auto Win — Ink Game Supreme",
+            code: 'loadstring(game:HttpGet("https://flowauth.net/v1/ui/a87f00d9adf63658655fcd02ab86a4ef.lua"))()'
+          },
+          {
+            name: "Blossom Script — Ink Game Auto Finish",
+            code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/xyzlovesyouuu/blossomscripts/refs/heads/main/inkgame"))()'
+          },
+          {
+            name: "Iridium Loader — Ink Game ESP & Fly",
+            code: 'loadstring(game:HttpGet("https://iridiumon.top/loader"))()'
+          }
+        ]
+      },
+      squidgame: {
+        title: "سكريبتات لعبة الحبار (Squid Game)",
+        scripts: [
+          {
+            name: "Squid Game Auto Win & Teleport",
+            code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/xyzlovesyouuu/blossomscripts/refs/heads/main/inkgame"))()'
+          },
+          {
+            name: "Red Light Green Light Godmode",
+            code: 'loadstring(game:HttpGet("https://iridiumon.top/loader"))()'
+          },
+          {
+            name: "Glass Bridge Solver & ESP",
+            code: 'loadstring(game:HttpGet("https://flowauth.net/v1/ui/a87f00d9adf63658655fcd02ab86a4ef.lua"))()'
+          }
+        ]
+      },
+      mm2: {
+        title: "سكريبتات إم إم 2 (MM2)",
+        scripts: [
+          {
+            name: "Aether Hub — Murder Mystery 2",
+            code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/vzyxer/Aether-Hub-Global-Roblox-Script-Hub/refs/heads/main/Murder%20Mystery%202"))()'
+          },
+          {
+            name: "TrollX V2 — MM2 Silent Aim & ESP",
+            code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/ahmidd409/TrollX-V2/refs/heads/main/Mm2TKX"))()'
+          },
+          {
+            name: "Nexus MM2 Coin Farm & Sheriff ESP",
+            code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/BloxFruits/main/redz9999"))()'
+          }
+        ]
+      }
+    };
 
-      <div class="script-item">
-        <div class="script-name">6. سكريبت Miranda hub — سرقة البيض (Steal an Egg)</div>
-        <img class="script-img" src="ضع_رابط_صورة_ميراندا_هنا.jpg" alt="Miranda hub" />
-        <div class="code-box" id="se6">loadstring(game:HttpGet("https://raw.githubusercontent.com/miirandahub/loader/main/afkk"))()</div>
-        <button type="button" class="copy-btn" onclick="copyScript('se6', this)">نسخ السكريبت</button>
-      </div>
+    function selectGame(gameKey, element) {
+      document.querySelectorAll('.game-item').forEach(el => el.classList.remove('active'));
+      if(element) element.classList.add('active');
 
-      <div class="script-item">
-        <div class="script-name">7. سكربت 𝑠𝑜𝑢𝑟𝑐𝑒 ℎ𝑢𝑏 ❤️‍🔥 — سرقة البيض (Steal an Egg)</div>
-        <img class="script-img" src="ضع_رابط_صورة_سورس_هاب_هنا.jpg" alt="source hub" />
-        <div class="code-box" id="se7">loadstring(game:HttpGet("https://gist.githubusercontent.com/sourceshubs/1737c14cdba5c6fb472a995d555a50f1/raw/SourcesHubInstantStealNew"))()</div>
-        <button type="button" class="copy-btn" onclick="copyScript('se7', this)">نسخ السكريبت</button>
-      </div>
+      const data = database[gameKey];
+      if(!data) return;
 
-      <div class="script-item">
-        <div class="script-name">8. سكريبت Polluted hub — سرقة البيض (Steal an Egg)</div>
-        <img class="script-img" src="ضع_رابط_صورة_بولوتيد_هاب_هنا.jpg" alt="Polluted hub" />
-        <div class="code-box" id="se8">loadstring(game:HttpGet("https://raw.githubusercontent.com/PollutedHub/Sae/main/SaePolluted"))()</div>
-        <button type="button" class="copy-btn" onclick="copyScript('se8', this)">نسخ السكريبت</button>
-      </div>
+      document.getElementById('selectedGameTitle').textContent = data.title;
+      const container = document.getElementById('scriptsContainer');
 
-      <div class="script-item">
-        <div class="script-name">9. سكربت 𝑣𝑖𝑟𝑒𝑥 ℎ𝑢𝑏 ❤️‍🔥 — سرقة البيض (Steal an Egg)</div>
-        <img class="script-img" src="ضع_رابط_صورة_فيركس_هاب_هنا.jpg" alt="virex hub" />
-        <div class="code-box" id="se9">loadstring(game:HttpGet("https://gist.githubusercontent.com/virexx55/6be38618d0b5dc80e395c330a320ef8a/raw/768999d2094134ea4a73d6eee020e5325fd61f21/virex.hib"))()</div>
-        <button type="button" class="copy-btn" onclick="copyScript('se9', this)">نسخ السكريبت</button>
-      </div>
+      container.innerHTML = data.scripts.map((item, index) => `
+        <div class="script-card">
+          <div class="card-badges">
+            <span class="badge-keyless">Keyless</span>
+            <span class="badge-verified">✓ Verified</span>
+          </div>
+          <div class="script-name">${index + 1}. ${item.name}</div>
+          <div class="code-container">${item.code}</div>
+          <button class="copy-button" onclick="copyScript(this, ${JSON.stringify(item.code)})">نسخ السكريبت</button>
+        </div>
+      `).join('');
+    }
 
-      <div class="script-item">
-        <div class="script-name">10. سكريبت Steal Panel — سرقة البيض (Steal an Egg)</div>
-        <img class="script-img" src="ضع_رابط_صورة_ستيل_بانل_هنا.jpg" alt="Steal Panel" />
-        <div class="code-box" id="se10">loadstring(game:HttpGet("https://raw.githubusercontent.com/Figgyscript/Figgy/main/Figgyhub"))()</div>
-        <button type="button" class="copy-btn" onclick="copyScript('se10', this)">نسخ السكريبت</button>
-      </div>
+    function copyScript(button, text) {
+      const onSuccess = () => {
+        const originalText = button.textContent;
+        button.textContent = "تم النسخ ✓";
+        button.classList.add("success");
+        setTimeout(() => {
+          button.textContent = originalText;
+          button.classList.remove("success");
+        }, 1500);
+      };
 
-      <div class="script-item">
-        <div class="script-name">11. سكريبت Tenshi beta — سرقة البيض (Steal an Egg)</div>
-        <img class="script-img" src="ضع_رابط_صورة_تينشي_بيتا_هنا.jpg" alt="Tenshi beta" />
-        <div class="code-box" id="se11">loadstring(game:HttpGet("https://raw.githubusercontent.com/syss1211/Tenshi-script/main/NYX.lua"))()</div>
-        <button type="button" class="copy-btn" onclick="copyScript('se11', this)">نسخ السكريبت</button>
-      </div>
-    </section>
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(onSuccess).catch(() => fallbackCopy(text, onSuccess));
+      } else {
+        fallbackCopy(text, onSuccess);
+      }
+    }
 
-    <!-- 3: إنك جيم -->
-    <section class="map-column" id="inkgame">
-      <div class="map-header-box">
-        <div class="map-badge">المكان المخصص — NEXUS NETWORK</div>
-        <h2 class="map-heading">ماب إنك جيم — Ink Game</h2>
-        <p class="swipe-hint">اسحب الشاشة شمال للماب التالي ←</p>
-      </div>
+    function fallbackCopy(text, done) {
+      const textarea = document.createElement("textarea");
+      textarea.value = text;
+      textarea.style.position = "fixed";
+      textarea.style.opacity = "0";
+      document.body.appendChild(textarea);
+      textarea.select();
+      try { document.execCommand("copy"); } catch (e) {}
+      document.body.removeChild(textarea);
+      done();
+    }
 
-      <div class="script-item">
-        <div class="script-name">1. سكريبتات خارقة للفوز التلقائي — Auto Win</div>
-        <img class="script-img" src="ضع_رابط_صورة_فوز_تلقائي_1_هنا.jpg" alt="Auto Win 1" />
-        <div class="code-box" id="ig1">loadstring(game:HttpGet("https://flowauth.net/v1/ui/a87f00d9adf63658655fcd02ab86a4ef.lua"))()</div>
-        <button type="button" class="copy-btn" onclick="copyScript('ig1', this)">نسخ السكريبت</button>
-      </div>
+    let adTimeout = null;
+    let adInterval = null;
 
-      <div class="script-item">
-        <div class="script-name">2. سكريبتات خارقة للفوز التلقائي — Auto Win</div>
-        <img class="script-img" src="ضع_رابط_صورة_فوز_تلقائي_2_هنا.jpg" alt="Auto Win 2" />
-        <div class="code-box" id="ig2">loadstring(game:HttpGet("https://raw.githubusercontent.com/xyzlovesyouuu/blossomscripts/refs/heads/main/inkgame"))()</div>
-        <button type="button" class="copy-btn" onclick="copyScript('ig2', this)">نسخ السكريبت</button>
-      </div>
-    </section>
+    function triggerAdOverlay() {
+      const overlay = document.getElementById("adOverlay");
+      const timerText = document.getElementById("adTimerText");
+      if (!overlay) return;
 
-    <!-- 4: إم إم 2 -->
-    <section class="map-column" id="mm2">
-      <div class="map-header-box">
-        <div class="map-badge">المكان المخصص — NEXUS NETWORK</div>
-        <h2 class="map-heading">ماب إم إم 2 — MM2</h2>
-        <p class="swipe-hint">اسحب الشاشة شمال للماب التالي ←</p>
-      </div>
+      clearTimeout(adTimeout);
+      clearInterval(adInterval);
 
-      <div class="script-item">
-        <div class="script-name">1. سكريبت Aether Hub — إم إم 2 (MM2)</div>
-        <img class="script-img" src="ضع_رابط_صورة_ام_ام_2_هنا.jpg" alt="Aether Hub MM2" />
-        <div class="code-box" id="mm1">loadstring(game:HttpGet("https://raw.githubusercontent.com/vzyxer/Aether-Hub-Global-Roblox-Script-Hub/refs/heads/main/Murder%20Mystery%202"))()</div>
-        <button type="button" class="copy-btn" onclick="copyScript('mm1', this)">نسخ السكريبت</button>
-      </div>
+      let timeLeft = 10;
+      timerText.textContent = "يغلق تلقائياً خلال " + timeLeft + " ثواني";
+      overlay.style.display = "flex";
 
-      <div class="script-item">
-        <div class="script-name">2. سكريبت TrollX V2 — إم إم 2 (MM2)</div>
-        <img class="script-img" src="ضع_رابط_صورة_ترول_اكس_هنا.jpg" alt="TrollX V2 MM2" />
-        <div class="code-box" id="mm2">loadstring(game:HttpGet("https://raw.githubusercontent.com/ahmidd409/TrollX-V2/refs/heads/main/Mm2TKX"))()</div>
-        <button type="button" class="copy-btn" onclick="copyScript('mm2', this)">نسخ السكريبت</button>
-      </div>
-    </section>
+      adInterval = setInterval(() => {
+        timeLeft--;
+        if (timeLeft > 0) {
+          timerText.textContent = "يغلق تلقائياً خلال " + timeLeft + " ثواني";
+        } else {
+          clearInterval(adInterval);
+        }
+      }, 1000);
 
-    <!-- 5: دلتا أندرويد -->
-    <section class="map-column" id="delta-android">
-      <div class="map-header-box">
-        <div class="map-badge">المكان المخصص — NEXUS NETWORK</div>
-        <h2 class="map-heading">هكر أندرويد دلتا — Delta Android</h2>
-        <p class="swipe-hint">اسحب الشاشة شمال للماب التالي ←</p>
-      </div>
+      adTimeout = setTimeout(() => {
+        overlay.style.display = "none";
+        clearInterval(adInterval);
+      }, 10000);
+    }
 
-      <div class="script-item">
-        <div class="script-name">1. رابط تحميل دلتا أندرويد — Delta Android Executor</div>
-        <div class="code-box" id="da1">https://deltaexploits.dev/delta-executor-android</div>
-        <a class="open-link-btn" href="https://deltaexploits.dev/delta-executor-android" target="_blank">فتح الرابط</a>
-        <button type="button" class="copy-btn" onclick="copyScript('da1', this)">نسخ الرابط</button>
-      </div>
-    </section>
+    selectGame('bloxfruits');
 
-    <!-- 6: دلتا آيفون -->
-    <section class="map-column" id="delta-ios">
-      <div class="map-header-box">
-        <div class="map-badge">المكان المخصص — NEXUS NETWORK</div>
-        <h2 class="map-heading">هاك آيفون دلتا — Delta iOS</h2>
-        <p class="swipe-hint">اسحب الشاشة شمال للماب التالي ←</p>
-      </div>
-
-      <div class="script-item">
-        <div class="script-name">1. رابط تحميل دلتا آيفون — Delta iOS Executor</div>
-        <div class="code-box" id="di1">https://deltaexploits.gg/delta-executor-ios</div>
-        <a class="open-link-btn" href="https://deltaexploits.gg/delta-executor-ios" target="_blank">فتح الرابط</a>
-        <button type="button" class="copy-btn" onclick="copyScript('di1', this)">نسخ الرابط</button>
-      </div>
-    </section>
-
-    <!-- 7: بروك هيفن -->
-    <section class="map-column" id="brookhaven">
-      <div class="map-header-box">
-        <div class="map-badge">المكان المخصص — NEXUS NETWORK</div>
-        <h2 class="map-heading">ماب بروك هيفن — Map Brook Haven</h2>
-        <p class="swipe-hint">اسحب الشاشة شمال للماب التالي ←</p>
-      </div>
-
-      <div class="script-item">
-        <div class="script-name">1. سكريبت SP Hub — بروك هيفن (Map Brook Haven)</div>
-        <img class="script-img" src="ضع_رابط_صورة_بروك_هيفن_هنا.jpg" alt="Brook Haven SP Hub" />
-        <div class="code-box" id="bh1">loadstring(game:HttpGet("https://raw.githubusercontent.com/as6cd0/SP_Hub/refs/heads/main/Brookhaven"))()</div>
-        <button type="button" class="copy-btn" onclick="copyScript('bh1', this)">نسخ السكريبت</button>
-      </div>
-
-      <div class="script-item">
-        <div class="script-name">2. سكريبت آيس — بروك هيفن (Map Brook Haven)</div>
-        <img class="script-img" src="ضع_رابط_صورة_ايس_بروك_هيفن_هنا.jpg" alt="Brook Haven Ice" />
-        <div class="code-box" id="bh2">loadstring(game:HttpGet("https://scriptblox.com/raw/Brookhaven-RP-JulHub-by-Thestrongestman0080-13794"))()</div>
-        <button type="button" class="copy-btn" onclick="copyScript('bh2', this)">نسخ السكريبت</button>
-      </div>
-
-      <div class="script-item">
-        <div class="script-name">3. سكريبت سكنات بروك هيفن — Brookhaven Skins</div>
-        <img class="script-img" src="ضع_رابط_صورة_سكنات_بروك_هيفن_هنا.jpg" alt="Brookhaven Skins" />
-        <div class="code-box" id="bh3">loadstring(game:HttpGet("https://rawscripts.net/raw/Brookhaven-RP-Brookhave-English-20211"))()</div>
-        <button type="button" class="copy-btn" onclick="copyScript('bh3', this)">نسخ السكريبت</button>
-      </div>
-    </section>
-
-    <!-- 8: تايم بومب -->
-    <section class="map-column" id="timebomb">
-      <div class="map-header-box">
-        <div class="map-badge">المكان المخصص — NEXUS NETWORK</div>
-        <h2 class="map-heading">ماب تايم بومب — Map Time Bomb</h2>
-        <p class="swipe-hint">اسحب يمين للرجوع للمابات السابقة</p>
-      </div>
-
-      <div class="script-item">
-        <div class="script-name">1. سكريبت Time Bomb — تايم بومب (Map Time Bomb)</div>
-        <img class="script-img" src="ضع_رابط_صورة_تايم_بومب_هنا.jpg" alt="Time Bomb" />
-        <div class="code-box" id="tb1">loadstring(game:HttpGet("https://rawscripts.net/raw/Timebomb-Duels-Alpha-Time-Bomb-Script-49198"))()</div>
-        <button type="button" class="copy-btn" onclick="copyScript('tb1', this)">نسخ السكريبت</button>
-      </div>
-
-      <div class="script-item">
-        <div class="script-name">2. سكريبت PhantomX — تايم بومب (Map Time Bomb)</div>
-        <img class="script-img" src="ضع_رابط_صورة_فانتوم_اكس_هنا.jpg" alt="PhantomX" />
-        <div class="code-box" id="tb2">loadstring(game:HttpGet("https://raw.githubusercontent.com/Cypher666-oss/Ld-/main/PhantomXLd.lua.txt"))()</div>
-        <button type="button" class="copy-btn" onclick="copyScript('tb2', this)">نسخ السكريبت</button>
-      </div>
-
-      <div class="script-item">
-        <div class="script-name">3. سكري
+    window.addEventListener("load", () => {
+      triggerAdOverlay();
+      setInterval(triggerAdOverlay, 30000);
+    });
+  </script>
+</body>
+</html>
