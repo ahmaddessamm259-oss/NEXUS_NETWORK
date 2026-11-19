@@ -77,7 +77,7 @@
       border-radius: 12px;
       padding: 18px;
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 14px;
     }
 
     .hero-box h1 {
@@ -90,6 +90,82 @@
       margin: 0;
       font-size: 13px;
       color: #a4aec7;
+    }
+
+    /* خانة البحث السريع عن السكريبتات */
+    .search-wrapper {
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 13px 15px;
+      border-radius: 10px;
+      border: 1px solid #2f3a5c;
+      background: #141824;
+      color: #ffffff;
+      font-size: 14px;
+      font-family: Tahoma, Arial, sans-serif;
+      outline: none;
+    }
+
+    .search-input:focus {
+      border-color: #7c92ff;
+    }
+
+    .search-results {
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0;
+      right: 0;
+      background: #141824;
+      border: 1px solid #354166;
+      border-radius: 10px;
+      max-height: 280px;
+      overflow-y: auto;
+      z-index: 90;
+      display: none;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.55);
+    }
+
+    .search-results.show {
+      display: block;
+    }
+
+    .search-result-item {
+      padding: 11px 14px;
+      border-bottom: 1px solid #22293d;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .search-result-item:last-child {
+      border-bottom: none;
+    }
+
+    .search-result-item:hover {
+      background: #1d2336;
+    }
+
+    .search-result-title {
+      font-size: 13px;
+      font-weight: bold;
+      color: #ffffff;
+    }
+
+    .search-result-hub {
+      font-size: 11px;
+      color: #7ef9c7;
+    }
+
+    .search-empty {
+      padding: 12px 14px;
+      font-size: 13px;
+      color: #a4aec7;
+      text-align: center;
     }
 
     /* أزرار اختيار المقر / القسم */
@@ -140,6 +216,12 @@
       border-radius: 12px;
       padding: 14px;
       margin-bottom: 18px;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .script-item.highlight-card {
+      border-color: #18b976;
+      box-shadow: 0 0 0 2px rgba(24, 185, 118, 0.35);
     }
 
     .script-name {
@@ -204,11 +286,11 @@
       margin-bottom: 10px;
     }
 
-    /* إعلان 10 ثواني كل 30 ثانية */
+    /* إعلان 3 ثواني يظهر عند النسخ أو فتح الرابط ويختفي تلقائياً */
     .ad-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(6, 8, 13, 0.94);
+      background: rgba(6, 8, 13, 0.92);
       z-index: 9999;
       display: none;
       align-items: center;
@@ -222,78 +304,43 @@
 
     .ad-card {
       width: 100%;
-      max-width: 440px;
+      max-width: 400px;
       background: #141824;
       border: 1px solid #354166;
       border-radius: 14px;
-      padding: 18px;
+      padding: 20px;
       text-align: center;
     }
 
-    .ad-timer {
-      font-size: 14px;
-      color: #ffd166;
-      margin-bottom: 12px;
+    .ad-congrats {
+      font-size: 20px;
+      color: #18b976;
+      margin: 0 0 12px;
       font-weight: bold;
     }
 
-    .ad-img {
-      width: 100%;
-      max-height: 240px;
-      object-fit: cover;
-      border-radius: 10px;
-      margin-bottom: 12px;
-      border: 1px solid #2a334d;
+    .ad-discord-title {
+      font-size: 14px;
+      color: #dce3f7;
+      margin: 0 0 8px;
+      font-weight: bold;
     }
 
     .ad-link-box {
       display: block;
       width: 100%;
-      padding: 8px 10px;
+      padding: 9px 10px;
       border-radius: 8px;
       background: #0b0e16;
       border: 1px solid #232b42;
       color: #8f9bff;
+      text-decoration: none;
       font-family: monospace;
-      font-size: 12px;
+      font-size: 13px;
       direction: ltr;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
       overflow-x: auto;
       white-space: nowrap;
-    }
-
-    .ad-prize-text {
-      font-size: 14px;
-      line-height: 1.6;
-      color: #ffd166;
-      margin: 0 0 8px;
-      font-weight: bold;
-    }
-
-    .ad-mc-text {
-      font-size: 13px;
-      line-height: 1.6;
-      color: #7ef9c7;
-      margin: 0 0 12px;
-      font-weight: bold;
-    }
-
-    .ad-close-btn {
-      width: 100%;
-      padding: 11px;
-      border: none;
-      border-radius: 8px;
-      background: #4f6bff;
-      color: #fff;
-      font-size: 14px;
-      font-weight: bold;
-      cursor: pointer;
-      margin-top: 10px;
-    }
-
-    .ad-close-btn:disabled {
-      background: #333b52;
-      cursor: not-allowed;
     }
 
     .footer-copy {
@@ -317,16 +364,30 @@
       <p>اختر القسم المطلوب وانسخ السكريبت أو افتح الرابط بسهولة</p>
     </div>
 
+    <!-- قائمة البحث الفوري عن السكريبتات -->
+    <div class="search-wrapper" id="searchWrapper">
+      <input
+        type="text"
+        class="search-input"
+        id="scriptSearchInput"
+        placeholder="ابحث عن اسم السكريبت المطلوب هنا..."
+        oninput="handleScriptSearch()"
+        onfocus="handleScriptSearch()"
+      />
+      <div class="search-results" id="searchResults"></div>
+    </div>
+
     <!-- أزرار التنقل بين المقرات -->
     <div class="hubs-nav">
-      <button class="hub-btn active" onclick="openHub('bloxfruits', this)">بلوكس فروت — Blox Fruits</button>
-      <button class="hub-btn" onclick="openHub('stealegg', this)">سرقة البيض — Steal an Egg</button>
-      <button class="hub-btn" onclick="openHub('inkgame', this)">إنك جيم — Ink Game</button>
-      <button class="hub-btn" onclick="openHub('mm2', this)">إم إم 2 — MM2</button>
-      <button class="hub-btn" onclick="openHub('delta-android', this)">هكر أندرويد دلتا — Delta Android</button>
-      <button class="hub-btn" onclick="openHub('delta-ios', this)">هاك آيفون دلتا — Delta iOS</button>
-      <button class="hub-btn" onclick="openHub('brookhaven', this)">بروك هيفن — Map Brook Haven</button>
-      <button class="hub-btn" onclick="openHub('timebomb', this)">تايم بومب — Map Time Bomb</button>
+      <button class="hub-btn active" data-hub="bloxfruits" onclick="openHub('bloxfruits', this)">بلوكس فروت — Blox Fruits</button>
+      <button class="hub-btn" data-hub="stealegg" onclick="openHub('stealegg', this)">سرقة البيض — Steal an Egg</button>
+      <button class="hub-btn" data-hub="inkgame" onclick="openHub('inkgame', this)">إنك جيم — Ink Game</button>
+      <button class="hub-btn" data-hub="mm2" onclick="openHub('mm2', this)">إم إم 2 — MM2</button>
+      <button class="hub-btn" data-hub="delta-android" onclick="openHub('delta-android', this)">هكر أندرويد دلتا — Delta Android</button>
+      <button class="hub-btn" data-hub="delta-ios" onclick="openHub('delta-ios', this)">هاك آيفون دلتا — Delta iOS</button>
+      <button class="hub-btn" data-hub="brookhaven" onclick="openHub('brookhaven', this)">بروك هيفن — Map Brook Haven</button>
+      <button class="hub-btn" data-hub="timebomb" onclick="openHub('timebomb', this)">تايم بومب — Map Time Bomb</button>
+      <button class="hub-btn" data-hub="universal" onclick="openHub('universal', this)">عام — Universal AvatarZ</button>
     </div>
 
     <!-- مقر 1: بلوكس فروت — Blox Fruits -->
@@ -394,6 +455,48 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_H/main/L
         <div class="code-box" id="se5">loadstring(game:HttpGet("https://flowauth.net/v1/ui/a87f00d9adf63658655fcd02ab86a4ef.lua"))()</div>
         <button class="copy-btn" onclick="copyScript('se5', this)">نسخ السكريبت</button>
       </div>
+
+      <div class="script-item">
+        <div class="script-name">6. سكريبت Miranda hub — سرقة البيض (Steal an Egg)</div>
+        <img class="script-img" src="ضع_رابط_صورة_ميراندا_هنا.jpg" alt="Miranda hub" />
+        <div class="code-box" id="se6">loadstring(game:HttpGet("https://raw.githubusercontent.com/miirandahub/loader/main/afkk"))()</div>
+        <button class="copy-btn" onclick="copyScript('se6', this)">نسخ السكريبت</button>
+      </div>
+
+      <div class="script-item">
+        <div class="script-name">7. سكربت 𝑠𝑜𝑢𝑟𝑐𝑒 ℎ𝑢𝑏 ❤️‍🔥 — سرقة البيض (Steal an Egg)</div>
+        <img class="script-img" src="ضع_رابط_صورة_سورس_هاب_هنا.jpg" alt="source hub" />
+        <div class="code-box" id="se7">loadstring(game:HttpGet("https://gist.githubusercontent.com/sourceshubs/1737c14cdba5c6fb472a995d555a50f1/raw/SourcesHubInstantStealNew"))()</div>
+        <button class="copy-btn" onclick="copyScript('se7', this)">نسخ السكريبت</button>
+      </div>
+
+      <div class="script-item">
+        <div class="script-name">8. سكريبت Polluted hub — سرقة البيض (Steal an Egg)</div>
+        <img class="script-img" src="ضع_رابط_صورة_بولوتيد_هاب_هنا.jpg" alt="Polluted hub" />
+        <div class="code-box" id="se8">loadstring(game:HttpGet("https://raw.githubusercontent.com/PollutedHub/Sae/main/SaePolluted"))()</div>
+        <button class="copy-btn" onclick="copyScript('se8', this)">نسخ السكريبت</button>
+      </div>
+
+      <div class="script-item">
+        <div class="script-name">9. سكربت 𝑣𝑖𝑟𝑒𝑥 ℎ𝑢𝑏 ❤️‍🔥 — سرقة البيض (Steal an Egg)</div>
+        <img class="script-img" src="ضع_رابط_صورة_فيركس_هاب_هنا.jpg" alt="virex hub" />
+        <div class="code-box" id="se9">loadstring(game:HttpGet("https://gist.githubusercontent.com/virexx55/6be38618d0b5dc80e395c330a320ef8a/raw/768999d2094134ea4a73d6eee020e5325fd61f21/virex.hib"))()</div>
+        <button class="copy-btn" onclick="copyScript('se9', this)">نسخ السكريبت</button>
+      </div>
+
+      <div class="script-item">
+        <div class="script-name">10. سكريبت Steal Panel — سرقة البيض (Steal an Egg)</div>
+        <img class="script-img" src="ضع_رابط_صورة_ستيل_بانل_هنا.jpg" alt="Steal Panel" />
+        <div class="code-box" id="se10">loadstring(game:HttpGet("https://raw.githubusercontent.com/Figgyscript/Figgy/main/Figgyhub"))()</div>
+        <button class="copy-btn" onclick="copyScript('se10', this)">نسخ السكريبت</button>
+      </div>
+
+      <div class="script-item">
+        <div class="script-name">11. سكريبت Tenshi beta — سرقة البيض (Steal an Egg)</div>
+        <img class="script-img" src="ضع_رابط_صورة_تينشي_بيتا_هنا.jpg" alt="Tenshi beta" />
+        <div class="code-box" id="se11">loadstring(game:HttpGet("https://raw.githubusercontent.com/syss1211/Tenshi-script/main/NYX.lua"))()</div>
+        <button class="copy-btn" onclick="copyScript('se11', this)">نسخ السكريبت</button>
+      </div>
     </section>
 
     <!-- مقر 3: إنك جيم — Ink Game -->
@@ -441,7 +544,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_H/main/L
       <div class="script-item">
         <div class="script-name">1. رابط تحميل دلتا أندرويد — Delta Android Executor</div>
         <div class="code-box" id="da1">https://deltaexploits.dev/delta-executor-android</div>
-        <a class="open-link-btn" href="https://deltaexploits.dev/delta-executor-android" target="_blank">فتح الرابط</a>
+        <a class="open-link-btn" href="https://deltaexploits.dev/delta-executor-android" target="_blank" onclick="showThreeSecAd()">فتح الرابط</a>
         <button class="copy-btn" onclick="copyScript('da1', this)">نسخ الرابط</button>
       </div>
     </section>
@@ -453,7 +556,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_H/main/L
       <div class="script-item">
         <div class="script-name">1. رابط تحميل دلتا آيفون — Delta iOS Executor</div>
         <div class="code-box" id="di1">https://deltaexploits.gg/delta-executor-ios</div>
-        <a class="open-link-btn" href="https://deltaexploits.gg/delta-executor-ios" target="_blank">فتح الرابط</a>
+        <a class="open-link-btn" href="https://deltaexploits.gg/delta-executor-ios" target="_blank" onclick="showThreeSecAd()">فتح الرابط</a>
         <button class="copy-btn" onclick="copyScript('di1', this)">نسخ الرابط</button>
       </div>
     </section>
@@ -470,106 +573,4 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_H/main/L
       </div>
 
       <div class="script-item">
-        <div class="script-name">2. سكريبت آيس — بروك هيفن (Map Brook Haven)</div>
-        <img class="script-img" src="ضع_رابط_صورة_ايس_بروك_هيفن_هنا.jpg" alt="Brook Haven Ice" />
-        <div class="code-box" id="bh2">loadstring(game:HttpGet("https://scriptblox.com/raw/Brookhaven-RP-JulHub-by-Thestrongestman0080-13794"))()</div>
-        <button class="copy-btn" onclick="copyScript('bh2', this)">نسخ السكريبت</button>
-      </div>
-
-      <div class="script-item">
-        <div class="script-name">3. سكريبت سكنات بروك هيفن — Brookhaven Skins</div>
-        <img class="script-img" src="ضع_رابط_صورة_سكنات_بروك_هيفن_هنا.jpg" alt="Brookhaven Skins" />
-        <div class="code-box" id="bh3">loadstring(game:HttpGet("https://rawscripts.net/raw/Brookhaven-RP-Brookhave-English-20211"))()</div>
-        <button class="copy-btn" onclick="copyScript('bh3', this)">نسخ السكريبت</button>
-      </div>
-    </section>
-
-    <!-- مقر 8: تايم بومب — Map Time Bomb -->
-    <section class="hub-section" id="timebomb">
-      <h2 class="hub-heading">مقر سكريبتات تايم بومب — Map Time Bomb</h2>
-
-      <div class="script-item">
-        <div class="script-name">1. سكريبت Time Bomb — تايم بومب (Map Time Bomb)</div>
-        <img class="script-img" src="ضع_رابط_صورة_تايم_بومب_هنا.jpg" alt="Time Bomb" />
-        <div class="code-box" id="tb1">loadstring(game:HttpGet("https://rawscripts.net/raw/Timebomb-Duels-Alpha-Time-Bomb-Script-49198"))()</div>
-        <button class="copy-btn" onclick="copyScript('tb1', this)">نسخ السكريبت</button>
-      </div>
-    </section>
-  </main>
-
-  <!-- القائمة السفلية + رابط الديسكورد -->
-  <footer class="bottom-bar">
-    <a class="discord-btn" href="https://discord.gg/vAqnEarDk" target="_blank">انضم لسيرفر NEXUS NETWORK على ديسكورد</a>
-    <div class="footer-copy">جميع الحقوق محفوظة &copy; NEXUS NETWORK</div>
-  </footer>
-
-  <!-- نافذة الإعلان (10 ثواني كل 30 ثانية) -->
-  <div class="ad-overlay" id="adOverlay">
-    <div class="ad-card">
-      <div class="ad-timer" id="adTimer">إعلان سيرفر الديسكورد — متبقي 10 ثواني</div>
-      <img class="ad-img" src="./images/discord-ad.jpg" alt="NEXUS NETWORK Discord" />
-      <div class="ad-link-box">https://discord.gg/vAqnEarDk</div>
-      <p class="ad-prize-text">جائزة 100 روبوكس اول ما تدخل 15 واحد في السيرفر دوت.</p>
-      <p class="ad-mc-text">وكمان يوجد سيرفر ماين كرافت للبدروك.</p>
-      <a class="discord-btn" href="https://discord.gg/vAqnEarDk" target="_blank">دخول سيرفر الديسكورد</a>
-      <button class="ad-close-btn" id="adCloseBtn" onclick="closeAd()" disabled>انتظر 10 ثواني...</button>
-    </div>
-  </div>
-
-  <script>
-    function openHub(hubId, btnElement) {
-      document.querySelectorAll(".hub-section").forEach(sec => sec.classList.remove("active"));
-      document.querySelectorAll(".hub-btn").forEach(btn => btn.classList.remove("active"));
-      document.getElementById(hubId).classList.add("active");
-      btnElement.classList.add("active");
-    }
-
-    function copyScript(elementId, btnElement) {
-      const text = document.getElementById(elementId).textContent;
-      navigator.clipboard.writeText(text).then(() => {
-        const oldText = btnElement.textContent;
-        btnElement.textContent = "تم النسخ ✓";
-        setTimeout(() => {
-          btnElement.textContent = oldText;
-        }, 1500);
-      });
-    }
-
-    // إعلان لمدة 10 ثواني يظهر كل 30 ثانية
-    let adCountdown = null;
-
-    function triggerAd() {
-      const overlay = document.getElementById("adOverlay");
-      const timerText = document.getElementById("adTimer");
-      const closeBtn = document.getElementById("adCloseBtn");
-
-      let seconds = 10;
-      overlay.classList.add("show");
-      closeBtn.disabled = true;
-      closeBtn.textContent = `انتظر ${seconds} ثواني...`;
-      timerText.textContent = `إعلان سيرفر الديسكورد — متبقي ${seconds} ثواني`;
-
-      clearInterval(adCountdown);
-      adCountdown = setInterval(() => {
-        seconds--;
-        if (seconds > 0) {
-          closeBtn.textContent = `انتظر ${seconds} ثواني...`;
-          timerText.textContent = `إعلان سيرفر الديسكورد — متبقي ${seconds} ثواني`;
-        } else {
-          clearInterval(adCountdown);
-          timerText.textContent = "يمكنك الآن إغلاق الإعلان";
-          closeBtn.disabled = false;
-          closeBtn.textContent = "إغلاق";
-        }
-      }, 1000);
-    }
-
-    function closeAd() {
-      document.getElementById("adOverlay").classList.remove("show");
-    }
-
-    // تشغيل الإعلان كل 30 ثانية
-    setInterval(triggerAd, 30000);
-  </script>
-</body>
-</html>
+        
