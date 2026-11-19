@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <title>NEXUS NETWORK — Scripts Hub</title>
   <style>
     * {
@@ -77,7 +76,7 @@
       border-radius: 12px;
       padding: 18px;
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
     }
 
     .hero-box h1 {
@@ -92,18 +91,26 @@
       color: #a4aec7;
     }
 
-    .hubs-nav {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
+    /* شريط الأقسام الأفقي جنب بعض (اسحب يمين وشمال) */
+    .hubs-strip {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
       gap: 10px;
-      margin-bottom: 20px;
+      overflow-x: auto;
+      white-space: nowrap;
+      padding: 6px 2px 12px;
+      margin-bottom: 16px;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
     }
 
-    .hub-btn {
+    .hub-tab {
+      flex: 0 0 auto;
       background: #171c2b;
       border: 1px solid #2b3450;
       color: #dce3f7;
-      padding: 12px 10px;
+      padding: 11px 16px;
       border-radius: 10px;
       font-size: 13px;
       font-weight: bold;
@@ -111,10 +118,10 @@
       touch-action: manipulation;
     }
 
-    .hub-btn.active {
+    .hub-tab.active {
       background: #4f6bff;
       border-color: #7c92ff;
-      color: #fff;
+      color: #ffffff;
     }
 
     .hub-section {
@@ -272,19 +279,19 @@
   <main class="container">
     <div class="hero-box">
       <h1>مقر سكريبتات NEXUS NETWORK — Scripts Hub</h1>
-      <p>اختر القسم المطلوب وانسخ السكريبت أو افتح الرابط بسهولة</p>
+      <p>اسحب الأقسام يمين وشمال واختر القسم لعرض سكريبتاته تحتيه</p>
     </div>
 
-    <div class="hubs-nav">
-      <button type="button" class="hub-btn active" id="btn-bloxfruits" onclick="selectSection('bloxfruits')">بلوكس فروت — Blox Fruits</button>
-      <button type="button" class="hub-btn" id="btn-stealegg" onclick="selectSection('stealegg')">سرقة البيض — Steal an Egg</button>
-      <button type="button" class="hub-btn" id="btn-inkgame" onclick="selectSection('inkgame')">إنك جيم — Ink Game</button>
-      <button type="button" class="hub-btn" id="btn-mm2" onclick="selectSection('mm2')">إم إم 2 — MM2</button>
-      <button type="button" class="hub-btn" id="btn-delta-android" onclick="selectSection('delta-android')">هكر أندرويد دلتا — Delta Android</button>
-      <button type="button" class="hub-btn" id="btn-delta-ios" onclick="selectSection('delta-ios')">هاك آيفون دلتا — Delta iOS</button>
-      <button type="button" class="hub-btn" id="btn-brookhaven" onclick="selectSection('brookhaven')">بروك هيفن — Map Brook Haven</button>
-      <button type="button" class="hub-btn" id="btn-timebomb" onclick="selectSection('timebomb')">تايم بومب — Map Time Bomb</button>
-      <button type="button" class="hub-btn" id="btn-all" onclick="selectSection('all')">عرض كل الأقسام</button>
+    <!-- شريط الأقسام الأفقي جنب بعض -->
+    <div class="hubs-strip" id="hubsStrip">
+      <button type="button" class="hub-tab active" data-section="bloxfruits" onclick="openHubTab('bloxfruits', this)">قسم بلوكس فروت — Blox Fruits</button>
+      <button type="button" class="hub-tab" data-section="stealegg" onclick="openHubTab('stealegg', this)">قسم سرقة البيض — Steal an Egg</button>
+      <button type="button" class="hub-tab" data-section="inkgame" onclick="openHubTab('inkgame', this)">قسم إنك جيم — Ink Game</button>
+      <button type="button" class="hub-tab" data-section="mm2" onclick="openHubTab('mm2', this)">قسم إم إم 2 — MM2</button>
+      <button type="button" class="hub-tab" data-section="delta-android" onclick="openHubTab('delta-android', this)">قسم دلتا أندرويد — Delta Android</button>
+      <button type="button" class="hub-tab" data-section="delta-ios" onclick="openHubTab('delta-ios', this)">قسم دلتا آيفون — Delta iOS</button>
+      <button type="button" class="hub-tab" data-section="brookhaven" onclick="openHubTab('brookhaven', this)">قسم بروك هيفن — Brook Haven</button>
+      <button type="button" class="hub-tab" data-section="timebomb" onclick="openHubTab('timebomb', this)">قسم تايم بومب — Time Bomb</button>
     </div>
 
     <section class="hub-section" id="bloxfruits" style="display: block;">
@@ -495,6 +502,4 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_H/main/L
       </div>
 
       <div class="script-item">
-        <div class="script-name">3. سكريبت Autofarm — تايم بومب (Map Time Bomb)</div>
-        <img class="script-img" src="ضع_رابط_صورة_اوتوفارم_هنا.jpg" alt="Autofarm" />
-        <div class="code-box" id="tb3">
+        <div class
