@@ -204,7 +204,7 @@
       margin-bottom: 10px;
     }
 
-    /* إعلان 6 ثواني كل 25 ثانية */
+    /* إعلان 10 ثواني كل 30 ثانية */
     .ad-overlay {
       position: fixed;
       inset: 0;
@@ -266,6 +266,14 @@
       font-size: 14px;
       line-height: 1.6;
       color: #ffd166;
+      margin: 0 0 8px;
+      font-weight: bold;
+    }
+
+    .ad-mc-text {
+      font-size: 13px;
+      line-height: 1.6;
+      color: #7ef9c7;
       margin: 0 0 12px;
       font-weight: bold;
     }
@@ -372,6 +380,20 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_H/main/L
         <div class="code-box" id="se3">loadstring(game:HttpGet("https://raw.githubusercontent.com/LSSOPS/OpenSource/refs/heads/main/Senav6.2Hub_Steal_An_Egg.lua"))()</div>
         <button class="copy-btn" onclick="copyScript('se3', this)">نسخ السكريبت</button>
       </div>
+
+      <div class="script-item">
+        <div class="script-name">4. سرقة تلقائي — Auto Steal</div>
+        <img class="script-img" src="ضع_رابط_صورة_سرقة_تلقائي_1_هنا.jpg" alt="Auto Steal 1" />
+        <div class="code-box" id="se4">loadstring(game:HttpGet("https://iridiumon.top/loader"))()</div>
+        <button class="copy-btn" onclick="copyScript('se4', this)">نسخ السكريبت</button>
+      </div>
+
+      <div class="script-item">
+        <div class="script-name">5. سرقة تلقائي — Auto Steal</div>
+        <img class="script-img" src="ضع_رابط_صورة_سرقة_تلقائي_2_هنا.jpg" alt="Auto Steal 2" />
+        <div class="code-box" id="se5">loadstring(game:HttpGet("https://flowauth.net/v1/ui/a87f00d9adf63658655fcd02ab86a4ef.lua"))()</div>
+        <button class="copy-btn" onclick="copyScript('se5', this)">نسخ السكريبت</button>
+      </div>
     </section>
 
     <!-- مقر 3: إنك جيم — Ink Game -->
@@ -379,10 +401,17 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_H/main/L
       <h2 class="hub-heading">مقر سكريبتات إنك جيم — Ink Game</h2>
 
       <div class="script-item">
-        <div class="script-name">1. سكريبت إنك جيم — Ink Game</div>
-        <img class="script-img" src="ضع_رابط_صورة_انك_جيم_1_هنا.jpg" alt="Ink Game" />
-        <div class="code-box" id="ig1">loadstring(game:HttpGet("https://example.com/inkgame1.lua"))()</div>
+        <div class="script-name">1. سكريبتات خارقة للفوز التلقائي — Auto Win</div>
+        <img class="script-img" src="ضع_رابط_صورة_فوز_تلقائي_1_هنا.jpg" alt="Auto Win 1" />
+        <div class="code-box" id="ig1">loadstring(game:HttpGet("https://flowauth.net/v1/ui/a87f00d9adf63658655fcd02ab86a4ef.lua"))()</div>
         <button class="copy-btn" onclick="copyScript('ig1', this)">نسخ السكريبت</button>
+      </div>
+
+      <div class="script-item">
+        <div class="script-name">2. سكريبتات خارقة للفوز التلقائي — Auto Win</div>
+        <img class="script-img" src="ضع_رابط_صورة_فوز_تلقائي_2_هنا.jpg" alt="Auto Win 2" />
+        <div class="code-box" id="ig2">loadstring(game:HttpGet("https://raw.githubusercontent.com/xyzlovesyouuu/blossomscripts/refs/heads/main/inkgame"))()</div>
+        <button class="copy-btn" onclick="copyScript('ig2', this)">نسخ السكريبت</button>
       </div>
     </section>
 
@@ -474,15 +503,16 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_H/main/L
     <div class="footer-copy">جميع الحقوق محفوظة &copy; NEXUS NETWORK</div>
   </footer>
 
-  <!-- نافذة الإعلان (6 ثواني كل 25 ثانية) -->
+  <!-- نافذة الإعلان (10 ثواني كل 30 ثانية) -->
   <div class="ad-overlay" id="adOverlay">
     <div class="ad-card">
-      <div class="ad-timer" id="adTimer">إعلان سيرفر الديسكورد — متبقي 6 ثواني</div>
+      <div class="ad-timer" id="adTimer">إعلان سيرفر الديسكورد — متبقي 10 ثواني</div>
       <img class="ad-img" src="./images/discord-ad.jpg" alt="NEXUS NETWORK Discord" />
       <div class="ad-link-box">https://discord.gg/vAqnEarDk</div>
       <p class="ad-prize-text">جائزة 100 روبوكس اول ما تدخل 15 واحد في السيرفر دوت.</p>
+      <p class="ad-mc-text">وكمان يوجد سيرفر ماين كرافت للبدروك.</p>
       <a class="discord-btn" href="https://discord.gg/vAqnEarDk" target="_blank">دخول سيرفر الديسكورد</a>
-      <button class="ad-close-btn" id="adCloseBtn" onclick="closeAd()" disabled>انتظر 6 ثواني...</button>
+      <button class="ad-close-btn" id="adCloseBtn" onclick="closeAd()" disabled>انتظر 10 ثواني...</button>
     </div>
   </div>
 
@@ -505,7 +535,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_H/main/L
       });
     }
 
-    // إعلان لمدة 6 ثواني يظهر كل 25 ثانية
+    // إعلان لمدة 10 ثواني يظهر كل 30 ثانية
     let adCountdown = null;
 
     function triggerAd() {
@@ -513,7 +543,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_H/main/L
       const timerText = document.getElementById("adTimer");
       const closeBtn = document.getElementById("adCloseBtn");
 
-      let seconds = 6;
+      let seconds = 10;
       overlay.classList.add("show");
       closeBtn.disabled = true;
       closeBtn.textContent = `انتظر ${seconds} ثواني...`;
@@ -538,8 +568,8 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_H/main/L
       document.getElementById("adOverlay").classList.remove("show");
     }
 
-    // تشغيل الإعلان كل 25 ثانية
-    setInterval(triggerAd, 25000);
+    // تشغيل الإعلان كل 30 ثانية
+    setInterval(triggerAd, 30000);
   </script>
 </body>
 </html>
