@@ -40,7 +40,7 @@
 
     .header-box {
       max-width: 720px;
-      margin: 0 auto 18px auto;
+      margin: 0 auto 16px auto;
       padding: 14px 16px;
       background: #121826;
       border: 1px solid #26324d;
@@ -319,7 +319,7 @@
   <!-- 10 قوائم مابات تحت بعضها أولاً، كل قائمة فيها 10 سكربتات: أول 5 بدون كود وآخر 5 بكود -->
   <div class="lists-stack" id="listsStack"></div>
 
-  <!-- آخر قائمة تحت خالص: DISCORD ON -->
+  <!-- زر DISCORD ON بعد القوائم -->
   <div class="bottom-discord-box">
     <a
       class="discord-link-btn color-cycle random-target"
@@ -329,7 +329,7 @@
     >DISCORD ON</a>
   </div>
 
-  <!-- آخر حاجة خالص: هاك دلتا أندرويد وهاك دلتا آيفون وباقي الروابط -->
+  <!-- آخر حاجة خالص: الروابط والهاكات -->
   <div class="links-footer">
     <a
       class="footer-link-btn"
@@ -396,118 +396,117 @@
   <div class="copied-toast" id="copiedToast">Copied!</div>
 
   <script>
-    // ألوان عشوائية مستمرة لاسم الحقوق وزر DISCORD ON
-    const PALETTE = [
-      "#ff4d6d", "#00f5d4", "#ffd166", "#4cc9f0",
-      "#c77dff", "#80ed99", "#ff9f1c", "#f72585", "#38bdf8"
-    ];
+    (function () {
+      const PALETTE = [
+        "#ff4d6d", "#00f5d4", "#ffd166", "#4cc9f0",
+        "#c77dff", "#80ed99", "#ff9f1c", "#f72585", "#38bdf8"
+      ];
 
-    function cycleRandomColors() {
-      const mainColor = PALETTE[Math.floor(Math.random() * PALETTE.length)];
-      let glowColor = PALETTE[Math.floor(Math.random() * PALETTE.length)];
-      if (glowColor === mainColor) glowColor = "#00f5d4";
+      function cycleRandomColors() {
+        const mainColor = PALETTE[Math.floor(Math.random() * PALETTE.length)];
+        let glowColor = PALETTE[Math.floor(Math.random() * PALETTE.length)];
+        if (glowColor === mainColor) glowColor = "#00f5d4";
 
-      document.querySelectorAll(".random-target").forEach((el) => {
-        el.style.color = mainColor;
-        el.style.textShadow = `0 0 12px ${glowColor}`;
-      });
-    }
+        document.querySelectorAll(".random-target").forEach((el) => {
+          el.style.color = mainColor;
+          el.style.textShadow = "0 0 12px " + glowColor;
+        });
+      }
 
-    cycleRandomColors();
-    setInterval(cycleRandomColors, 850);
+      cycleRandomColors();
+      setInterval(cycleRandomColors, 850);
 
-    // 10 قوائم، كل قائمة فيها 10 سكربتات: أول 5 بدون كود (hasKey: false) وثاني 5 بكود (hasKey: true)
-    const LISTS = [
-      {
-        id: "mm2",
-        title: "MM2",
-        scripts: [
-          { name: "YARHM MM2 Keyless", hasKey: false, code: 'loadstring(game:HttpGet("https://yarhm.goteamup.com/yarhm/rm/mm2.lua"))()' },
-          { name: "Solara MM2 Keyless", hasKey: false, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/solara-hub/mm2/main/keyless.lua"))()' },
-          { name: "Mars MM2 Keyless", hasKey: false, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/MarsHub/MM2/main/Keyless.lua"))()' },
-          { name: "Byte MM2 Keyless", hasKey: false, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/ByteHub/MM2/main/KeylessLoader.lua"))()' },
-          { name: "Nexus MM2 Coin & ESP Keyless", hasKey: false, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/mm2/main/keyless-esp.lua"))()' },
-          { name: "Xhub MM2", hasKey: true, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/Au0yX/Community/main/XhubMM2"))()' },
-          { name: "Vertex MM2", hasKey: true, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/vertex-peak/vertex/refs/heads/main/loadstring"))()' },
-          { name: "Symphony MM2", hasKey: true, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/ThatSick/ArrayField/main/SymphonyHub.lua"))()' },
-          { name: "R3THPRIV MM2", hasKey: true, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/R3TH-PRIV/R3THPRIV/main/Loader.lua"))()' },
-          { name: "Eclipse MM2 Hub", hasKey: true, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/ethanhub/EclipseMM2/main/Loader.lua"))()' }
-        ]
-      },
-      {
-        id: "blox-fruits",
-        title: "Blox Fruits",
-        scripts: [
-          { name: "Speed Hub X Keyless", hasKey: false, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua"))()' },
-          { name: "Xero Hub Keyless", hasKey: false, code: 'loadstring(game:HttpGet("https://xero-hub.com/v2/loaders/bloxfruits.lua"))()' },
-          { name: "Neva Hub Keyless", hasKey: false, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/NevaHub/Keyless/main/BloxFruits.lua"))()' },
-          { name: "Min Gaming Keyless", hasKey: false, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/LuaCrack/Min/refs/heads/main/MinGamingVn"))()' },
-          { name: "Astral Hub BF Keyless", hasKey: false, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/AstralHub/BloxFruits/main/Keyless.lua"))()' },
-          { name: "Redz Hub", hasKey: true, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/realredz/BloxFruits/refs/heads/main/Source.lua"))()' },
-          { name: "Hoho Hub", hasKey: true, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI"))()' },
-          { name: "W-Azure Hub", hasKey: true, code: 'loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/3b2169cf53bc6104dabe8e19562e5cc2.lua"))()' },
-          { name: "Thunder Z Hub", hasKey: true, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/ThunderZ-05/HUB/main/Script"))()' },
-          { name: "Mukuro Hub BF", hasKey: true, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/xQuartyx/DonateMe/main/BF"))()' }
-        ]
-      },
-      {
-        id: "timebomb",
-        title: "Timebomb",
-        scripts: [
-          { name: "Timebomb Keyless Hub", hasKey: false, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/timebomb/main/keyless-hub.lua"))()' },
-          { name: "Speed & Jump Keyless", hasKey: false, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/timebomb/main/keyless-move.lua"))()' },
-          { name: "Radar Keyless", hasKey: false, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/timebomb/main/keyless-radar.lua"))()' },
-          { name: "Lite Survival Keyless", hasKey: false, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/timebomb/main/keyless-lite.lua"))()' },
-          { name: "Instant Dodge Keyless", hasKey: false, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/timebomb/main/keyless-dodge.lua"))()' },
-          { name: "Timebomb Pro Hub", hasKey: true, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/timebomb/main/pro.lua"))()' },
-          { name: "Bomb Timer & ESP", hasKey: true, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/timebomb/main/esp.lua"))()' },
-          { name: "Auto Pass Bomb", hasKey: true, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/timebomb/main/autopass.lua"))()' },
-          { name: "Timebomb V2 Hub", hasKey: true, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/timebomb/main/v2.lua"))()' },
-          { name: "Timebomb VIP Hub", hasKey: true, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/timebomb/main/vip.lua"))()' }
-        ]
-      },
-      {
-        id: "brookhaven",
-        title: "Brookhaven",
-        scripts: [
-          { name: "Redz Brookhaven Keyless", hasKey: false, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/realredz/Brookhaven/main/Keyless.lua"))()' },
-          { name: "Chaos RP Keyless", hasKey: false, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/ChaosHub/Brookhaven/main/Keyless.lua"))()' },
-          { name: "Vortex RP Keyless", hasKey: false, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/VortexHub/Brookhaven/main/Keyless.lua"))()' },
-          { name: "Simple RP Keyless", hasKey: false, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/SimpleHub/Brookhaven/main/Keyless.lua"))()' },
-          { name: "Fly & Car Keyless", hasKey: false, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/brookhaven/main/keyless-car.lua"))()' },
-          { name: "R4D Brookhaven", hasKey: true, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/M1dem1/Brookhaven/main/R4D.lua"))()' },
-          { name: "IceHub Brookhaven", hasKey: true, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/IceMael7/NewIceHub/main/Brookhaven"))()' },
-          { name: "JulHub Brookhaven", hasKey: true, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/JulHub/Brookhaven/main/Loader.lua"))()' },
-          { name: "SanderX Brookhaven", hasKey: true, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/sXPiter666/SanderXV4.0/main/SanderX.lua"))()' },
-          { name: "Brookhaven Pro Hub", hasKey: true, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/brookhaven/main/pro.lua"))()' }
-        ]
-      },
-      {
-        id: "plants-defense",
-        title: "Plants Defense",
-        scripts: [
-          { name: "Plants Keyless Hub", hasKey: false, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/plants-defense/main/keyless-hub.lua"))()' },
-          { name: "Auto Collect Keyless", hasKey: false, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/plants-defense/main/keyless-collect.lua"))()' },
-          { name: "Fast Upgrade Keyless", hasKey: false, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/plants-defense/main/keyless-upgrade.lua"))()' },
-          { name: "Lite Defense Keyless", hasKey: false, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/plants-defense/main/keyless-lite.lua"))()' },
-          { name: "Sun Boost Keyless", hasKey: false, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/plants-defense/main/keyless-sun.lua"))()' },
-          { name: "Plants Defense Auto Hub", hasKey: true, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/plants-defense/main/auto-hub.lua"))()' },
-          { name: "Smart Plant Placer", hasKey: true, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/plants-defense/main/placer.lua"))()' },
-          { name: "Wave Skip & Upgrade", hasKey: true, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/plants-defense/main/waves.lua"))()' },
-          { name: "Sun Farm Pro", hasKey: true, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/plants-defense/main/sunfarm.lua"))()' },
-          { name: "Defense V2 Hub", hasKey: true, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/plants-defense/main/v2.lua"))()' }
-        ]
-      },
-      {
-        id: "steal-an-egg",
-        title: "Steal an Egg",
-        scripts: [
-          { name: "Steal Egg Keyless Hub", hasKey: false, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/steal-an-egg/main/keyless-hub.lua"))()' },
-          { name: "Egg Finder Keyless", hasKey: false, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/steal-an-egg/main/keyless-esp.lua"))()' },
-          { name: "Boost Speed Keyless", hasKey: false, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/steal-an-egg/main/keyless-speed.lua"))()' },
-          { name: "Instant Grab Keyless", hasKey: false, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/steal-an-egg/main/keyless-grab.lua"))()' },
-          { name: "Base TP Keyless", hasKey: false, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/steal-an-egg/main/keyless-tp.lua"))()' },
-          { name: "Egg Stealer Pro Hub", hasKey: true, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/steal-an-egg/main/pro.lua"))()' },
-          { name: "Rare Egg ESP", hasKey: true, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/steal-an-egg/main/esp.lua"))()' },
-          { name: "Auto Return Base", hasKey: true, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/steal-an-egg/main/return.lua"))()' },
-          { name: "Speed & Steal V2", hasKey: true, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/steal-an
+      const LISTS = [
+        {
+          id: "mm2",
+          title: "MM2",
+          scripts: [
+            { name: "YARHM MM2 Keyless", hasKey: false, code: 'loadstring(game:HttpGet("https://yarhm.goteamup.com/yarhm/rm/mm2.lua"))()' },
+            { name: "Solara MM2 Keyless", hasKey: false, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/solara-hub/mm2/main/keyless.lua"))()' },
+            { name: "Mars MM2 Keyless", hasKey: false, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/MarsHub/MM2/main/Keyless.lua"))()' },
+            { name: "Byte MM2 Keyless", hasKey: false, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/ByteHub/MM2/main/KeylessLoader.lua"))()' },
+            { name: "Nexus MM2 Coin & ESP Keyless", hasKey: false, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/mm2/main/keyless-esp.lua"))()' },
+            { name: "Xhub MM2", hasKey: true, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/Au0yX/Community/main/XhubMM2"))()' },
+            { name: "Vertex MM2", hasKey: true, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/vertex-peak/vertex/refs/heads/main/loadstring"))()' },
+            { name: "Symphony MM2", hasKey: true, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/ThatSick/ArrayField/main/SymphonyHub.lua"))()' },
+            { name: "R3THPRIV MM2", hasKey: true, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/R3TH-PRIV/R3THPRIV/main/Loader.lua"))()' },
+            { name: "Eclipse MM2 Hub", hasKey: true, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/ethanhub/EclipseMM2/main/Loader.lua"))()' }
+          ]
+        },
+        {
+          id: "blox-fruits",
+          title: "Blox Fruits",
+          scripts: [
+            { name: "Speed Hub X Keyless", hasKey: false, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua"))()' },
+            { name: "Xero Hub Keyless", hasKey: false, code: 'loadstring(game:HttpGet("https://xero-hub.com/v2/loaders/bloxfruits.lua"))()' },
+            { name: "Neva Hub Keyless", hasKey: false, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/NevaHub/Keyless/main/BloxFruits.lua"))()' },
+            { name: "Min Gaming Keyless", hasKey: false, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/LuaCrack/Min/refs/heads/main/MinGamingVn"))()' },
+            { name: "Astral Hub BF Keyless", hasKey: false, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/AstralHub/BloxFruits/main/Keyless.lua"))()' },
+            { name: "Redz Hub", hasKey: true, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/realredz/BloxFruits/refs/heads/main/Source.lua"))()' },
+            { name: "Hoho Hub", hasKey: true, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI"))()' },
+            { name: "W-Azure Hub", hasKey: true, code: 'loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/3b2169cf53bc6104dabe8e19562e5cc2.lua"))()' },
+            { name: "Thunder Z Hub", hasKey: true, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/ThunderZ-05/HUB/main/Script"))()' },
+            { name: "Mukuro Hub BF", hasKey: true, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/xQuartyx/DonateMe/main/BF"))()' }
+          ]
+        },
+        {
+          id: "timebomb",
+          title: "Timebomb",
+          scripts: [
+            { name: "Timebomb Keyless Hub", hasKey: false, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/timebomb/main/keyless-hub.lua"))()' },
+            { name: "Speed & Jump Keyless", hasKey: false, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/timebomb/main/keyless-move.lua"))()' },
+            { name: "Radar Keyless", hasKey: false, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/timebomb/main/keyless-radar.lua"))()' },
+            { name: "Lite Survival Keyless", hasKey: false, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/timebomb/main/keyless-lite.lua"))()' },
+            { name: "Instant Dodge Keyless", hasKey: false, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/timebomb/main/keyless-dodge.lua"))()' },
+            { name: "Timebomb Pro Hub", hasKey: true, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/timebomb/main/pro.lua"))()' },
+            { name: "Bomb Timer & ESP", hasKey: true, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/timebomb/main/esp.lua"))()' },
+            { name: "Auto Pass Bomb", hasKey: true, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/timebomb/main/autopass.lua"))()' },
+            { name: "Timebomb V2 Hub", hasKey: true, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/timebomb/main/v2.lua"))()' },
+            { name: "Timebomb VIP Hub", hasKey: true, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/timebomb/main/vip.lua"))()' }
+          ]
+        },
+        {
+          id: "brookhaven",
+          title: "Brookhaven",
+          scripts: [
+            { name: "Redz Brookhaven Keyless", hasKey: false, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/realredz/Brookhaven/main/Keyless.lua"))()' },
+            { name: "Chaos RP Keyless", hasKey: false, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/ChaosHub/Brookhaven/main/Keyless.lua"))()' },
+            { name: "Vortex RP Keyless", hasKey: false, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/VortexHub/Brookhaven/main/Keyless.lua"))()' },
+            { name: "Simple RP Keyless", hasKey: false, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/SimpleHub/Brookhaven/main/Keyless.lua"))()' },
+            { name: "Fly & Car Keyless", hasKey: false, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/brookhaven/main/keyless-car.lua"))()' },
+            { name: "R4D Brookhaven", hasKey: true, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/M1dem1/Brookhaven/main/R4D.lua"))()' },
+            { name: "IceHub Brookhaven", hasKey: true, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/IceMael7/NewIceHub/main/Brookhaven"))()' },
+            { name: "JulHub Brookhaven", hasKey: true, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/JulHub/Brookhaven/main/Loader.lua"))()' },
+            { name: "SanderX Brookhaven", hasKey: true, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/sXPiter666/SanderXV4.0/main/SanderX.lua"))()' },
+            { name: "Brookhaven Pro Hub", hasKey: true, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/brookhaven/main/pro.lua"))()' }
+          ]
+        },
+        {
+          id: "plants-defense",
+          title: "Plants Defense",
+          scripts: [
+            { name: "Plants Keyless Hub", hasKey: false, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/plants-defense/main/keyless-hub.lua"))()' },
+            { name: "Auto Collect Keyless", hasKey: false, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/plants-defense/main/keyless-collect.lua"))()' },
+            { name: "Fast Upgrade Keyless", hasKey: false, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/plants-defense/main/keyless-upgrade.lua"))()' },
+            { name: "Lite Defense Keyless", hasKey: false, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/plants-defense/main/keyless-lite.lua"))()' },
+            { name: "Sun Boost Keyless", hasKey: false, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/plants-defense/main/keyless-sun.lua"))()' },
+            { name: "Plants Defense Auto Hub", hasKey: true, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/plants-defense/main/auto-hub.lua"))()' },
+            { name: "Smart Plant Placer", hasKey: true, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/plants-defense/main/placer.lua"))()' },
+            { name: "Wave Skip & Upgrade", hasKey: true, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/plants-defense/main/waves.lua"))()' },
+            { name: "Sun Farm Pro", hasKey: true, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/plants-defense/main/sunfarm.lua"))()' },
+            { name: "Defense V2 Hub", hasKey: true, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/plants-defense/main/v2.lua"))()' }
+          ]
+        },
+        {
+          id: "steal-an-egg",
+          title: "Steal an Egg",
+          scripts: [
+            { name: "Steal Egg Keyless Hub", hasKey: false, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/steal-an-egg/main/keyless-hub.lua"))()' },
+            { name: "Egg Finder Keyless", hasKey: false, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/steal-an-egg/main/keyless-esp.lua"))()' },
+            { name: "Boost Speed Keyless", hasKey: false, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/steal-an-egg/main/keyless-speed.lua"))()' },
+            { name: "Instant Grab Keyless", hasKey: false, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/steal-an-egg/main/keyless-grab.lua"))()' },
+            { name: "Base TP Keyless", hasKey: false, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/steal-an-egg/main/keyless-tp.lua"))()' },
+            { name: "Egg Stealer Pro Hub", hasKey: true, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/steal-an-egg/main/pro.lua"))()' },
+            { name: "Rare Egg ESP", hasKey: true, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/steal-an-egg/main/esp.lua"))()' },
+            { name: "Auto Return Base", hasKey: true, code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/steal-an-egg/main/return.lua"))()' },
+            { name: "Speed & Steal V2", hasKey: true, code: 'loadstring(game:HttpGet("https://raw
