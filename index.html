@@ -9,19 +9,18 @@
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-main: #120d1d;
-      --bg-card: #1b142b;
-      --bg-card-hover: #241a3a;
-      --bg-nav: #24193d;
-      --bg-nav-soft: #2e204d;
+      --bg-page: #0c0816;
+      --bg-header: #161026;
+      --bg-box: #1c1433;
+      --bg-row: #1d1536;
+      --bg-row-active: #2c1f52;
       --accent-soft: #b794f4;
       --accent-mid: #9f7aea;
-      --accent-deep: #6b46c1;
-      --text-main: #f3ecff;
-      --text-muted: #b8a8d9;
-      --border-soft: rgba(183, 148, 244, 0.22);
-      --key-yes: #d6bcfa;
-      --key-no: #9f7aea;
+      --accent-btn: #7c5dfa;
+      --text-main: #f5efff;
+      --text-sub: #b5a3dc;
+      --border-dim: rgba(183, 148, 244, 0.18);
+      --border-bright: rgba(183, 148, 244, 0.48);
     }
 
     * {
@@ -32,327 +31,316 @@
 
     body {
       font-family: 'Cairo', sans-serif;
-      background: radial-gradient(circle at top right, #23173d 0%, var(--bg-main) 55%, #0d0914 100%);
+      background: var(--bg-page);
       color: var(--text-main);
       min-height: 100vh;
-      line-height: 1.6;
+      padding-bottom: 64px;
     }
 
-    .topbar {
-      background: rgba(36, 25, 61, 0.92);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border-soft);
+    .top-bar {
+      background: var(--bg-header);
+      border-bottom: 1px solid var(--border-dim);
+      padding: 14px 18px;
       position: sticky;
       top: 0;
-      z-index: 100;
-      padding: 14px 20px;
+      z-index: 90;
     }
 
-    .topbar-inner {
-      max-width: 1240px;
+    .top-bar-inner {
+      max-width: 760px;
       margin: 0 auto;
       display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-    }
-
-    .brand-group {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 14px;
-    }
-
-    .rainbow-brand {
-      font-size: 1.55rem;
-      font-weight: 800;
-      letter-spacing: 1px;
-      background: linear-gradient(90deg, #ff7eb3, #ffb86c, #f6e05e, #68d391, #63b3ed, #d6bcfa, #ff7eb3);
-      background-size: 250% auto;
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      animation: rainbowShift 6s linear infinite;
-      text-shadow: 0 0 20px rgba(183, 148, 244, 0.2);
-    }
-
-    @keyframes rainbowShift {
-      0% { background-position: 0% center; }
-      100% { background-position: 250% center; }
-    }
-
-    .discord-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: linear-gradient(135deg, #7c5dfa, #9f7aea);
-      color: #fff;
-      text-decoration: none;
-      padding: 8px 16px;
-      border-radius: 12px;
-      font-weight: 700;
-      font-size: 0.92rem;
-      border: 1px solid rgba(255, 255, 255, 0.22);
-      box-shadow: 0 6px 18px rgba(124, 93, 250, 0.32);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .discord-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 22px rgba(159, 122, 234, 0.45);
-    }
-
-    .top-actions {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .ad-status-pill {
-      background: var(--bg-nav-soft);
-      border: 1px solid var(--border-soft);
-      color: var(--accent-soft);
-      padding: 6px 12px;
-      border-radius: 10px;
-      font-size: 0.82rem;
-      font-weight: 600;
-    }
-
-    .test-ad-btn {
-      background: transparent;
-      border: 1px solid var(--accent-mid);
-      color: var(--accent-soft);
-      padding: 6px 12px;
-      border-radius: 10px;
-      font-family: inherit;
-      font-size: 0.82rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: background 0.2s ease, color 0.2s ease;
-    }
-
-    .test-ad-btn:hover {
-      background: var(--accent-mid);
-      color: #140d24;
-    }
-
-    .container {
-      max-width: 1240px;
-      margin: 0 auto;
-      padding: 24px 20px 60px;
-    }
-
-    .hero {
-      background: linear-gradient(135deg, rgba(61, 41, 107, 0.55), rgba(32, 22, 56, 0.85));
-      border: 1px solid var(--border-soft);
-      border-radius: 20px;
-      padding: 22px 24px;
-      margin-bottom: 22px;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-    }
-
-    .hero h1 {
-      font-size: 1.45rem;
-      font-weight: 800;
-      color: var(--text-main);
-      margin-bottom: 4px;
-    }
-
-    .hero p {
-      color: var(--text-muted);
-      font-size: 0.95rem;
-    }
-
-    .search-box {
-      flex: 1 1 280px;
-      max-width: 380px;
-      position: relative;
-    }
-
-    .search-box input {
-      width: 100%;
-      background: var(--bg-main);
-      border: 1px solid var(--border-soft);
-      color: var(--text-main);
-      padding: 11px 16px;
-      border-radius: 12px;
-      font-family: inherit;
-      font-size: 0.92rem;
-      outline: none;
-      transition: border-color 0.2s ease;
-    }
-
-    .search-box input:focus {
-      border-color: var(--accent-soft);
-    }
-
-    .tabs-nav {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 24px;
-    }
-
-    .tab-btn {
-      background: var(--bg-nav);
-      color: var(--text-muted);
-      border: 1px solid var(--border-soft);
-      padding: 10px 16px;
-      border-radius: 14px;
-      font-family: inherit;
-      font-size: 0.92rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-
-    .tab-btn:hover {
-      background: var(--bg-nav-soft);
-      color: var(--text-main);
-      transform: translateY(-1px);
-    }
-
-    .tab-btn.active {
-      background: linear-gradient(135deg, #805ad5, #b794f4);
-      color: #140c24;
-      border-color: transparent;
-      box-shadow: 0 6px 18px rgba(159, 122, 234, 0.35);
-    }
-
-    .section-header {
-      display: flex;
-      flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      margin-bottom: 18px;
+      flex-wrap: wrap;
     }
 
-    .section-title-wrap {
+    .brand-left {
       display: flex;
       align-items: center;
       gap: 10px;
       flex-wrap: wrap;
     }
 
-    .section-title {
-      font-size: 1.3rem;
+    .brand-logo-box {
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      background: linear-gradient(135deg, #6b46c1, #9f7aea);
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-weight: 800;
-      color: var(--accent-soft);
+      font-size: 1rem;
+      color: #fff;
     }
 
-    .count-badge {
-      background: var(--bg-nav-soft);
+    .rainbow-name {
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: 0.6px;
+      background: linear-gradient(90deg, #ff7eb3, #ffb86c, #f6e05e, #68d391, #63b3ed, #d6bcfa, #ff7eb3);
+      background-size: 260% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: rainbowAnim 5.5s linear infinite;
+    }
+
+    @keyframes rainbowAnim {
+      0% { background-position: 0% center; }
+      100% { background-position: 260% center; }
+    }
+
+    .discord-top-btn {
+      background: linear-gradient(135deg, #7c5dfa, #9f7aea);
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.88rem;
+      padding: 8px 15px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: transform 0.18s ease;
+    }
+
+    .discord-top-btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .ad-mini-bar {
+      max-width: 760px;
+      margin: 12px auto 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 0.8rem;
+      color: var(--text-sub);
+    }
+
+    .preview-ad-btn {
+      background: rgba(159, 122, 234, 0.14);
+      color: var(--accent-soft);
+      border: 1px solid var(--border-dim);
+      border-radius: 8px;
+      padding: 4px 10px;
+      font-family: inherit;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .page-wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 20px 16px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .banner-card {
+      background: linear-gradient(145deg, #231840, #19112e);
+      border: 1px solid var(--border-dim);
+      border-radius: 16px;
+      padding: 22px 18px;
+      text-align: center;
+    }
+
+    .banner-card h1 {
+      font-size: 1.4rem;
+      font-weight: 800;
       color: var(--text-main);
-      border: 1px solid var(--border-soft);
-      padding: 4px 12px;
-      border-radius: 999px;
+      margin-bottom: 6px;
+    }
+
+    .banner-card p {
+      font-size: 0.92rem;
+      color: var(--text-sub);
+    }
+
+    .section-label {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .games-list {
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+    }
+
+    .game-row {
+      width: 100%;
+      background: var(--bg-row);
+      border: 1px solid var(--border-dim);
+      border-radius: 14px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      cursor: pointer;
+      text-align: right;
+      font-family: inherit;
+      color: var(--text-main);
+      transition: background 0.18s ease, border-color 0.18s ease, transform 0.15s ease;
+    }
+
+    .game-row:hover {
+      background: #241942;
+      border-color: rgba(183, 148, 244, 0.35);
+    }
+
+    .game-row.active {
+      background: var(--bg-row-active);
+      border-color: var(--border-bright);
+    }
+
+    .game-row-right {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .game-num-box {
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      background: rgba(159, 122, 234, 0.18);
+      border: 1px solid rgba(183, 148, 244, 0.28);
+      color: var(--accent-soft);
+      font-weight: 800;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .game-row.active .game-num-box {
+      background: #9f7aea;
+      color: #130b24;
+    }
+
+    .game-title-text {
+      font-size: 1.02rem;
+      font-weight: 800;
+      color: var(--text-main);
+      line-height: 1.3;
+    }
+
+    .game-sub-text {
       font-size: 0.82rem;
+      color: var(--text-sub);
+    }
+
+    .game-arrow {
+      color: var(--text-sub);
+      font-size: 1.15rem;
       font-weight: 700;
     }
 
-    .filter-group {
+    .scripts-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .filter-pills {
       display: flex;
       gap: 8px;
       flex-wrap: wrap;
+      margin-bottom: 4px;
     }
 
-    .filter-btn {
-      background: var(--bg-card);
-      color: var(--text-muted);
-      border: 1px solid var(--border-soft);
-      padding: 6px 14px;
+    .pill-btn {
+      background: var(--bg-box);
+      color: var(--text-sub);
+      border: 1px solid var(--border-dim);
       border-radius: 10px;
+      padding: 6px 13px;
       font-family: inherit;
       font-size: 0.84rem;
       font-weight: 700;
       cursor: pointer;
-      transition: all 0.2s ease;
     }
 
-    .filter-btn.active,
-    .filter-btn:hover {
-      background: var(--bg-nav-soft);
-      color: var(--accent-soft);
-      border-color: var(--accent-soft);
+    .pill-btn.active {
+      background: #9f7aea;
+      color: #140b24;
+      border-color: transparent;
     }
 
-    .scripts-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-      gap: 18px;
-    }
-
-    .script-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-soft);
-      border-radius: 18px;
-      padding: 18px;
+    .script-item-card {
+      background: var(--bg-box);
+      border: 1px solid var(--border-dim);
+      border-radius: 14px;
+      padding: 15px 16px;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      gap: 14px;
-      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
-    }
-
-    .script-card:hover {
-      transform: translateY(-3px);
-      background: var(--bg-card-hover);
-      border-color: rgba(183, 148, 244, 0.45);
-    }
-
-    .card-top {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
       gap: 10px;
     }
 
-    .script-name {
-      font-size: 1.05rem;
+    .script-top-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .script-title {
+      font-size: 0.98rem;
       font-weight: 800;
       color: var(--text-main);
     }
 
-    .key-badge {
-      padding: 4px 10px;
-      border-radius: 9px;
-      font-size: 0.78rem;
+    .badges-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tag-key {
+      font-size: 0.75rem;
       font-weight: 800;
-      white-space: nowrap;
-    }
-
-    .key-badge.with-key {
-      background: rgba(214, 188, 250, 0.16);
-      color: var(--key-yes);
-      border: 1px solid rgba(214, 188, 250, 0.35);
-    }
-
-    .key-badge.no-key {
-      background: rgba(159, 122, 234, 0.16);
+      padding: 3px 9px;
+      border-radius: 7px;
+      background: rgba(183, 148, 244, 0.16);
       color: #e9d8fd;
-      border: 1px solid rgba(159, 122, 234, 0.4);
+      border: 1px solid rgba(183, 148, 244, 0.3);
+    }
+
+    .tag-verified {
+      font-size: 0.75rem;
+      font-weight: 800;
+      padding: 3px 9px;
+      border-radius: 7px;
+      background: rgba(124, 93, 250, 0.22);
+      color: var(--accent-soft);
     }
 
     .script-desc {
-      color: var(--text-muted);
-      font-size: 0.88rem;
+      font-size: 0.86rem;
+      color: var(--text-sub);
     }
 
-    .code-box {
-      background: #100b1a;
-      border: 1px solid rgba(183, 148, 244, 0.18);
-      border-radius: 12px;
-      padding: 11px 12px;
+    .script-code-line {
+      background: #100b1d;
+      border: 1px solid rgba(183, 148, 244, 0.16);
+      border-radius: 10px;
+      padding: 10px 12px;
       font-family: Consolas, Monaco, monospace;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       color: #e9d8fd;
       direction: ltr;
       text-align: left;
@@ -360,284 +348,237 @@
       white-space: nowrap;
     }
 
-    .card-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-    }
-
-    .copy-btn {
-      width: 100%;
+    .copy-script-btn {
+      align-self: flex-start;
       background: linear-gradient(135deg, #6b46c1, #9f7aea);
       color: #fff;
       border: none;
-      border-radius: 11px;
-      padding: 9px 14px;
+      border-radius: 10px;
+      padding: 8px 16px;
       font-family: inherit;
-      font-size: 0.88rem;
+      font-size: 0.86rem;
       font-weight: 700;
       cursor: pointer;
-      transition: opacity 0.2s ease, transform 0.15s ease;
     }
 
-    .copy-btn:hover {
-      opacity: 0.94;
-      transform: translateY(-1px);
+    .copy-script-btn.copied {
+      background: #d6bcfa;
+      color: #140b24;
     }
 
-    .copy-btn.copied {
-      background: linear-gradient(135deg, #805ad5, #d6bcfa);
-      color: #150d24;
-    }
-
-    .ad-overlay {
+    .ad-backdrop {
       position: fixed;
       inset: 0;
-      background: rgba(9, 5, 17, 0.82);
-      backdrop-filter: blur(7px);
+      background: rgba(8, 5, 16, 0.84);
+      backdrop-filter: blur(6px);
       display: none;
       align-items: center;
       justify-content: center;
-      padding: 20px;
+      padding: 18px;
       z-index: 999;
     }
 
-    .ad-overlay.show {
+    .ad-backdrop.open {
       display: flex;
     }
 
-    .ad-modal {
+    .ad-box {
       width: 100%;
-      max-width: 520px;
-      background: linear-gradient(160deg, #271b42, #181029);
-      border: 1.5px solid rgba(183, 148, 244, 0.45);
-      border-radius: 22px;
-      padding: 26px 24px;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65);
+      max-width: 480px;
+      background: #1d1436;
+      border: 1.5px solid var(--border-bright);
+      border-radius: 18px;
+      padding: 22px 18px;
       text-align: center;
-      position: relative;
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.65);
     }
 
-    .ad-top-bar {
+    .ad-meta {
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      gap: 10px;
+      align-items: center;
+      margin-bottom: 14px;
+      font-size: 0.8rem;
+      color: var(--accent-soft);
+      font-weight: 700;
+    }
+
+    .ad-headline {
+      background: rgba(159, 122, 234, 0.2);
+      border: 1px solid rgba(214, 188, 250, 0.35);
+      border-radius: 14px;
+      padding: 16px 14px;
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    .ad-minecraft {
+      background: #120c22;
+      border: 1px solid var(--border-dim);
+      border-radius: 12px;
+      padding: 11px 12px;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #e9d8fd;
       margin-bottom: 18px;
     }
 
-    .ad-tag {
-      background: rgba(183, 148, 244, 0.18);
-      color: var(--accent-soft);
-      padding: 5px 12px;
-      border-radius: 999px;
-      font-size: 0.8rem;
-      font-weight: 700;
-    }
-
-    .ad-timer {
-      background: #130c21;
-      border: 1px solid var(--border-soft);
-      color: #f3ecff;
-      padding: 5px 12px;
-      border-radius: 999px;
-      font-size: 0.82rem;
-      font-weight: 700;
-    }
-
-    .ad-main-text {
-      font-size: 1.45rem;
-      font-weight: 800;
-      color: #fff;
-      background: linear-gradient(135deg, rgba(159, 122, 234, 0.25), rgba(107, 70, 193, 0.35));
-      border: 1px solid rgba(214, 188, 250, 0.35);
-      border-radius: 16px;
-      padding: 18px 16px;
-      margin-bottom: 14px;
-    }
-
-    .ad-sub-text {
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: #e9d8fd;
-      background: rgba(19, 12, 33, 0.75);
-      border: 1px solid var(--border-soft);
-      border-radius: 14px;
-      padding: 12px 14px;
-      margin-bottom: 20px;
-    }
-
-    .ad-actions {
+    .ad-btns {
       display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
+      gap: 10px;
       justify-content: center;
+      flex-wrap: wrap;
     }
 
-    .ad-discord-link {
+    .ad-join-btn {
       background: linear-gradient(135deg, #7c5dfa, #b794f4);
-      color: #140c24;
+      color: #130b24;
       text-decoration: none;
-      padding: 10px 18px;
-      border-radius: 12px;
       font-weight: 800;
-      font-size: 0.92rem;
+      font-size: 0.9rem;
+      padding: 9px 16px;
+      border-radius: 10px;
     }
 
-    .close-ad-btn {
-      background: var(--bg-nav-soft);
-      color: var(--text-muted);
-      border: 1px solid var(--border-soft);
-      padding: 10px 18px;
-      border-radius: 12px;
+    .ad-close-btn {
+      background: #291d4a;
+      color: var(--text-sub);
+      border: 1px solid var(--border-dim);
+      border-radius: 10px;
+      padding: 9px 16px;
       font-family: inherit;
       font-weight: 700;
-      font-size: 0.92rem;
+      font-size: 0.9rem;
       cursor: not-allowed;
       opacity: 0.55;
-      transition: all 0.2s ease;
     }
 
-    .close-ad-btn.unlocked {
+    .ad-close-btn.ready {
       background: #9f7aea;
-      color: #140c24;
+      color: #130b24;
       border-color: transparent;
       cursor: pointer;
       opacity: 1;
     }
-
-    .empty-state {
-      text-align: center;
-      padding: 40px 20px;
-      background: var(--bg-card);
-      border: 1px solid var(--border-soft);
-      border-radius: 18px;
-      color: var(--text-muted);
-    }
-
-    @media (max-width: 600px) {
-      .rainbow-brand {
-        font-size: 1.25rem;
-      }
-      .ad-main-text {
-        font-size: 1.2rem;
-      }
-    }
   </style>
 </head>
 <body>
-  <header class="topbar">
-    <div class="topbar-inner">
-      <div class="brand-group">
-        <span class="rainbow-brand">NEXUS NETWORK</span>
-        <a class="discord-btn" href="https://discord.gg/9EuDZejxU" target="_blank" rel="noopener noreferrer">
-          <span>ديسكورد</span>
-          <span>↗</span>
+  <header class="top-bar">
+    <div class="top-bar-inner">
+      <div class="brand-left">
+        <div class="brand-logo-box">N</div>
+        <span class="rainbow-name">NEXUS NETWORK</span>
+        <a class="discord-top-btn" href="https://discord.gg/9EuDZejxU" target="_blank" rel="noopener noreferrer">
+          Discord Server
         </a>
       </div>
-      <div class="top-actions">
-        <span class="ad-status-pill" id="nextAdCountdown">الإعلان القادم خلال: 30 ث</span>
-        <button class="test-ad-btn" id="triggerAdNowBtn" type="button">معاينة الإعلان</button>
+      <div class="ad-mini-bar">
+        <span id="adCountdownLabel">إعلان كل 30 ث · القادم خلال: 30 ث</span>
+        <button class="preview-ad-btn" id="previewAdBtn" type="button">معاينة الإعلان</button>
       </div>
     </div>
   </header>
 
-  <main class="container">
-    <section class="hero">
-      <div>
-        <h1>مكتبة سكربتات روبلوكس — NEXUS NETWORK</h1>
-        <p>8 قوائم رئيسية · 10 سكربتات لكل لعبة (5 بكود و5 بدون كود)</p>
-      </div>
-      <div class="search-box">
-        <input type="text" id="searchInput" placeholder="ابحث عن اسم سكربت أو ميزة..." />
-      </div>
+  <main class="page-wrap">
+    <section class="banner-card">
+      <h1>NEXUS NETWORK — سكربتات روبلوكس</h1>
+      <p>اختر اللعبة من القوائم بالأسفل لعرض 10 سكربتات (5 بكود و5 بدون كود)</p>
     </section>
 
-    <nav class="tabs-nav" id="tabsNav" aria-label="قوائم الألعاب"></nav>
-
     <section>
-      <div class="section-header">
-        <div class="section-title-wrap">
-          <h2 class="section-title" id="currentCategoryTitle">ام ام تو</h2>
-          <span class="count-badge" id="scriptsCountBadge">10 سكربتات (5 بكود · 5 بدون كود)</span>
-        </div>
-        <div class="filter-group" id="filterGroup">
-          <button class="filter-btn active" data-filter="all" type="button">الكل (10)</button>
-          <button class="filter-btn" data-filter="with-key" type="button">بكود (5)</button>
-          <button class="filter-btn" data-filter="no-key" type="button">بدون كود (5)</button>
-        </div>
+      <div class="section-label">
+        <span>قوائم الألعاب (8)</span>
+      </div>
+      <div class="games-list" id="gamesList"></div>
+    </section>
+
+    <section class="scripts-panel">
+      <div class="section-label">
+        <span id="selectedGameTitle">ام ام تو Scripts</span>
+        <span id="selectedGameCount" style="font-size: 0.82rem; color: var(--text-sub);">10 سكربتات</span>
       </div>
 
-      <div class="scripts-grid" id="scriptsGrid"></div>
+      <div class="filter-pills" id="filterPills">
+        <button class="pill-btn active" data-filter="all" type="button">الكل (10)</button>
+        <button class="pill-btn" data-filter="with-key" type="button">بكود (5)</button>
+        <button class="pill-btn" data-filter="no-key" type="button">بدون كود (5)</button>
+      </div>
+
+      <div id="scriptsContainer" style="display: flex; flex-direction: column; gap: 12px;"></div>
     </section>
   </main>
 
-  <div class="ad-overlay" id="adOverlay" role="dialog" aria-modal="true" aria-labelledby="adMainTitle">
-    <div class="ad-modal">
-      <div class="ad-top-bar">
-        <span class="ad-tag">إعلان · يظهر كل 30 ثانية</span>
-        <span class="ad-timer" id="adTimerText">ينتهي خلال: 10 ث</span>
+  <div class="ad-backdrop" id="adBackdrop" role="dialog" aria-modal="true">
+    <div class="ad-box">
+      <div class="ad-meta">
+        <span>إعلان · كل 30 ثانية</span>
+        <span id="adRemainingLabel">المدة: 10 ث</span>
       </div>
-      <div class="ad-main-text" id="adMainTitle">
+      <div class="ad-headline">
         100 روبوكس اول ما انت تخش سيرفر الديسكورد
       </div>
-      <div class="ad-sub-text">
+      <div class="ad-minecraft">
         سيرفر ماين كرافت للبدروك
       </div>
-      <div class="ad-actions">
-        <a class="ad-discord-link" href="https://discord.gg/9EuDZejxU" target="_blank" rel="noopener noreferrer">
-          دخول سيرفر الديسكورد
+      <div class="ad-btns">
+        <a class="ad-join-btn" href="https://discord.gg/9EuDZejxU" target="_blank" rel="noopener noreferrer">
+          دخول الديسكورد
         </a>
-        <button class="close-ad-btn" id="closeAdBtn" type="button" disabled>
-          إغلاق الإعلان (متاح بعد 5 ث)
+        <button class="ad-close-btn" id="adCloseBtn" type="button" disabled>
+          إغلاق بعد 5 ث
         </button>
       </div>
     </div>
   </div>
 
   <script>
-    const categoriesData = [
+    const gamesData = [
       {
         id: "mm2",
-        name: "ام ام تو",
+        title: "ام ام تو",
+        sub: "10 سكربتات · 5 بكود · 5 بدون كود",
         scripts: [
-          { name: "YARHM Hub MM2", hasKey: true, desc: "تصويب تلقائي، كشف الأدوار، وتجميع العملات بسرعة.", code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/Joystickplays/y-hub/main/loader.lua"))()' },
+          { name: "YARHM Hub MM2", hasKey: true, desc: "تصويب تلقائي، كشف الأدوار، وتجميع العملات.", code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/Joystickplays/y-hub/main/loader.lua"))()' },
           { name: "Vortex MM2 Pro", hasKey: true, desc: "قتل تلقائي للقاتل وتفادي الرصاص في الجولات.", code: 'loadstring(game:HttpGet("https://nexus-scripts.example/mm2/vortex-pro.lua"))()' },
           { name: "Eclipse Murder Mystery", hasKey: true, desc: "التقاط المسدس تلقائياً وإظهار أماكن اللاعبين.", code: 'loadstring(game:HttpGet("https://nexus-scripts.example/mm2/eclipse-mm2.lua"))()' },
-          { name: "Lunar Coin Collector", hasKey: true, desc: "تجميع عملات الفعاليات دون إزعاج أو تعليق.", code: 'loadstring(game:HttpGet("https://nexus-scripts.example/mm2/lunar-coins.lua"))()' },
+          { name: "Lunar Coin Collector", hasKey: true, desc: "تجميع عملات الفعاليات دون تعليق.", code: 'loadstring(game:HttpGet("https://nexus-scripts.example/mm2/lunar-coins.lua"))()' },
           { name: "Phantom Sheriff Aim", hasKey: true, desc: "مساعدة تصويب دقيقة للشريف مع تحكم سلس.", code: 'loadstring(game:HttpGet("https://nexus-scripts.example/mm2/phantom-aim.lua"))()' },
           { name: "Nexus Free MM2 ESP", hasKey: false, desc: "كشف القاتل والشريف والأبرياء بدون مفتاح.", code: 'loadstring(game:HttpGet("https://nexus-scripts.example/mm2/free-esp.lua"))()' },
-          { name: "Quick Gun Grabber", hasKey: false, desc: "سحب المسدس فور سقوطه بضغطة واحدة بدون كود.", code: 'loadstring(game:HttpGet("https://nexus-scripts.example/mm2/gun-grabber.lua"))()' },
-          { name: "Lite Speed & Jump MM2", hasKey: false, desc: "زيادة السرعة والقفز مع حماية بسيطة.", code: 'loadstring(game:HttpGet("https://nexus-scripts.example/mm2/lite-move.lua"))()' },
-          { name: "Auto Coin Farm NoKey", hasKey: false, desc: "تجميع تلقائي بسيط للعملات بدون أي كود.", code: 'loadstring(game:HttpGet("https://nexus-scripts.example/mm2/nokey-farm.lua"))()' },
-          { name: "Spectate & Role Viewer", hasKey: false, desc: "عرض أدوار اللاعبين في بداية كل جولة مباشرة.", code: 'loadstring(game:HttpGet("https://nexus-scripts.example/mm2/role-viewer.lua"))()' }
+          { name: "Quick Gun Grabber", hasKey: false, desc: "سحب المسدس فور سقوطه بدون كود.", code: 'loadstring(game:HttpGet("https://nexus-scripts.example/mm2/gun-grabber.lua"))()' },
+          { name: "Lite Speed & Jump MM2", hasKey: false, desc: "زيادة السرعة والقفز بدون كود.", code: 'loadstring(game:HttpGet("https://nexus-scripts.example/mm2/lite-move.lua"))()' },
+          { name: "Auto Coin Farm NoKey", hasKey: false, desc: "تجميع تلقائي بسيط للعملات بدون كود.", code: 'loadstring(game:HttpGet("https://nexus-scripts.example/mm2/nokey-farm.lua"))()' },
+          { name: "Spectate & Role Viewer", hasKey: false, desc: "عرض أدوار اللاعبين في بداية كل جولة.", code: 'loadstring(game:HttpGet("https://nexus-scripts.example/mm2/role-viewer.lua"))()' }
         ]
       },
       {
         id: "blox-fruits",
-        name: "بلوكس فروت",
+        title: "بلوكس فروت",
+        sub: "10 سكربتات · 5 بكود · 5 بدون كود",
         scripts: [
           { name: "Hoho Hub Blox Fruits", hasKey: true, desc: "تلفيل تلقائي، زعماء البحر، وتطوير الأساليب.", code: 'loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI"))()' },
           { name: "Redz Hub BF Edition", hasKey: true, desc: "مزرعة مهام متكاملة، رايدات، وجمع الصناديق.", code: 'loadstring(game:HttpGet("https://nexus-scripts.example/bf/redz-hub.lua"))()' },
           { name: "Mirage & Race V4 Finder", hasKey: true, desc: "البحث عن جزيرة الميراج وإتمام مهام العرق.", code: 'loadstring(game:HttpGet("https://nexus-scripts.example/bf/race-v4.lua"))()' },
-          { name: "Sea Beast Auto Hunter", hasKey: true, desc: "صيد وحوش البحر تلقائياً وجمع المال بسهولة.", code: 'loadstring(game:HttpGet("https://nexus-scripts.example/bf/sea-beast.lua"))()' },
+          { name: "Sea Beast Auto Hunter", hasKey: true, desc: "صيد وحوش البحر تلقائياً وجمع المال.", code: 'loadstring(game:HttpGet("https://nexus-scripts.example/bf/sea-beast.lua"))()' },
           { name: "Fruit Sniper & ESP", hasKey: true, desc: "تنبيه وكشف الفواكه النادرة فور ظهورها.", code: 'loadstring(game:HttpGet("https://nexus-scripts.example/bf/fruit-sniper.lua"))()' },
           { name: "Nexus Auto Quest NoKey", hasKey: false, desc: "إكمال المهام الأساسية والقتال التلقائي بدون كود.", code: 'loadstring(game:HttpGet("https://nexus-scripts.example/bf/nokey-quest.lua"))()' },
-          { name: "Fast Chest Collector", hasKey: false, desc: "جمع الصناديق في البحر الأول والثاني والثالث.", code: 'loadstring(game:HttpGet("https://nexus-scripts.example/bf/chest-farm.lua"))()' },
-          { name: "Auto Buso & Observation", hasKey: false, desc: "تفعيل الهاكي تلقائياً وتطويره بدون مفتاح.", code: 'loadstring(game:HttpGet("https://nexus-scripts.example/bf/auto-haki.lua"))()' },
-          { name: "Simple Fruit ESP", hasKey: false, desc: "إظهار الفواكه القريبة على الشاشة بدون كود.", code: 'loadstring(game:HttpGet("https://nexus-scripts.example/bf/simple-esp.lua"))()' },
-          { name: "Server Hop Helper", hasKey: false, desc: "الانتقال السريع بين السيرفرات للبحث عن الزعماء.", code: 'loadstring(game:HttpGet("https://nexus-scripts.example/bf/server-hop.lua"))()' }
+          { name: "Fast Chest Collector", hasKey: false, desc: "جمع الصناديق في البحار الثلاثة بدون كود.", code: 'loadstring(game:HttpGet("https://nexus-scripts.example/bf/chest-farm.lua"))()' },
+          { name: "Auto Buso & Observation", hasKey: false, desc: "تفعيل الهاكي تلقائياً بدون مفتاح.", code: 'loadstring(game:HttpGet("https://nexus-scripts.example/bf/auto-haki.lua"))()' },
+          { name: "Simple Fruit ESP", hasKey: false, desc: "إظهار الفواكه القريبة بدون كود.", code: 'loadstring(game:HttpGet("https://nexus-scripts.example/bf/simple-esp.lua"))()' },
+          { name: "Server Hop Helper", hasKey: false, desc: "الانتقال السريع بين السيرفرات بدون كود.", code: 'loadstring(game:HttpGet("https://nexus-scripts.example/bf/server-hop.lua"))()' }
         ]
       },
       {
         id: "plants-map",
-        name: "ماب النباتات",
+        title: "ماب النباتات",
+        sub: "10 سكربتات · 5 بكود · 5 بدون كود",
         scripts: [
           { name: "Flora Master Auto Plant", hasKey: true, desc: "زراعة وحصاد النباتات تلقائياً بأعلى كفاءة.", code: 'loadstring(game:HttpGet("https://nexus-scripts.example/plants/flora-master.lua"))()' },
           { name: "Botanist Pro Farm", hasKey: true, desc: "تسميد وري وسقي المحاصيل دون توقف.", code: 'loadstring(game:HttpGet("https://nexus-scripts.example/plants/botanist-pro.lua"))()' },
           { name: "Rare Seed Snatcher", hasKey: true, desc: "شراء البذور النادرة فور توفرها في المتجر.", code: 'loadstring(game:HttpGet("https://nexus-scripts.example/plants/rare-seeds.lua"))()' },
-          { name: "Garden Auto Sell Max", hasKey: true, desc: "بيع المحاصيل تلقائياً عند امتلاء الحقيبة.", code: 'loadstring(game:HttpGet          { name: "Mutation Booster Hub", hasKey: true, desc: "تحسين فرص الطفرات النباتية وإدارة المزرعة.", code: 'loadstring(game:HttpGet("https://nexus-scripts.example/plants/mutation-hub.lua"))()' },
+          { name: "Garden Auto Sell Max", hasKey: true, desc: "بيع المحاصيل تلقائياً عند امتلاء الحقيبة.", code: 'loadstring(game:HttpGet("https://nexus-scripts.example/plants/auto-sell.lua"))()' },
+              { name: "Mutation Booster Hub", hasKey: true, desc: "تحسين فرص الطفرات النباتية وإدارة المزرعة.", code: 'loadstring(game:HttpGet("https://nexus-scripts.example/plants/mutation-hub.lua"))()' },
           { name: "Quick Harvest NoKey", hasKey: false, desc: "حصاد النباتات الجاهزة بلمسة واحدة بدون كود.", code: 'loadstring(game:HttpGet("https://nexus-scripts.example/plants/quick-harvest.lua"))()' },
           { name: "Auto Watering Lite", hasKey: false, desc: "ري النباتات تلقائياً بدون الحاجة لمفتاح.", code: 'loadstring(game:HttpGet("https://nexus-scripts.example/plants/auto-water.lua"))()' },
           { name: "Seed Shop Notifier", hasKey: false, desc: "تنبيه فوري عند تجدد مخزون البذور.", code: 'loadstring(game:HttpGet("https://nexus-scripts.example/plants/seed-alert.lua"))()' },
@@ -647,7 +588,8 @@
       },
       {
         id: "time-bomb",
-        name: "ماب تايم بوم",
+        title: "ماب تايم بوم",
+        sub: "10 سكربتات · 5 بكود · 5 بدون كود",
         scripts: [
           { name: "Chrono Bomb Pass Pro", hasKey: true, desc: "تمرير القنبلة تلقائياً لأقرب لاعب بذكاء.", code: 'loadstring(game:HttpGet("https://nexus-scripts.example/timebomb/chrono-pro.lua"))()' },
           { name: "Pulse Evader Hub", hasKey: true, desc: "تحديد حامل القنبلة والابتعاد عنه تلقائياً.", code: 'loadstring(game:HttpGet("https://nexus-scripts.example/timebomb/pulse-evader.lua"))()' },
@@ -663,7 +605,8 @@
       },
       {
         id: "steal-egg",
-        name: "ماب سرقة البيض",
+        title: "ماب سرقة البيض",
+        sub: "10 سكربتات · 5 بكود · 5 بدون كود",
         scripts: [
           { name: "Egg Heist Master Hub", hasKey: true, desc: "سرقة البيض النادر والعودة للقاعدة بسرعة.", code: 'loadstring(game:HttpGet("https://nexus-scripts.example/egg/heist-master.lua"))()' },
           { name: "Vault Guard & Stealer", hasKey: true, desc: "حماية بيضك وسرقة بيض الخصوم تلقائياً.", code: 'loadstring(game:HttpGet("https://nexus-scripts.example/egg/vault-guard.lua"))()' },
@@ -679,7 +622,8 @@
       },
       {
         id: "99-nights",
-        name: "ماب 99 ليلة",
+        title: "ماب 99 ليلة",
+        sub: "10 سكربتات · 5 بكود · 5 بدون كود",
         scripts: [
           { name: "99 Nights Survival Pro", hasKey: true, desc: "تجميع الموارد والخشب والغذاء للبقاء 99 ليلة.", code: 'loadstring(game:HttpGet("https://nexus-scripts.example/99nights/survival-pro.lua"))()' },
           { name: "Night Monster ESP Hub", hasKey: true, desc: "كشف الوحوش والذئاب ليلاً مع تنبيه الاقتراب.", code: 'loadstring(game:HttpGet("https://nexus-scripts.example/99nights/monster-esp.lua"))()' },
@@ -695,7 +639,8 @@
       },
       {
         id: "ink-game",
-        name: "ماب انك جيم",
+        title: "ماب انك جيم",
+        sub: "10 سكربتات · 5 بكود · 5 بدون كود",
         scripts: [
           { name: "Ink Game Master Hub", hasKey: true, desc: "مساعدة شاملة لمراحل الألعاب والتحديات.", code: 'loadstring(game:HttpGet("https://nexus-scripts.example/inkgame/master-hub.lua"))()' },
           { name: "Red Light Green Light Pro", hasKey: true, desc: "توقف وحركة تلقائية متقنة في مرحلة الضوء الأحمر والأخضر.", code: 'loadstring(game:HttpGet("https://nexus-scripts.example/inkgame/rlgl-pro.lua"))()' },
@@ -711,7 +656,8 @@
       },
       {
         id: "keyboard-map",
-        name: "ماب الكيبورد",
+        title: "ماب الكيبورد",
+        sub: "10 سكربتات · 5 بكود · 5 بدون كود",
         scripts: [
           { name: "KeyType Pro Auto Typer", hasKey: true, desc: "كتابة تلقائية سريعة ودقيقة للكلمات والجمل.", code: 'loadstring(game:HttpGet("https://nexus-scripts.example/keyboard/keytype-pro.lua"))()' },
           { name: "WPM Booster & Combo", hasKey: true, desc: "رفع سرعة الكتابة في الدقيقة والحفاظ على السلسلة.", code: 'loadstring(game:HttpGet("https://nexus-scripts.example/keyboard/wpm-booster.lua"))()' },
@@ -727,194 +673,173 @@
       }
     ];
 
-    let activeCategoryId = categoriesData[0].id;
-    let activeFilter = "all";
-    let searchQuery = "";
+    let selectedGameId = gamesData[0].id;
+    let currentFilter = "all";
 
-    const tabsNav = document.getElementById("tabsNav");
-    const scriptsGrid = document.getElementById("scriptsGrid");
-    const currentCategoryTitle = document.getElementById("currentCategoryTitle");
-    const scriptsCountBadge = document.getElementById("scriptsCountBadge");
-    const searchInput = document.getElementById("searchInput");
-    const filterButtons = document.querySelectorAll(".filter-btn");
+    const gamesListEl = document.getElementById("gamesList");
+    const scriptsContainerEl = document.getElementById("scriptsContainer");
+    const selectedGameTitleEl = document.getElementById("selectedGameTitle");
+    const selectedGameCountEl = document.getElementById("selectedGameCount");
+    const filterPillsEl = document.querySelectorAll(".pill-btn");
 
-    function renderTabs() {
-      tabsNav.innerHTML = "";
-      categoriesData.forEach((cat) => {
+    function renderGamesList() {
+      gamesListEl.innerHTML = "";
+      gamesData.forEach((game, index) => {
         const btn = document.createElement("button");
         btn.type = "button";
-        btn.className = `tab-btn ${cat.id === activeCategoryId ? "active" : ""}`;
-        btn.textContent = cat.name;
+        btn.className = `game-row ${game.id === selectedGameId ? "active" : ""}`;
+        btn.innerHTML = `
+          <div class="game-row-right">
+            <div class="game-num-box">${index + 1}</div>
+            <div>
+              <div class="game-title-text">${game.title}</div>
+              <div class="game-sub-text">${game.sub}</div>
+            </div>
+          </div>
+          <div class="game-arrow">&lsaquo;</div>
+        `;
         btn.addEventListener("click", () => {
-          activeCategoryId = cat.id;
-          activeFilter = "all";
-          filterButtons.forEach((b) => b.classList.toggle("active", b.dataset.filter === "all"));
-          renderTabs();
-          renderScripts();
+          selectedGameId = game.id;
+          currentFilter = "all";
+          filterPillsEl.forEach((p) => p.classList.toggle("active", p.dataset.filter === "all"));
+          renderGamesList();
+          renderScriptsList();
         });
-        tabsNav.appendChild(btn);
+        gamesListEl.appendChild(btn);
       });
     }
 
-    function renderScripts() {
-      const category = categoriesData.find((c) => c.id === activeCategoryId) || categoriesData[0];
-      currentCategoryTitle.textContent = category.name;
+    function renderScriptsList() {
+      const game = gamesData.find((g) => g.id === selectedGameId) || gamesData[0];
+      selectedGameTitleEl.textContent = `${game.title} Scripts`;
 
-      const withKeyCount = category.scripts.filter((s) => s.hasKey).length;
-      const noKeyCount = category.scripts.filter((s) => !s.hasKey).length;
-      scriptsCountBadge.textContent = `${category.scripts.length} سكربتات (${withKeyCount} بكود · ${noKeyCount} بدون كود)`;
-
-      const filtered = category.scripts.filter((script) => {
-        const matchesFilter =
-          activeFilter === "all" ||
-          (activeFilter === "with-key" && script.hasKey) ||
-          (activeFilter === "no-key" && !script.hasKey);
-
-        const q = searchQuery.trim().toLowerCase();
-        const matchesSearch =
-          !q ||
-          script.name.toLowerCase().includes(q) ||
-          script.desc.toLowerCase().includes(q) ||
-          script.code.toLowerCase().includes(q);
-
-        return matchesFilter && matchesSearch;
+      const filtered = game.scripts.filter((s) => {
+        if (currentFilter === "with-key") return s.hasKey;
+        if (currentFilter === "no-key") return !s.hasKey;
+        return true;
       });
 
-      scriptsGrid.innerHTML = "";
+      selectedGameCountEl.textContent = `${filtered.length} سكربتات`;
+      scriptsContainerEl.innerHTML = "";
 
-      if (filtered.length === 0) {
-        scriptsGrid.innerHTML = `<div class="empty-state">لا توجد سكربتات مطابقة لبحثك أو للفلتر المختار.</div>`;
-        return;
-      }
-
-      filtered.forEach((script) => {
-        const card = document.createElement("article");
-        card.className = "script-card";
-
-        const badgeClass = script.hasKey ? "with-key" : "no-key";
-        const badgeText = script.hasKey ? "بكود (Key)" : "بدون كود (No Key)";
-
+      filtered.forEach((script, idx) => {
+        const card = document.createElement("div");
+        card.className = "script-item-card";
+        const keyBadgeText = script.hasKey ? "بكود (Key)" : "بدون كود (Keyless)";
         card.innerHTML = `
-          <div>
-            <div class="card-top">
-              <h3 class="script-name">${script.name}</h3>
-              <span class="key-badge ${badgeClass}">${badgeText}</span>
+          <div class="script-top-row">
+            <div class="script-title">${idx + 1}. ${script.name}</div>
+            <div class="badges-row">
+              <span class="tag-key">${keyBadgeText}</span>
+              <span class="tag-verified">✓ Verified</span>
             </div>
-            <p class="script-desc">${script.desc}</p>
           </div>
-          <div class="code-box" title="${script.code}">${script.code}</div>
-          <div class="card-footer">
-            <button class="copy-btn" type="button">نسخ السكربت</button>
-          </div>
+          <div class="script-desc">${script.desc}</div>
+          <div class="script-code-line" title="${script.code}">${script.code}</div>
+          <button class="copy-script-btn" type="button">نسخ السكربت</button>
         `;
 
-        const copyBtn = card.querySelector(".copy-btn");
+        const copyBtn = card.querySelector(".copy-script-btn");
         copyBtn.addEventListener("click", async () => {
           try {
             await navigator.clipboard.writeText(script.code);
           } catch {
-            const temp = document.createElement("textarea");
-            temp.value = script.code;
-            document.body.appendChild(temp);
-            temp.select();
+            const ta = document.createElement("textarea");
+            ta.value = script.code;
+            document.body.appendChild(ta);
+            ta.select();
             document.execCommand("copy");
-            document.body.removeChild(temp);
+            document.body.removeChild(ta);
           }
           copyBtn.textContent = "تم النسخ ✓";
           copyBtn.classList.add("copied");
           setTimeout(() => {
             copyBtn.textContent = "نسخ السكربت";
             copyBtn.classList.remove("copied");
-          }, 1600);
+          }, 1500);
         });
 
-        scriptsGrid.appendChild(card);
+        scriptsContainerEl.appendChild(card);
       });
     }
 
-    filterButtons.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        activeFilter = btn.dataset.filter;
-        filterButtons.forEach((b) => b.classList.toggle("active", b === btn));
-        renderScripts();
+    filterPillsEl.forEach((pill) => {
+      pill.addEventListener("click", () => {
+        currentFilter = pill.dataset.filter;
+        filterPillsEl.forEach((p) => p.classList.toggle("active", p === pill));
+        renderScriptsList();
       });
     });
 
-    searchInput.addEventListener("input", (e) => {
-      searchQuery = e.target.value;
-      renderScripts();
-    });
+    const adBackdrop = document.getElementById("adBackdrop");
+    const adRemainingLabel = document.getElementById("adRemainingLabel");
+    const adCloseBtn = document.getElementById("adCloseBtn");
+    const adCountdownLabel = document.getElementById("adCountdownLabel");
+    const previewAdBtn = document.getElementById("previewAdBtn");
 
-    const adOverlay = document.getElementById("adOverlay");
-    const adTimerText = document.getElementById("adTimerText");
-    const closeAdBtn = document.getElementById("closeAdBtn");
-    const nextAdCountdown = document.getElementById("nextAdCountdown");
-    const triggerAdNowBtn = document.getElementById("triggerAdNowBtn");
+    const EVERY_SECONDS = 30;
+    const SHOW_SECONDS = 10;
+    const UNLOCK_SECONDS = 5;
 
-    const CYCLE_SECONDS = 30;
-    const AD_DURATION = 10;
-    const UNLOCK_AFTER = 5;
+    let nextIn = EVERY_SECONDS;
+    let leftShow = 0;
+    let elapsedShow = 0;
+    let adShowing = false;
 
-    let secondsUntilNextAd = CYCLE_SECONDS;
-    let adRemaining = 0;
-    let adElapsed = 0;
-    let isAdOpen = false;
-
-    function openAd() {
-      isAdOpen = true;
-      adElapsed = 0;
-      adRemaining = AD_DURATION;
-      adOverlay.classList.add("show");
-      updateAdUI();
+    function showAd() {
+      adShowing = true;
+      elapsedShow = 0;
+      leftShow = SHOW_SECONDS;
+      adBackdrop.classList.add("open");
+      syncAdButtons();
     }
 
-    function closeAd() {
-      if (adElapsed < UNLOCK_AFTER) return;
-      isAdOpen = false;
-      adOverlay.classList.remove("show");
-      secondsUntilNextAd = CYCLE_SECONDS;
+    function hideAd() {
+      if (elapsedShow < UNLOCK_SECONDS) return;
+      adShowing = false;
+      adBackdrop.classList.remove("open");
+      nextIn = EVERY_SECONDS;
     }
 
-    function updateAdUI() {
-      adTimerText.textContent = `ينتهي خلال: ${adRemaining} ث`;
-      if (adElapsed >= UNLOCK_AFTER) {
-        closeAdBtn.disabled = false;
-        closeAdBtn.classList.add("unlocked");
-        closeAdBtn.textContent = "إغلاق الإعلان";
+    function syncAdButtons() {
+      adRemainingLabel.textContent = `المدة: ${leftShow} ث`;
+      if (elapsedShow >= UNLOCK_SECONDS) {
+        adCloseBtn.disabled = false;
+        adCloseBtn.classList.add("ready");
+        adCloseBtn.textContent = "إغلاق الإعلان";
       } else {
-        const leftToUnlock = UNLOCK_AFTER - adElapsed;
-        closeAdBtn.disabled = true;
-        closeAdBtn.classList.remove("unlocked");
-        closeAdBtn.textContent = `إغلاق الإعلان (متاح بعد ${leftToUnlock} ث)`;
+        adCloseBtn.disabled = true;
+        adCloseBtn.classList.remove("ready");
+        adCloseBtn.textContent = `إغلاق بعد ${UNLOCK_SECONDS - elapsedShow} ث`;
       }
     }
 
-    closeAdBtn.addEventListener("click", closeAd);
-    triggerAdNowBtn.addEventListener("click", openAd);
+    adCloseBtn.addEventListener("click", hideAd);
+    previewAdBtn.addEventListener("click", showAd);
 
     setInterval(() => {
-      if (isAdOpen) {
-        adElapsed += 1;
-        adRemaining = Math.max(0, AD_DURATION - adElapsed);
-        updateAdUI();
-        if (adRemaining <= 0) {
-          isAdOpen = false;
-          adOverlay.classList.remove("show");
-          secondsUntilNextAd = CYCLE_SECONDS;
+      if (adShowing) {
+        elapsedShow += 1;
+        leftShow = Math.max(0, SHOW_SECONDS - elapsedShow);
+        syncAdButtons();
+        if (leftShow <= 0) {
+          adShowing = false;
+          adBackdrop.classList.remove("open");
+          nextIn = EVERY_SECONDS;
         }
       } else {
-        secondsUntilNextAd -= 1;
-        if (secondsUntilNextAd <= 0) {
-          openAd();
+        nextIn -= 1;
+        if (nextIn <= 0) {
+          showAd();
         }
       }
-      nextAdCountdown.textContent = isAdOpen
-        ? "الإعلان معروض الآن"
-        : `الإعلان القادم خلال: ${secondsUntilNextAd} ث`;
+      adCountdownLabel.textContent = adShowing
+        ? "إعلان معروض الآن"
+        : `إعلان كل 30 ث · القادم خلال: ${nextIn} ث`;
     }, 1000);
 
-    renderTabs();
-    renderScripts();
+    renderGamesList();
+    renderScriptsList();
   </script>
 </body>
 </html>
