@@ -31,7 +31,7 @@
       text-decoration: none;
       background: #141c2f;
       border: 1px solid #334670;
-      padding: 7px 13px;
+      padding: 8px 14px;
       border-radius: 9px;
       font-size: 13px;
       font-weight: 900;
@@ -176,12 +176,12 @@
       text-align: center;
     }
 
-    /* Popup Ad: every 30s for 10s, closable anytime */
+    /* Popup Ad: every 30s for 10s, closable after 5s */
     .ad-backdrop {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.78);
+      background: rgba(0, 0, 0, 0.82);
       z-index: 999;
       align-items: center;
       justify-content: center;
@@ -206,11 +206,12 @@
       justify-content: space-between;
       align-items: center;
       margin-bottom: 12px;
+      gap: 8px;
     }
 
     .ad-close {
-      width: 32px;
-      height: 32px;
+      width: 34px;
+      height: 34px;
       border-radius: 50%;
       border: none;
       background: #dc2626;
@@ -218,6 +219,13 @@
       font-size: 18px;
       font-weight: bold;
       cursor: pointer;
+    }
+
+    .ad-close:disabled {
+      background: #475569;
+      color: #cbd5e1;
+      cursor: not-allowed;
+      opacity: 0.7;
     }
 
     .ad-robux {
@@ -231,7 +239,7 @@
 
     .ad-robux h3 {
       color: #34d399;
-      font-size: 20px;
+      font-size: 18px;
       margin-bottom: 4px;
     }
 
@@ -341,4 +349,4 @@
         <div class="script-card"><div class="script-top"><span class="script-title">Chaos RP Keyless</span><span class="badge-keyless">Keyless (بدون كود)</span></div><div class="script-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/ChaosHub/Brookhaven/main/Keyless.lua"))()</div><button class="copy-btn" type="button" onclick="copyVal(this)">نسخ السكريبت</button></div>
         <div class="script-card"><div class="script-top"><span class="script-title">Vortex RP Keyless</span><span class="badge-keyless">Keyless (بدون كود)</span></div><div class="script-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/VortexHub/Brookhaven/main/Keyless.lua"))()</div><button class="copy-btn" type="button" onclick="copyVal(this)">نسخ السكريبت</button></div>
         <div class="script-card"><div class="script-top"><span class="script-title">Simple RP Keyless</span><span class="badge-keyless">Keyless (بدون كود)</span></div><div class="script-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/SimpleHub/Brookhaven/main/Keyless.lua"))()</div><button class="copy-btn" type="button" onclick="copyVal(this)">نسخ السكريبت</button></div>
-        <div class="script-card"><div class="script-top"><span class="script-title">Fly & Car Keyless</span><span class="badge-keyless">Keyless (بدون كود)</span></div><div class="script-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/brookhaven/main/keyless-car.lua"))()</div><button clas
+        <div class="script-card"><div class="script-top"><span class="script-title">Fly & Car Keyless</span><span class="badge-keyless">Keyless (بدون كود)</span></div><div cl
