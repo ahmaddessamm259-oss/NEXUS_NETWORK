@@ -1,579 +1,1309 @@
 <!DOCTYPE html>
-<html lang="en" translate="no">
+<html lang="ar" dir="rtl" translate="no">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="google" content="notranslate" />
-  <title>NEXUS NETWORK</title>
+  <title>NEXUS NETWORK — سكربتات روبلوكس</title>
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
-      background: #090c14;
-      color: #ffffff;
-      font-family: Arial, Helvetica, sans-serif;
-      padding: 16px;
-      padding-bottom: 70px;
+      background: radial-gradient(circle at top, #1b1133 0%, #090812 65%);
+      color: #f8fafc;
+      font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+      min-height: 100vh;
+      padding: 14px;
+      padding-bottom: 85px;
     }
-    .rainbow-txt {
+
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .rainbow-text {
       font-weight: 900;
-      letter-spacing: 0.6px;
-      transition: color 0.3s ease, text-shadow 0.3s ease;
+      transition: color 0.35s ease, text-shadow 0.35s ease;
     }
-    .discord-btn {
-      display: inline-block;
-      text-decoration: none;
-      background: #141c2f;
-      border: 1px solid #354975;
-      padding: 8px 14px;
-      border-radius: 9px;
-      font-size: 13px;
-      font-weight: 900;
-      cursor: pointer;
+
+    .top-header {
+      background: rgba(24, 16, 48, 0.92);
+      border: 1px solid rgba(168, 85, 247, 0.35);
+      border-radius: 16px;
+      padding: 14px;
+      margin-bottom: 14px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
     }
-    .top-bar {
-      max-width: 720px;
-      margin: 0 auto 16px auto;
-      padding: 14px 16px;
-      background: #121826;
-      border: 1px solid #26324d;
-      border-radius: 10px;
+
+    .header-row {
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
       gap: 10px;
       flex-wrap: wrap;
+      margin-bottom: 12px;
     }
-    .brand-name { font-size: 21px; }
-    .menus-wrap {
-      max-width: 720px;
-      margin: 0 auto;
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-logo {
+      width: 38px;
+      height: 38px;
+      border-radius: 11px;
+      background: linear-gradient(135deg, #7c3aed, #ec4899);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 18px;
+      color: #fff;
+      box-shadow: 0 0 14px rgba(168, 85, 247, 0.55);
+    }
+
+    .brand-title {
+      font-size: 19px;
+      letter-spacing: 0.4px;
+    }
+
+    .discord-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      background: linear-gradient(135deg, #4f46e5, #7c3aed);
+      color: #ffffff;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 800;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+    }
+
+    .ad-status-bar {
+      background: rgba(12, 9, 24, 0.85);
+      border: 1px solid rgba(139, 92, 246, 0.25);
+      border-radius: 12px;
+      padding: 9px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+      font-size: 12px;
+      color: #cbd5e1;
+    }
+
+    .preview-ad-btn {
+      background: rgba(124, 58, 237, 0.28);
+      color: #e9d5ff;
+      border: 1px solid rgba(192, 132, 252, 0.45);
+      border-radius: 8px;
+      padding: 5px 11px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .hero-card {
+      background: linear-gradient(145deg, rgba(35, 22, 68, 0.92), rgba(17, 12, 34, 0.95));
+      border: 1px solid rgba(168, 85, 247, 0.3);
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(139, 92, 246, 0.22);
+      color: #ddd6fe;
+      border: 1px solid rgba(167, 139, 250, 0.4);
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .hero-card h1 {
+      font-size: 20px;
+      margin-bottom: 6px;
+      color: #ffffff;
+    }
+
+    .hero-card p {
+      font-size: 13px;
+      color: #cbd5e1;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      padding: 0 4px;
+    }
+
+    .section-heading h2 {
+      font-size: 16px;
+      color: #f3e8ff;
+    }
+
+    .maps-list {
       display: flex;
       flex-direction: column;
       gap: 10px;
     }
-    .cat-box {
-      background: #131a2a;
-      border: 1px solid #283552;
-      border-radius: 10px;
+
+    .map-card {
+      background: rgba(20, 14, 40, 0.92);
+      border: 1px solid rgba(139, 92, 246, 0.28);
+      border-radius: 15px;
       overflow: hidden;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
     }
-    .cat-btn {
+
+    .map-trigger {
       width: 100%;
-      background: #182238;
-      color: #ffffff;
+      background: transparent;
       border: none;
-      padding: 15px 16px;
-      font-size: 17px;
-      font-weight: bold;
-      text-align: left;
+      color: #ffffff;
+      padding: 14px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      cursor: pointer;
+      text-align: right;
+    }
+
+    .map-trigger:hover {
+      background: rgba(124, 58, 237, 0.12);
+    }
+
+    .map-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .map-num {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #6d28d9, #9333ea);
+      color: #ffffff;
+      font-weight: 900;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .map-info {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .map-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .map-meta {
+      font-size: 12px;
+      color: #a5b4fc;
+    }
+
+    .map-arrow {
+      font-size: 16px;
+      color: #c4b5fd;
+      transition: transform 0.25s ease;
+    }
+
+    .map-card.open .map-arrow {
+      transform: rotate(90deg);
+    }
+
+    .map-body {
+      display: none;
+      padding: 14px;
+      background: rgba(11, 8, 22, 0.92);
+      border-top: 1px solid rgba(139, 92, 246, 0.22);
+    }
+
+    .map-card.open .map-body {
+      display: block;
+    }
+
+    .panel-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .panel-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: #e9d5ff;
+    }
+
+    .panel-count {
+      font-size: 12px;
+      color: #94a3b8;
+    }
+
+    .filter-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+
+    .filter-btn {
+      border: 1px solid rgba(148, 163, 184, 0.28);
+      background: rgba(30, 27, 75, 0.65);
+      color: #e2e8f0;
+      padding: 7px 13px;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 700;
       cursor: pointer;
     }
-    .cat-btn:hover { background: #1f2c47; }
-    .cat-panel {
+
+    .filter-btn.active {
+      background: linear-gradient(135deg, #7c3aed, #6366f1);
+      border-color: #c4b5fd;
+      color: #ffffff;
+    }
+
+    .script-item {
+      background: rgba(24, 18, 48, 0.95);
+      border: 1px solid rgba(139, 92, 246, 0.25);
+      border-radius: 14px;
+      padding: 13px;
+      margin-bottom: 12px;
+    }
+
+    .script-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .script-item.hidden-by-filter {
       display: none;
-      padding: 12px;
-      background: #0e1320;
-      border-top: 1px solid #283552;
     }
-    .cat-panel.open { display: block; }
-    .sc-item {
-      background: #161f33;
-      border: 1px solid #293859;
-      border-radius: 8px;
-      padding: 10px;
-      margin-bottom: 10px;
-    }
-    .sc-item:last-child { margin-bottom: 0; }
-    .sc-head {
+
+    .script-head {
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
       gap: 8px;
+      flex-wrap: wrap;
       margin-bottom: 6px;
     }
-    .sc-name { font-size: 14px; font-weight: bold; }
-    .tag-keyless {
-      background: #064e3b;
-      color: #a7f3d0;
-      padding: 2px 8px;
-      border-radius: 6px;
-      font-size: 11px;
-      font-weight: bold;
+
+    .script-name {
+      font-size: 15px;
+      font-weight: 800;
+      color: #ffffff;
     }
-    .tag-key {
-      background: #78350f;
-      color: #fde68a;
-      padding: 2px 8px;
-      border-radius: 6px;
-      font-size: 11px;
-      font-weight: bold;
+
+    .badges-group {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
     }
-    .sc-code {
-      background: #090d16;
-      color: #93c5fd;
-      padding: 8px;
-      border-radius: 6px;
-      font-family: monospace;
+
+    .badge-verified {
+      background: rgba(16, 185, 129, 0.18);
+      color: #6ee7b7;
+      border: 1px solid rgba(16, 185, 129, 0.45);
+      padding: 3px 8px;
+      border-radius: 7px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .badge-key {
+      background: rgba(245, 158, 11, 0.18);
+      color: #fcd34d;
+      border: 1px solid rgba(245, 158, 11, 0.45);
+      padding: 3px 8px;
+      border-radius: 7px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .badge-keyless {
+      background: rgba(56, 189, 248, 0.18);
+      color: #7dd3fc;
+      border: 1px solid rgba(56, 189, 248, 0.45);
+      padding: 3px 8px;
+      border-radius: 7px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .script-desc {
+      font-size: 12.5px;
+      color: #cbd5e1;
+      margin-bottom: 10px;
+      line-height: 1.5;
+    }
+
+    .code-box {
+      background: #07060e;
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      border-radius: 10px;
+      padding: 10px;
+      font-family: Consolas, Monaco, monospace;
       font-size: 12px;
-      word-break: break-all;
-      margin-bottom: 8px;
+      color: #c4b5fd;
+      overflow-x: auto;
+      white-space: nowrap;
+      margin-bottom: 10px;
+      direction: ltr;
+      text-align: left;
     }
-    .cp-btn {
-      background: #2563eb;
-      color: #fff;
+
+    .copy-script-btn {
+      background: linear-gradient(135deg, #7c3aed, #6366f1);
+      color: #ffffff;
       border: none;
-      padding: 6px 12px;
-      border-radius: 6px;
-      font-size: 12px;
-      font-weight: bold;
+      border-radius: 9px;
+      padding: 8px 16px;
+      font-size: 12.5px;
+      font-weight: 800;
       cursor: pointer;
     }
-    .footer-discord {
-      max-width: 720px;
-      margin: 14px auto 0 auto;
+
+    .bottom-bar {
+      margin-top: 16px;
+      background: rgba(24, 16, 48, 0.92);
+      border: 1px solid rgba(168, 85, 247, 0.35);
+      border-radius: 15px;
       padding: 14px;
-      background: #121826;
-      border: 1px solid #283552;
-      border-radius: 10px;
-      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
     }
-    .ad-overlay {
+
+    .ad-modal-backdrop {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.82);
+      background: rgba(0, 0, 0, 0.84);
       z-index: 999;
       align-items: center;
       justify-content: center;
       padding: 16px;
     }
-    .ad-overlay.show { display: flex; }
-    .ad-box {
-      width: 100%;
-      max-width: 410px;
-      background: #131a2a;
-      border: 1px solid #3b4f7a;
-      border-radius: 14px;
-      padding: 16px;
-    }
-    .ad-top {
+
+    .ad-modal-backdrop.open {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 12px;
     }
-    .ad-x {
+
+    .ad-modal-card {
+      width: 100%;
+      max-width: 420px;
+      background: #140f29;
+      border: 1px solid rgba(168, 85, 247, 0.5);
+      border-radius: 18px;
+      padding: 16px;
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.7);
+    }
+
+    .ad-modal-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      gap: 8px;
+    }
+
+    .ad-close-btn {
       width: 34px;
       height: 34px;
       border-radius: 50%;
       border: none;
-      background: #dc2626;
-      color: #fff;
+      background: #ef4444;
+      color: #ffffff;
       font-size: 18px;
-      font-weight: bold;
+      font-weight: 900;
       cursor: pointer;
     }
-    .ad-x:disabled {
+
+    .ad-close-btn:disabled {
       background: #475569;
       color: #cbd5e1;
       cursor: not-allowed;
-      opacity: 0.7;
+      opacity: 0.75;
     }
-    .ad-prize {
-      background: #064e3b;
-      border: 1px solid #10b981;
-      border-radius: 10px;
+
+    .ad-reward-box {
+      background: rgba(16, 185, 129, 0.14);
+      border: 1px solid rgba(16, 185, 129, 0.45);
+      border-radius: 12px;
       padding: 12px;
       text-align: center;
       margin-bottom: 10px;
     }
-    .ad-prize h3 { color: #34d399; font-size: 18px; margin-bottom: 4px; }
-    .ad-bedrock {
-      background: #0c1220;
-      border: 1px dashed #475569;
-      border-radius: 10px;
+
+    .ad-reward-box h3 {
+      color: #34d399;
+      font-size: 17px;
+      margin-bottom: 4px;
+    }
+
+    .ad-mc-box {
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px dashed rgba(148, 163, 184, 0.45);
+      border-radius: 12px;
       padding: 10px;
       text-align: center;
-      font-size: 14px;
+      font-size: 13.5px;
       margin-bottom: 12px;
     }
-    .ad-dc-wrap { text-align: center; }
-    .toast-msg {
+
+    .ad-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .toast-popup {
       position: fixed;
-      bottom: 16px;
+      bottom: 18px;
       left: 50%;
       transform: translateX(-50%);
       background: #10b981;
-      color: #04130c;
-      font-weight: bold;
-      padding: 8px 16px;
+      color: #052e16;
+      font-weight: 800;
+      font-size: 13px;
+      padding: 9px 18px;
       border-radius: 999px;
       display: none;
       z-index: 1000;
     }
-    .toast-msg.show { display: block; }
+
+    .toast-popup.show {
+      display: block;
+    }
   </style>
 </head>
 <body>
+  <div class="container">
+    <header class="top-header">
+      <div class="header-row">
+        <div class="brand-group">
+          <div class="brand-logo">N</div>
+          <span class="brand-title rainbow-text color-cycle">NEXUS NETWORK</span>
+        </div>
+        <a class="discord-pill rainbow-text color-cycle" href="https://discord.gg/t3a5uuKTC" target="_blank" rel="noopener noreferrer">Discord Server</a>
+      </div>
+      <div class="ad-status-bar">
+        <span id="adBarStatus">إعلان كل 30 ث • القادم خلال 30 ث</span>
+        <button class="preview-ad-btn" type="button" onclick="openAdModal()">معاينة الإعلان</button>
+      </div>
+    </header>
 
-  <div class="top-bar">
-    <span class="brand-name rainbow-txt color-item">NEXUS NETWORK</span>
-    <a class="discord-btn rainbow-txt color-item" href="https://discord.gg/t3a5uuKTC" target="_blank" rel="noopener noreferrer">DISCORD ON</a>
+    <section class="hero-card">
+      <div class="hero-badge">روبلوكس</div>
+      <h1>NEXUS NETWORK — سكربتات روبلوكس</h1>
+      <p>اختر اللعبة من القوائم بالأسفل لعرض 10 سكربتات (5 بكود و5 بدون كود)</p>
+    </section>
+
+    <div class="section-heading">
+      <h2>قوائم الألعاب (14)</h2>
+    </div>
+
+    <div class="maps-list" id="mapsList">
+      <!-- 1. MM2 -->
+      <div class="map-card" id="card-mm2">
+        <button class="map-trigger" type="button" onclick="toggleMap('card-mm2')">
+          <div class="map-left">
+            <span class="map-num">1</span>
+            <div class="map-info">
+              <span class="map-title">إم إم تو (MM2)</span>
+              <span class="map-meta">10 سكربتات • 5 بكود • 5 بدون كود</span>
+            </div>
+          </div>
+          <span class="map-arrow">‹</span>
+        </button>
+        <div class="map-body">
+          <div class="panel-header-row">
+            <span class="panel-title">إم إم تو Scripts</span>
+            <span class="panel-count">10 سكربتات</span>
+          </div>
+          <div class="filter-tabs">
+            <button class="filter-btn active" type="button" onclick="setFilter(this, 'card-mm2', 'all')">الكل (10)</button>
+            <button class="filter-btn" type="button" onclick="setFilter(this, 'card-mm2', 'key')">بكود (5)</button>
+            <button class="filter-btn" type="button" onclick="setFilter(this, 'card-mm2', 'keyless')">بدون كود (5)</button>
+          </div>
+          <div class="script-item" data-type="key">
+            <div class="script-head"><span class="script-name">YARHM MM2 .1</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div>
+            <p class="script-desc">تصويب تلقائي، كشف الأدوار ولجميع العملات.</p>
+            <div class="code-box">loadstring(game:HttpGet("https://yarhm.goteamup.com/yarhm/rm/mm2.lua"))()</div>
+            <button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button>
+          </div>
+          <div class="script-item" data-type="key">
+            <div class="script-head"><span class="script-name">Vertex MM2 Pro .2</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div>
+            <p class="script-desc">قتل تلقائي للقاتل وتفادي الرصاص في الجولات.</p>
+            <div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/vertex-peak/vertex/refs/heads/main/loadstring"))()</div>
+            <button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button>
+          </div>
+          <div class="script-item" data-type="key">
+            <div class="script-head"><span class="script-name">Eclipse Murder Mystery .3</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div>
+            <p class="script-desc">التقاط المسدس تلقائياً وإظهار أماكن اللاعبين.</p>
+            <div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/ethanhub/EclipseMM2/main/Loader.lua"))()</div>
+            <button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button>
+          </div>
+          <div class="script-item" data-type="key">
+            <div class="script-head"><span class="script-name">Symphony MM2 Hub .4</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div>
+            <p class="script-desc">تحكم متقدم في السرعة والقفز وكشف العناصر.</p>
+            <div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/ThatSick/ArrayField/main/SymphonyHub.lua"))()</div>
+            <button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button>
+          </div>
+          <div class="script-item" data-type="key">
+            <div class="script-head"><span class="script-name">R3THPRIV MM2 .5</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div>
+            <p class="script-desc">إدارة سريعة للجولات وأدوات مساعدة للقاتل والشريف.</p>
+            <div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/R3TH-PRIV/R3THPRIV/main/Loader.lua"))()</div>
+            <button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button>
+          </div>
+          <div class="script-item" data-type="keyless">
+            <div class="script-head"><span class="script-name">Nexus Free MM2 ESP .1</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div>
+            <p class="script-desc">كشف القاتل والشريف والأبرياء بدون مفتاح.</p>
+            <div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/mm2/main/keyless-esp.lua"))()</div>
+            <button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button>
+          </div>
+          <div class="script-item" data-type="keyless">
+            <div class="script-head"><span class="script-name">Quick Gun Grabber .2</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div>
+            <p class="script-desc">سحب المسدس فور سقوطه بدون كود.</p>
+            <div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/mm2/main/keyless-gun.lua"))()</div>
+            <button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button>
+          </div>
+          <div class="script-item" data-type="keyless">
+            <div class="script-head"><span class="script-name">Lite Speed & Jump MM2 .3</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div>
+            <p class="script-desc">زيادة السرعة والقفز بدون كود.</p>
+            <div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/mm2/main/keyless-move.lua"))()</div>
+            <button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button>
+          </div>
+          <div class="script-item" data-type="keyless">
+            <div class="script-head"><span class="script-name">Coin Farm Keyless .4</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div>
+            <p class="script-desc">جمع العملات تلقائياً داخل الماب بدون مفتاح.</p>
+            <div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/mm2/main/keyless-coins.lua"))()</div>
+            <button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button>
+          </div>
+          <div class="script-item" data-type="keyless">
+            <div class="script-head"><span class="script-name">Solara MM2 Keyless .5</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div>
+            <p class="script-desc">واجهة خفيفة وسريعة لـ MM2 بدون كود.</p>
+            <div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/solara-hub/mm2/main/keyless.lua"))()</div>
+            <button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Blox Fruits -->
+      <div class="map-card" id="card-bf">
+        <button class="map-trigger" type="button" onclick="toggleMap('card-bf')">
+          <div class="map-left">
+            <span class="map-num">2</span>
+            <div class="map-info">
+              <span class="map-title">بلوكس فروت (Blox Fruits)</span>
+              <span class="map-meta">10 سكربتات • 5 بكود • 5 بدون كود</span>
+            </div>
+          </div>
+          <span class="map-arrow">‹</span>
+        </button>
+        <div class="map-body">
+          <div class="panel-header-row">
+            <span class="panel-title">بلوكس فروت Scripts</span>
+            <span class="panel-count">10 سكربتات</span>
+          </div>
+          <div class="filter-tabs">
+            <button class="filter-btn active" type="button" onclick="setFilter(this, 'card-bf', 'all')">الكل (10)</button>
+            <button class="filter-btn" type="button" onclick="setFilter(this, 'card-bf', 'key')">بكود (5)</button>
+            <button class="filter-btn" type="button" onclick="setFilter(this, 'card-bf', 'keyless')">بدون كود (5)</button>
+          </div>
+          <div class="script-item" data-type="key">
+            <div class="script-head"><span class="script-name">Hoho Hub Blox Fruits .1</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div>
+            <p class="script-desc">تلفيل تلقائي، إنعاش البحر وتطوير الأساليب.</p>
+            <div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI"))()</div>
+            <button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button>
+          </div>
+          <div class="script-item" data-type="key">
+            <div class="script-head"><span class="script-name">Redz Hub BF Edition .2</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div>
+            <p class="script-desc">مزرعة مهام متكاملة، رايدات وجمع الصناديق.</p>
+            <div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/realredz/BloxFruits/refs/heads/main/Source.lua"))()</div>
+            <button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button>
+          </div>
+          <div class="script-item" data-type="key">
+            <div class="script-head"><span class="script-name">Mirage & Race V4 Finder .3</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div>
+            <p class="script-desc">البحث عن جزيرة الميراج وإتمام مهام العرق.</p>
+            <div class="code-box">loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/3b2169cf53bc6104dabe8e19562e5cc2.lua"))()</div>
+            <button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button>
+          </div>
+          <div class="script-item" data-type="key">
+            <div class="script-head"><span class="script-name">Thunder Z Hub BF .4</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div>
+            <p class="script-desc">تلفيل سريع وتبديل الأدوات والقتال التلقائي.</p>
+            <div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/ThunderZ-05/HUB/main/Script"))()</div>
+            <button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button>
+          </div>
+          <div class="script-item" data-type="key">
+            <div class="script-head"><span class="script-name">Mukuro Hub BF .5</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div>
+            <p class="script-desc">إدارة المهام والفواكه وتنقل سريع بين الجزر.</p>
+            <div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/xQuartyx/DonateMe/main/BF"))()</div>
+            <button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button>
+          </div>
+          <div class="script-item" data-type="keyless">
+            <div class="script-head"><span class="script-name">Nexus Auto Quest NoKey .1</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div>
+            <p class="script-desc">إكمال المهام الأساسية والقتال التلقائي بدون كود.</p>
+            <div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua"))()</div>
+            <button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button>
+          </div>
+          <div class="script-item" data-type="keyless">
+            <div class="script-head"><span class="script-name">Fast Chest Collector .2</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div>
+            <p class="script-desc">جمع الصناديق في البحار الثلاثة بدون كود.</p>
+            <div class="code-box">loadstring(game:HttpGet("https://xero-hub.com/v2/loaders/bloxfruits.lua"))()</div>
+            <button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button>
+          </div>
+          <div class="script-item" data-type="keyless">
+            <div class="script-head"><span class="script-name">Neva Hub Keyless .3</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div>
+            <p class="script-desc">أدوات فارم خفيفة بدون مفتاح.</p>
+            <div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/NevaHub/Keyless/main/BloxFruits.lua"))()</div>
+            <button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button>
+          </div>
+          <div class="script-item" data-type="keyless">
+            <div class="script-head"><span class="script-name">Min Gaming Keyless .4</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div>
+            <p class="script-desc">تشغيل مباشر بدون كود للمهام والزعماء.</p>
+            <div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/LuaCrack/Min/refs/heads/main/MinGamingVn"))()</div>
+            <button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button>
+          </div>
+          <div class="script-item" data-type="keyless">
+            <div class="script-head"><span class="script-name">Astral Hub BF Keyless .5</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div>
+            <p class="script-desc">نسخة بدون كود لجمع الفواكه والتنقل.</p>
+            <div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/AstralHub/BloxFruits/main/Keyless.lua"))()</div>
+            <button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Plants Defense -->
+      <div class="map-card" id="card-pd">
+        <button class="map-trigger" type="button" onclick="toggleMap('card-pd')">
+          <div class="map-left">
+            <span class="map-num">3</span>
+            <div class="map-info">
+              <span class="map-title">ماب النباتات (Plants Defense)</span>
+              <span class="map-meta">10 سكربتات • 5 بكود • 5 بدون كود</span>
+            </div>
+          </div>
+          <span class="map-arrow">‹</span>
+        </button>
+        <div class="map-body">
+          <div class="panel-header-row">
+            <span class="panel-title">ماب النباتات Scripts</span>
+            <span class="panel-count">10 سكربتات</span>
+          </div>
+          <div class="filter-tabs">
+            <button class="filter-btn active" type="button" onclick="setFilter(this, 'card-pd', 'all')">الكل (10)</button>
+            <button class="filter-btn" type="button" onclick="setFilter(this, 'card-pd', 'key')">بكود (5)</button>
+            <button class="filter-btn" type="button" onclick="setFilter(this, 'card-pd', 'keyless')">بدون كود (5)</button>
+          </div>
+          <div class="script-item" data-type="key"><div class="script-head"><span class="script-name">Plants Defense Auto Hub .1</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div><p class="script-desc">زراعة وترقية النباتات تلقائياً في الموجات.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/plants-defense/main/auto-hub.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="key"><div class="script-head"><span class="script-name">Smart Plant Placer .2</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div><p class="script-desc">توزيع دفاعي تلقائي للنباتات على المسارات.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/plants-defense/main/placer.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="key"><div class="script-head"><span class="script-name">Wave Skip & Upgrade .3</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div><p class="script-desc">تخطي الموجات وتطوير الدفاعات بسرعة.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/plants-defense/main/waves.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="key"><div class="script-head"><span class="script-name">Sun Farm Pro .4</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div><p class="script-desc">جمع الطاقة والموارد تلقائياً دون توقف.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/plants-defense/main/sunfarm.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="key"><div class="script-head"><span class="script-name">Defense V2 Hub .5</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div><p class="script-desc">قائمة متكاملة للدفاع عن القاعدة في المستويات الصعبة.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/plants-defense/main/v2.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="keyless"><div class="script-head"><span class="script-name">Plants Keyless Hub .1</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div><p class="script-desc">تشغيل مباشر بدون كود لإدارة الدفاع.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/plants-defense/main/keyless-hub.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="keyless"><div class="script-head"><span class="script-name">Auto Collect Keyless .2</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div><p class="script-desc">التقاط المكافآت والموارد تلقائياً بدون كود.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/plants-defense/main/keyless-collect.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="keyless"><div class="script-head"><span class="script-name">Fast Upgrade Keyless .3</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div><p class="script-desc">ترقية سريعة للنباتات بدون مفتاح.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/plants-defense/main/keyless-upgrade.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="keyless"><div class="script-head"><span class="script-name">Lite Defense Keyless .4</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div><p class="script-desc">إعدادات خفيفة ومناسبة للأجهزة المتوسطة بدون كود.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/plants-defense/main/keyless-lite.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="keyless"><div class="script-head"><span class="script-name">Sun Boost Keyless .5</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div><p class="script-desc">تعزيز جمع الطاقة الشمسية بدون كود.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/plants-defense/main/keyless-sun.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+        </div>
+      </div>
+
+      <!-- 4. Timebomb -->
+      <div class="map-card" id="card-tb">
+        <button class="map-trigger" type="button" onclick="toggleMap('card-tb')">
+          <div class="map-left">
+            <span class="map-num">4</span>
+            <div class="map-info">
+              <span class="map-title">ماب تايم بوم (Timebomb)</span>
+              <span class="map-meta">10 سكربتات • 5 بكود • 5 بدون كود</span>
+            </div>
+          </div>
+          <span class="map-arrow">‹</span>
+        </button>
+        <div class="map-body">
+          <div class="panel-header-row">
+            <span class="panel-title">ماب تايم بوم Scripts</span>
+            <span class="panel-count">10 سكربتات</span>
+          </div>
+          <div class="filter-tabs">
+            <button class="filter-btn active" type="button" onclick="setFilter(this, 'card-tb', 'all')">الكل (10)</button>
+            <button class="filter-btn" type="button" onclick="setFilter(this, 'card-tb', 'key')">بكود (5)</button>
+            <button class="filter-btn" type="button" onclick="setFilter(this, 'card-tb', 'keyless')">بدون كود (5)</button>
+          </div>
+          <div class="script-item" data-type="key"><div class="script-head"><span class="script-name">Timebomb Pro Hub .1</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div><p class="script-desc">أدوات متقدمة للجولات وتفادي القنبلة.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/timebomb/main/pro.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="key"><div class="script-head"><span class="script-name">Bomb Timer & ESP .2</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div><p class="script-desc">إظهار حامل القنبلة والوقت المتبقي بوضوح.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/timebomb/main/esp.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="key"><div class="script-head"><span class="script-name">Auto Pass Bomb .3</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div><p class="script-desc">تمرير ذكي وسريع قبل انتهاء العد التنازلي.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/timebomb/main/autopass.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="key"><div class="script-head"><span class="script-name">Timebomb V2 Hub .4</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div><p class="script-desc">تحكم في الحركة وتنبيهات اللاعبين القريبين.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/timebomb/main/v2.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="key"><div class="script-head"><span class="script-name">Timebomb VIP Hub .5</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div><p class="script-desc">إعدادات شاملة للبقاء حتى نهاية الجولة.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/timebomb/main/vip.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="keyless"><div class="script-head"><span class="script-name">Timebomb Keyless Hub .1</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div><p class="script-desc">قائمة سريعة بدون كود لجولات Timebomb.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/timebomb/main/keyless-hub.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="keyless"><div class="script-head"><span class="script-name">Speed & Jump Keyless .2</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div><p class="script-desc">زيادة السرعة والقفز للهروب السريع بدون كود.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/timebomb/main/keyless-move.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="keyless"><div class="script-head"><span class="script-name">Radar Keyless .3</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div><p class="script-desc">رادار بسيط لمواقع اللاعبين بدون مفتاح.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/timebomb/main/keyless-radar.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="keyless"><div class="script-head"><span class="script-name">Lite Survival Keyless .4</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div><p class="script-desc">نسخة خفيفة للنجاة بدون كود.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/timebomb/main/keyless-lite.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="keyless"><div class="script-head"><span class="script-name">Instant Dodge Keyless .5</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div><p class="script-desc">مناورة سريعة لتفادي الضربات بدون كود.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/tiyless .5</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div><p class="script-desc">مناورة سريعة لتفادي الضربات بدون كود.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/timebomb/main/keyless-dodge.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+        </div>
+      </div>
+
+      <!-- 5. Steal an Egg -->
+      <div class="map-card" id="card-sae">
+        <button class="map-trigger" type="button" onclick="toggleMap('card-sae')">
+          <div class="map-left">
+            <span class="map-num">5</span>
+            <div class="map-info">
+              <span class="map-title">ماب سرقة البيض (Steal an Egg)</span>
+              <span class="map-meta">10 سكربتات • 5 بكود • 5 بدون كود</span>
+            </div>
+          </div>
+          <span class="map-arrow">‹</span>
+        </button>
+        <div class="map-body">
+          <div class="panel-header-row">
+            <span class="panel-title">ماب سرقة البيض Scripts</span>
+            <span class="panel-count">10 سكربتات</span>
+          </div>
+          <div class="filter-tabs">
+            <button class="filter-btn active" type="button" onclick="setFilter(this, 'card-sae', 'all')">الكل (10)</button>
+            <button class="filter-btn" type="button" onclick="setFilter(this, 'card-sae', 'key')">بكود (5)</button>
+            <button class="filter-btn" type="button" onclick="setFilter(this, 'card-sae', 'keyless')">بدون كود (5)</button>
+          </div>
+          <div class="script-item" data-type="key"><div class="script-head"><span class="script-name">Egg Stealer Pro Hub .1</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div><p class="script-desc">سرقة البيض والعودة السريعة للقاعدة.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/steal-an-egg/main/pro.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="key"><div class="script-head"><span class="script-name">Rare Egg ESP .2</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div><p class="script-desc">كشف البيض النادر والمميز عبر الخريطة.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/steal-an-egg/main/esp.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="key"><div class="script-head"><span class="script-name">Auto Return Base .3</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div><p class="script-desc">رجوع تلقائي آمن إلى القاعدة بعد الالتقاط.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/steal-an-egg/main/return.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="key"><div class="script-head"><span class="script-name">Speed & Steal V2 .4</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div><p class="script-desc">سرعة إضافية وتنقل سريع بين القواعد.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/steal-an-egg/main/v2.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="key"><div class="script-head"><span class="script-name">Egg Hub VIP .5</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div><p class="script-desc">خيارات متقدمة لحماية القاعدة وجمع البيض.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/steal-an-egg/main/vip.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="keyless"><div class="script-head"><span class="script-name">Steal Egg Keyless Hub .1</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div><p class="script-desc">تشغيل مباشر بدون كود لسرقة البيض.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/steal-an-egg/main/keyless-hub.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="keyless"><div class="script-head"><span class="script-name">Egg Finder Keyless .2</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div><p class="script-desc">تحديد مواقع البيض بدون مفتاح.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/steal-an-egg/main/keyless-esp.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="keyless"><div class="script-head"><span class="script-name">Boost Speed Keyless .3</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div><p class="script-desc">رفع سرعة الحركة بدون كود.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/steal-an-egg/main/keyless-speed.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="keyless"><div class="script-head"><span class="script-name">Instant Grab Keyless .4</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div><p class="script-desc">التقاط فوري للبيض بدون كود.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/steal-an-egg/main/keyless-grab.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="keyless"><div class="script-head"><span class="script-name">Base TP Keyless .5</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div><p class="script-desc">انتقال سريع للقاعدة بدون كود.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/steal-an-egg/main/keyless-tp.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+        </div>
+      </div>
+
+      <!-- 6. 99 Nights -->
+      <div class="map-card" id="card-99n">
+        <button class="map-trigger" type="button" onclick="toggleMap('card-99n')">
+          <div class="map-left">
+            <span class="map-num">6</span>
+            <div class="map-info">
+              <span class="map-title">ماب 99 ليلة (99 Nights)</span>
+              <span class="map-meta">10 سكربتات • 5 بكود • 5 بدون كود</span>
+            </div>
+          </div>
+          <span class="map-arrow">‹</span>
+        </button>
+        <div class="map-body">
+          <div class="panel-header-row">
+            <span class="panel-title">ماب 99 ليلة Scripts</span>
+            <span class="panel-count">10 سكربتات</span>
+          </div>
+          <div class="filter-tabs">
+            <button class="filter-btn active" type="button" onclick="setFilter(this, 'card-99n', 'all')">الكل (10)</button>
+            <button class="filter-btn" type="button" onclick="setFilter(this, 'card-99n', 'key')">بكود (5)</button>
+            <button class="filter-btn" type="button" onclick="setFilter(this, 'card-99n', 'keyless')">بدون كود (5)</button>
+          </div>
+          <div class="script-item" data-type="key"><div class="script-head"><span class="script-name">99 Nights Pro Hub .1</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div><p class="script-desc">أدوات شاملة للبقاء في الليالي والغابة.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/99-nights/main/pro-hub.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="key"><div class="script-head"><span class="script-name">Auto Campfire & Fuel .2</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div><p class="script-desc">تغذية النار والوقود تلقائياً للحفاظ على الدفء.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/99-nights/main/campfire.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="key"><div class="script-head"><span class="script-name">Kill Aura & Bring Items .3</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div><p class="script-desc">جلب الموارد والدفاع التلقائي ضد الأعداء.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/99-nights/main/items.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="key"><div class="script-head"><span class="script-name">Auto Rescue Kids .4</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div><p class="script-desc">تسهيل العثور على المفقودين وإنقاذهم.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/99-nights/main/rescue.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="key"><div class="script-head"><span class="script-name">99 Nights V2 Hub .5</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div><p class="script-desc">إصدار متطور لإدارة الموارد والتنقل الليلي.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/99-nights/main/v2.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="keyless"><div class="script-head"><span class="script-name">Nights Survival Pro 99 .1</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div><p class="script-desc">تجميع الموارد والخشب والغذاء للبقاء 99 ليلة بدون كود.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/99-nights/main/keyless-hub.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="keyless"><div class="script-head"><span class="script-name">Entity & Deer ESP Keyless .2</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div><p class="script-desc">كشف الوحوش والكيانات في الظلام بدون كود.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/99-nights/main/keyless-esp.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="keyless"><div class="script-head"><span class="script-name">Auto Wood & Scrap Keyless .3</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div><p class="script-desc">جمع الخشب والخردة تلقائياً بدون كود.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/99-nights/main/keyless-farm.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="keyless"><div class="script-head"><span class="script-name">Speed & Flashlight Keyless .4</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div><p class="script-desc">إضاءة وسرعة حركة أفضل بدون كود.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/99-nights/main/keyless-speed.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="keyless"><div class="script-head"><span class="script-name">Lite Survival 99 Keyless .5</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div><p class="script-desc">نسخة خفيفة بدون كود للنجاة السريعة.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/99-nights/main/keyless-lite.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+        </div>
+      </div>
+
+      <!-- 7. Squid Game -->
+      <div class="map-card" id="card-sg">
+        <button class="map-trigger" type="button" onclick="toggleMap('card-sg')">
+          <div class="map-left">
+            <span class="map-num">7</span>
+            <div class="map-info">
+              <span class="map-title">ماب إنك جيم (Squid Game)</span>
+              <span class="map-meta">10 سكربتات • 5 بكود • 5 بدون كود</span>
+            </div>
+          </div>
+          <span class="map-arrow">‹</span>
+        </button>
+        <div class="map-body">
+          <div class="panel-header-row">
+            <span class="panel-title">ماب إنك جيم Scripts</span>
+            <span class="panel-count">10 سكربتات</span>
+          </div>
+          <div class="filter-tabs">
+            <button class="filter-btn active" type="button" onclick="setFilter(this, 'card-sg', 'all')">الكل (10)</button>
+            <button class="filter-btn" type="button" onclick="setFilter(this, 'card-sg', 'key')">بكود (5)</button>
+            <button class="filter-btn" type="button" onclick="setFilter(this, 'card-sg', 'keyless')">بدون كود (5)</button>
+          </div>
+          <div class="script-item" data-type="key"><div class="script-head"><span class="script-name">Ink Game Master Hub .1</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div><p class="script-desc">مساعدة شاملة لمراحل الألعاب والتحديات.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/squid-game/main/pro.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="key"><div class="script-head"><span class="script-name">Auto Win Challenges .2</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div><p class="script-desc">تسهيل اجتياز المراحل والجولات الصعبة.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/squid-game/main/autowin.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="key"><div class="script-head"><span class="script-name">Tug & Glass Hub .3</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div><p class="script-desc">مساعدة في الجسر الزجاجي وتحديات القوة.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/squid-game/main/hub.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="key"><div class="script-head"><span class="script-name">Squid ESP & Combat .4</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div><p class="script-desc">إظهار اللاعبين وأدوات القتال في الجولات.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/squid-game/main/combat.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="key"><div class="script-head"><span class="script-name">Squid Game V2 Hub .5</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div><p class="script-desc">قائمة متكاملة لتحسين الأداء في التحديات.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/squid-game/main/v2.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="keyless"><div class="script-head"><span class="script-name">Red Light Green Light Keyless .1</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div><p class="script-desc">مساعدة في مرحلة الضوء الأحمر والأخضر بدون كود.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/squid-game/main/keyless-rlgl.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="keyless"><div class="script-head"><span class="script-name">Glass Bridge ESP Keyless .2</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div><p class="script-desc">توضيح الجسر الزجاجي بدون مفتاح.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/squid-game/main/keyless-glass.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="keyless"><div class="script-head"><span class="script-name">Honeycomb Helper Keyless .3</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div><p class="script-desc">مساعدة في تحدي الحلوى بدون كود.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/squid-game/main/keyless-honeycomb.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="keyless"><div class="script-head"><span class="script-name">Speed Boost Squid Keyless .4</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div><p class="script-desc">سرعة إضافية بدون كود.</p><div class="id Keyless .4</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div><p class="script-desc">سرعة إضافية بدون كود.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/squid-game/main/keyless-speed.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="keyless"><div class="script-head"><span class="script-name">Lite Survival Squid Keyless .5</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div><p class="script-desc">نسخة خفيفة بدون كود للبقاء.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/squid-game/main/keyless-lite.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+        </div>
+      </div>
+
+      <!-- 8. Keyboard -->
+      <div class="map-card" id="card-kb">
+        <button class="map-trigger" type="button" onclick="toggleMap('card-kb')">
+          <div class="map-left">
+            <span class="map-num">8</span>
+            <div class="map-info">
+              <span class="map-title">ماب الكيبورد (Keyboard)</span>
+              <span class="map-meta">10 سكربتات • 5 بكود • 5 بدون كود</span>
+            </div>
+          </div>
+          <span class="map-arrow">‹</span>
+        </button>
+        <div class="map-body">
+          <div class="panel-header-row">
+            <span class="panel-title">ماب الكيبورد Scripts</span>
+            <span class="panel-count">10 سكربتات</span>
+          </div>
+          <div class="filter-tabs">
+            <button class="filter-btn active" type="button" onclick="setFilter(this, 'card-kb', 'all')">الكل (10)</button>
+            <button class="filter-btn" type="button" onclick="setFilter(this, 'card-kb', 'key')">بكود (5)</button>
+            <button class="filter-btn" type="button" onclick="setFilter(this, 'card-kb', 'keyless')">بدون كود (5)</button>
+          </div>
+          <div class="script-item" data-type="key"><div class="script-head"><span class="script-name">KeyType Pro Auto Typer .1</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div><p class="script-desc">كتابة تلقائية سريعة ودقيقة للكلمات والجمل.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/keyboard/main/pro-hub.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="key"><div class="script-head"><span class="script-name">WPM Booster & Combo .2</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div><p class="script-desc">رفع سرعة الكتابة في الدقيقة والحفاظ على السلسلة.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/keyboard/main/macro.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="key"><div class="script-head"><span class="script-name">Smart Word Predictor .3</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div><p class="script-desc">توقع الكلمات وتجهيزها قبل ظهورها.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/keyboard/main/assist.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="key"><div class="script-head"><span class="script-name">Keyboard ESP & Stats .4</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div><p class="script-desc">عرض الإحصائيات والنتائج بشكل مباشر.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/keyboard/main/stats.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="key"><div class="script-head"><span class="script-name">Keyboard V2 Hub .5</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div><p class="script-desc">قائمة متكاملة لألعاب الكيبورد والسرعة.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/keyboard/main/v2.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="keyless"><div class="script-head"><span class="script-name">Keyboard Keyless Hub .1</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div><p class="script-desc">تشغيل مباشر بدون كود لمساعدة الكتابة.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/keyboard/main/keyless-hub.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="keyless"><div class="script-head"><span class="script-name">Auto Type & Fast Key Keyless .2</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div><p class="script-desc">كتابة سريعة بدون مفتاح.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/keyboard/main/keyless-autotype.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="keyless"><div class="script-head"><span class="script-name">Speed & Movement Keyless .3</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div><p class="script-desc">حركة أسرع داخل الماب بدون كود.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/keyboard/main/keyless-speed.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="keyless"><div class="script-head"><span class="script-name">Anti AFK Keyboard Keyless .4</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div><p class="script-desc">منع الخروج بسبب الخمول بدون كود.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/keyboard/main/keyless-antiafk.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="keyless"><div class="script-head"><span class="script-name">Lite Keyboard Helper Keyless .5</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div><p class="script-desc">نسخة خفيفة بدون كود.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/keyboard/main/keyless-lite.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+        </div>
+      </div>
+
+      <!-- 9. Brookhaven -->
+      <div class="map-card" id="card-bh">
+        <button class="map-trigger" type="button" onclick="toggleMap('card-bh')">
+          <div class="map-left">
+            <span class="map-num">9</span>
+            <div class="map-info">
+              <span class="map-title">بروك هافن (Brookhaven)</span>
+              <span class="map-meta">10 سكربتات • 5 بكود • 5 بدون كود</span>
+            </div>
+          </div>
+          <span class="map-arrow">‹</span>
+        </button>
+        <div class="map-body">
+          <div class="panel-header-row">
+            <span class="panel-title">بروك هافن Scripts</span>
+            <span class="panel-count">10 سكربتات</span>
+          </div>
+          <div class="filter-tabs">
+            <button class="filter-btn active" type="button" onclick="setFilter(this, 'card-bh', 'all')">الكل (10)</button>
+            <button class="filter-btn" type="button" onclick="setFilter(this, 'card-bh', 'key')">بكود (5)</button>
+            <button class="filter-btn" type="button" onclick="setFilter(this, 'card-bh', 'keyless')">بدون كود (5)</button>
+          </div>
+          <div class="script-item" data-type="key"><div class="script-head"><span class="script-name">R4D Brookhaven .1</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div><p class="script-desc">أدوات شاملة للمنازل والسيارات والتنقل.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/M1dem1/Brookhaven/main/R4D.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="key"><div class="script-head"><span class="script-name">IceHub Brookhaven .2</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div><p class="script-desc">تحكم في السرعة والطيران واللاعبين.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/IceMael7/NewIceHub/main/Brookhaven"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="key"><div class="script-head"><span class="script-name">JulHub Brookhaven .3</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div><p class="script-desc">خيارات متنوعة للرول بلاي والحركة.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/JulHub/Brookhaven/main/Loader.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="key"><div class="script-head"><span class="script-name">SanderX Brookhaven .4</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div><p class="script-desc">قائمة واسعة لأدوات بروك هافن.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/sXPiter666/SanderXV4.0/main/SanderX.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="key"><div class="script-head"><span class="script-name">Brookhaven Pro Hub .5</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div><p class="script-desc">إدارة سريعة للتنقل والمركبات.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/brookhaven/main/pro.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="keyless"><div class="script-head"><span class="script-name">Redz Brookhaven Keyless .1</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div><p class="script-desc">تشغيل مباشر بدون كود لبروك هافن.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/realredz/Brookhaven/main/Keyless.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="keyless"><div class="script-head"><span class="script-name">Chaos RP Keyless .2</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div><p class="script-desc">أدوات رول بلاي خفيفة بدون كود.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/ChaosHub/Brookhaven/main/Keyless.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="keyless"><div class="script-head"><span class="script-name">Vortex RP Keyless .3</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div><p class="script-desc">تنقل وحركة سريعة بدون مفتاح.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/VortexHub/Brookhaven/main/Keyless.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="keyless"><div class="script-head"><span class="script-name">Simple RP Keyless .4</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div><p class="script-desc">قائمة بسيطة بدون كود.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/SimpleHub/Brookhaven/main/Keyless.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="keyless"><div class="script-head"><span class="script-name">Fly & Car Keyless .5</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div><p class="script-desc">طيران وتحكم سريع بدون كود.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/brookhaven/main/keyless-car.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+        </div>
+      </div>
+
+      <!-- 10. Grow Garden -->
+      <div class="map-card" id="card-gg">
+        <button class="map-trigger" type="button" onclick="toggleMap('card-gg')">
+          <div class="map-left">
+            <span class="map-num">10</span>
+            <div class="map-info">
+              <span class="map-title">جرو أ جاردن (Grow a Garden)</span>
+              <span class="map-meta">10 سكربتات • 5 بكود • 5 بدون كود</span>
+            </div>
+          </div>
+          <span class="map-arrow">‹</span>
+        </button>
+        <div class="map-body">
+          <div class="panel-header-row">
+            <span class="panel-title">جرو أ جاردن Scripts</span>
+            <span class="panel-count">10 سكربتات</span>
+          </div>
+          <div class="filter-tabs">
+            <button class="filter-btn active" type="button" onclick="setFilter(this, 'card-gg', 'all')">الكل (10)</button>
+            <button class="filter-btn" type="button" onclick="setFilter(this, 'card-gg', 'key')">بكود (5)</button>
+            <button class="filter-btn" type="button" onclick="setFilter(this, 'card-gg', 'keyless')">بدون كود (5)</button>
+          </div>
+          <div class="script-item" data-type="key"><div class="script-head"><span class="script-name">Grow a Garden Pro Hub .1</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div><p class="script-desc">زراعة وحصاد وبيع تلقائي للحديقة.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/grow-garden/main/pro-hub.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="key"><div class="script-head"><span class="script-name">Mutation & Crop ESP .2</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div><p class="script-desc">إظهار الطفرات والمحاصيل المميزة.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/grow-garden/main/esp.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="key"><div class="script-head"><span class="script-name">Fast Money & Gear Farm .3</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div><p class="script-desc">جمع النقود وتطوير المعدات بسرعة.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/grow-garden/main/money-farm.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="key"><div class="script-head"><span class="script-name">Auto Sprinkler & Event .4</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div><p class="script-desc">إدارة الرشاشات والفعاليات تلقائياً.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/grow-garden/main/event.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="key"><div class="script-head"><span class="script-name">Grow Garden V2 Hub .5</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div><p class="script-desc">إصدار متكامل لإدارة الحديقة والبذور.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/grow-garden/main/v2.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="keyless"><div class="script-head"><span class="script-name">Grow Garden Keyless Hub .1</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div><p class="script-desc">تشغيل مباشر بدون كود للزراعة والحصاد.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/grow-garden/main/keyless-hub.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="keyless"><div class="script-head"><span class="script-name">Auto Plant & Harvest Keyless .2</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div><p class="script-desc">زراعة وحصاد تلقائي بدون مفتاح.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/grow-garden/main/keyless-farm.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="keyless"><div class="script-head"><span class="script-name">Auto Water & Grow Keyless .3</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div><p class="script-desc">ري ونمو أسرع للمحاصيل بدون كود.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/grow-garden/main/keyless-grow.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCw Keyless .3</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div><p class="script-desc">ري ونمو أسرع للمحاصيل بدون كود.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/grow-garden/main/keyless-grow.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="keyless"><div class="script-head"><span class="script-name">Auto Sell Crops Keyless .4</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div><p class="script-desc">بيع المحاصيل تلقائياً بدون كود.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/grow-garden/main/keyless-sell.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="keyless"><div class="script-head"><span class="script-name">Seed Shop Auto Buy Keyless .5</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div><p class="script-desc">شراء البذور تلقائياً بدون كود.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/grow-garden/main/keyless-seeds.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+        </div>
+      </div>
+
+      <!-- 11. Evade -->
+      <div class="map-card" id="card-evade">
+        <button class="map-trigger" type="button" onclick="toggleMap('card-evade')">
+          <div class="map-left">
+            <span class="map-num">11</span>
+            <div class="map-info">
+              <span class="map-title">ماب إيفيد (Evade)</span>
+              <span class="map-meta">10 سكربتات • 5 بكود • 5 بدون كود</span>
+            </div>
+          </div>
+          <span class="map-arrow">‹</span>
+        </button>
+        <div class="map-body">
+          <div class="panel-header-row">
+            <span class="panel-title">ماب إيفيد Scripts</span>
+            <span class="panel-count">10 سكربتات</span>
+          </div>
+          <div class="filter-tabs">
+            <button class="filter-btn active" type="button" onclick="setFilter(this, 'card-evade', 'all')">الكل (10)</button>
+            <button class="filter-btn" type="button" onclick="setFilter(this, 'card-evade', 'key')">بكود (5)</button>
+            <button class="filter-btn" type="button" onclick="setFilter(this, 'card-evade', 'keyless')">بدون كود (5)</button>
+          </div>
+          <div class="script-item" data-type="key"><div class="script-head"><span class="script-name">Evade Pro Hub .1</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div><p class="script-desc">تحكم كامل في السرعة والقفز وتفادي النيكست بوت.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/evade/main/pro-hub.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="key"><div class="script-head"><span class="script-name">Auto Farm Tickets & XP .2</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div><p class="script-desc">تجميع التذاكر والخبرة تلقائياً في الجولات.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/evade/main/farm.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="key"><div class="script-head"><span class="script-name">Emote Speed & Slide Pro .3</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div><p class="script-desc">تعزيز سرعة الإيموت والانزلاق السريع.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/evade/main/emote-pro.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="key"><div class="script-head"><span class="script-name">Full Player & Bot ESP .4</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div><p class="script-desc">كشف كامل للبوتات واللاعبين عبر الجدران.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/evade/main/full-esp.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="key"><div class="script-head"><span class="script-name">Evade V2 Hub .5</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div><p class="script-desc">إصدار متطور للنجاة والإنقاذ السريع.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/evade/main/v2.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="keyless"><div class="script-head"><span class="script-name">Evade Keyless Hub .1</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div><p class="script-desc">تشغيل مباشر بدون كود لماب إيفيد.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/evade/main/keyless-hub.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="keyless"><div class="script-head"><span class="script-name">Nextbot ESP Keyless .2</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div><p class="script-desc">تحديد أماكن البوتات بدون مفتاح.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/evade/main/keyless-esp.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="keyless"><div class="script-head"><span class="script-name">Bhop & Speed Boost Keyless .3</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div><p class="script-desc">قفز وسرعة حركة إضافية بدون كود.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/evade/main/keyless-bhop.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="keyless"><div class="script-head"><span class="script-name">Auto Revive Helper Keyless .4</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div><p class="script-desc">مساعدة في إنعاش اللاعبين بدون كود.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/evade/main/keyless-revive.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="keyless"><div class="script-head"><span class="script-name">Lite Evade Runner Keyless .5</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div><p class="script-desc">نسخة خفيفة بدون كود للهروب.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/evade/main/keyless-lite.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+        </div>
+      </div>
+
+      <!-- 12. BedWars -->
+      <div class="map-card" id="card-bw">
+        <button class="map-trigger" type="button" onclick="toggleMap('card-bw')">
+          <div class="map-left">
+            <span class="map-num">12</span>
+            <div class="map-info">
+              <span class="map-title">بيد ورز (BedWars)</span>
+              <span class="map-meta">10 سكربتات • 5 بكود • 5 بدون كود</span>
+            </div>
+          </div>
+          <span class="map-arrow">‹</span>
+        </button>
+        <div class="map-body">
+          <div class="panel-header-row">
+            <span class="panel-title">بيد ورز Scripts</span>
+            <span class="panel-count">10 سكربتات</span>
+          </div>
+          <div class="filter-tabs">
+            <button class="filter-btn active" type="button" onclick="setFilter(this, 'card-bw', 'all')">الكل (10)</button>
+            <button class="filter-btn" type="button" onclick="setFilter(this, 'card-bw', 'key')">بكود (5)</button>
+            <button class="filter-btn" type="button" onclick="setFilter(this, 'card-bw', 'keyless')">بدون كود (5)</button>
+          </div>
+          <div class="script-item" data-type="key"><div class="script-head"><span class="script-name">BedWars Pro Hub .1</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div><p class="script-desc">أدوات قتال وبناء متقدمة لمباريات BedWars.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/bedwars/main/pro-hub.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="key"><div class="script-head"><span class="script-name">Auto Bed Breaker & Win .2</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div><p class="script-desc">تكسير الأسرّة بسرعة ودعم الفوز في الجولات.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/bedwars/main/bedbreaker.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="key"><div class="script-head"><span class="script-name">Speed & Velocity Combat .3</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div><p class="script-desc">تحسين الحركة والقتال القريب.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/bedwars/main/combat.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="key"><div class="script-head"><span class="script-name">Auto Shop & Upgrade .4</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div><p class="script-desc">شراء المعدات وتطوير الفريق تلقائياً.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/bedwars/main/shop.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="key"><div class="script-head"><span class="script-name">BedWars V2 Hub .5</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div><p class="script-desc">قائمة متكاملة للقتال والتنقل بين الجزر.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/bedwars/main/v2.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="keyless"><div class="script-head"><span class="script-name">BedWars Keyless Hub .1</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div><p class="script-desc">تشغيل مباشر بدون كود لبيد ورز.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/bedwars/main/keyless-hub.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="keyless"><div class="script-head"><span class="script-name">Kill Aura & Reach Keyless .2</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div><p class="script-desc">مساعدة في الهجوم بدون مفتاح.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/bedwars/main/keyless-aura.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="keyless"><div class="script-head"><span class="script-name">Auto Bridge & Scaffold Keyless .3</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div><p class="script-desc">بناء الجسور تلقائياً أثناء الحركة بدون كود.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/bedwars/main/keyless-bridge.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="keyless"><div class="script-head"><span class="script-name">Bed & Resource ESP Keyless .4</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div><p class="script-desc">كشف الأسرّة والموارد بدون كود.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/bedwars/main/keyless-esp.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="keyless"><div class="script-head"><span class="script-name">Lite PvP BedWars Keyless .5</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div><p class="script-desc">نسخة خفيفة بدون كود.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/bedwars/main/keyless-lite.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+        </div>
+      </div>
+
+      <!-- 13. Doors -->
+      <div class="map-card" id="card-doors">
+        <button class="map-trigger" type="button" onclick="toggleMap('card-doors')">
+          <div class="map-left">
+            <span class="map-num">13</span>
+            <div class="map-info">
+              <span class="map-title">دورز (Doors)</span>
+              <span class="map-meta">10 سكربتات • 5 بكود • 5 بدون كود</span>
+            </div>
+          </div>
+          <span class="map-arrow">‹</span>
+        </button>
+        <div class="map-body">
+          <div class="panel-header-row">
+            <span class="panel-title">دورز Scripts</span>
+            <span class="panel-count">10 سكربتات</span>
+          </div>
+          <div class="filter-tabs">
+            <button class="filter-btn active" type="button" onclick="setFilter(this, 'card-doors', 'all')">الكل (10)</button>
+            <button class="filter-btn" type="button" onclick="setFilter(this, 'card-doors', 'key')">بكود (5)</button>
+            <button class="filter-btn" type="button" onclick="setFilter(this, 'card-doors', 'keyless')">بدون كود (5)</button>
+          </div>
+          <div class="script-item" data-type="key"><div class="script-head"><span class="script-name">Doors Pro Hub .1</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div><p class="script-desc">أدوات متقدمة لتخطي الغرف والوحوش.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/doors/main/pro-hub.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="key"><div class="script-head"><span class="script-name">Auto Escape Rooms .2</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div><p class="script-desc">مساعدة في الهروب والانتقال بين الغرف.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/doors/main/escape.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="key"><div class="script-head"><span class="script-name">Seek & Figure Bypass .3</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div><p class="script-desc">تسهيل تجاوز المراحل والمطاردات.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/doors/main/bypass.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="key"><div class="script-head"><span class="script-name">Library Code & Lock Solver .4</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div><p class="script-desc">حل الأقفال والرموز في الغرف بسهولة.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/doors/main/solver.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="key"><div class="script-head"><span class="script-name">Doors V2 Hub .5</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div><p class="script-desc">قائمة متكاملة للإضاءة والكشف والمساعدة.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/doors/main/v2.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="keyless"><div class="script-head"><span class="script-name">Doors Keyless Hub .1</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div><p class="script-desc">تشغيل مباشر بدون كود لماب دورز.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/doors/main/keyless-hub.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="keyless"><div class="script-head"><span class="script-name">Entity Notifier & ESP Keyless .2</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div><p class="script-desc">تنبيه عند ظهور الكيانات بدون مفتاح.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/doors/main/keyless-esp.lua"))()</div><button class="copy-script-btn" type="b & ESP Keyless .2</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div><p class="script-desc">تنبيه عند ظهور الكيانات بدون مفتاح.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/doors/main/keyless-esp.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="keyless"><div class="script-head"><span class="script-name">Key & Lever Finder Keyless .3</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div><p class="script-desc">العثور على المفاتيح والروافع بدون كود.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/doors/main/keyless-keys.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="keyless"><div class="script-head"><span class="script-name">Fullbright & Speed Keyless .4</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div><p class="script-desc">إضاءة واضحة وسرعة حركة بدون كود.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/doors/main/keyless-light.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="keyless"><div class="script-head"><span class="script-name">Lite Doors Helper Keyless .5</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div><p class="script-desc">نسخة خفيفة بدون كود.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/doors/main/keyless-lite.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+        </div>
+      </div>
+
+      <!-- 14. Fishing -->
+      <div class="map-card" id="card-fishing">
+        <button class="map-trigger" type="button" onclick="toggleMap('card-fishing')">
+          <div class="map-left">
+            <span class="map-num">14</span>
+            <div class="map-info">
+              <span class="map-title">صيد السمك (Fishing)</span>
+              <span class="map-meta">10 سكربتات • 5 بكود • 5 بدون كود</span>
+            </div>
+          </div>
+          <span class="map-arrow">‹</span>
+        </button>
+        <div class="map-body">
+          <div class="panel-header-row">
+            <span class="panel-title">صيد السمك Scripts</span>
+            <span class="panel-count">10 سكربتات</span>
+          </div>
+          <div class="filter-tabs">
+            <button class="filter-btn active" type="button" onclick="setFilter(this, 'card-fishing', 'all')">الكل (10)</button>
+            <button class="filter-btn" type="button" onclick="setFilter(this, 'card-fishing', 'key')">بكود (5)</button>
+            <button class="filter-btn" type="button" onclick="setFilter(this, 'card-fishing', 'keyless')">بدون كود (5)</button>
+          </div>
+          <div class="script-item" data-type="key"><div class="script-head"><span class="script-name">Fishing Pro Hub .1</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div><p class="script-desc">صيد تلقائي متقدم وتطوير الصنارات.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/fishing/main/pro-hub.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="key"><div class="script-head"><span class="script-name">Rare Fish & Zone TP .2</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div><p class="script-desc">التنقل لمناطق الصيد والبحث عن الأسماك النادرة.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/fishing/main/zones.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="key"><div class="script-head"><span class="script-name">Fast Money Farm & Rod Upgrade .3</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div><p class="script-desc">جمع الأرباح بسرعة وتطوير الصنارة والطعوم.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/fishing/main/money-farm.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="key"><div class="script-head"><span class="script-name">Fish Radar & Mutation ESP .4</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div><p class="script-desc">رادار للأسماك والطفرات المميزة.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/fishing/main/radar.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="key"><div class="script-head"><span class="script-name">Fishing V2 Hub .5</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-key">بكود (Key)</span></div></div><p class="script-desc">قائمة متكاملة لصيد السمك والبيع السريع.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/fishing/main/v2.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="keyless"><div class="script-head"><span class="script-name">Auto Fish Keyless Hub .1</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div><p class="script-desc">صيد تلقائي مباشر بدون كود.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/fishing/main/keyless-hub.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="keyless"><div class="script-head"><span class="script-name">Instant Reel & Cast Keyless .2</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div><p class="script-desc">رمي وسحب الصنارة بسرعة بدون مفتاح.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/fishing/main/keyless-reel.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="keyless"><div class="script-head"><span class="script-name">Auto Sell Fish Keyless .3</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div><p class="script-desc">بيع الأسماك تلقائياً بدون كود.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/fishing/main/keyless-sell.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="keyless"><div class="script-head"><span class="script-name">Rod & Bait Helper Keyless .4</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div><p class="script-desc">مساعدة في الصنارة والطعوم بدون كود.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/fishing/main/keyless-rods.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+          <div class="script-item" data-type="keyless"><div class="script-head"><span class="script-name">Anti AFK Fishing Keyless .5</span><div class="badges-group"><span class="badge-verified">Verified ✓</span><span class="badge-keyless">بدون كود (Keyless)</span></div></div><p class="script-desc">استمرار الصيد دون فصل بسبب الخمول بدون كود.</p><div class="code-box">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/fishing/main/keyless-afk.lua"))()</div><button class="copy-script-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="bottom-bar">
+      <span class="rainbow-text color-cycle">NEXUS NETWORK</span>
+      <a class="discord-pill rainbow-text color-cycle" href="https://discord.gg/t3a5uuKTC" target="_blank" rel="noopener noreferrer">Discord Server</a>
+    </footer>
   </div>
 
-  <div class="menus-wrap" id="menusWrap">
-    <!-- 1. MM2 -->
-    <div class="cat-box">
-      <button class="cat-btn" type="button" onclick="togglePanel('p-mm2')"><span>MM2</span><span>▼</span></button>
-      <div class="cat-panel" id="p-mm2">
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">YARHM MM2 Keyless</span><span class="tag-keyless">Keyless (بدون كود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://yarhm.goteamup.com/yarhm/rm/mm2.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Solara MM2 Keyless</span><span class="tag-keyless">Keyless (بدون كود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/solara-hub/mm2/main/keyless.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Mars MM2 Keyless</span><span class="tag-keyless">Keyless (بدون كود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/MarsHub/MM2/main/Keyless.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Byte MM2 Keyless</span><span class="tag-keyless">Keyless (بدون كود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/ByteHub/MM2/main/KeylessLoader.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Nexus MM2 Coin & ESP Keyless</span><span class="tag-keyless">Keyless (بدون كود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/mm2/main/keyless-esp.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Xhub MM2</span><span class="tag-key">Key (بكود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/Au0yX/Community/main/XhubMM2"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Vertex MM2</span><span class="tag-key">Key (بكود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/vertex-peak/vertex/refs/heads/main/loadstring"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Symphony MM2</span><span class="tag-key">Key (بكود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/ThatSick/ArrayField/main/SymphonyHub.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">R3THPRIV MM2</span><span class="tag-key">Key (بكود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/R3TH-PRIV/R3THPRIV/main/Loader.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Eclipse MM2 Hub</span><span class="tag-key">Key (بكود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/ethanhub/EclipseMM2/main/Loader.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-      </div>
-    </div>
-
-    <!-- 2. Blox Fruits -->
-    <div class="cat-box">
-      <button class="cat-btn" type="button" onclick="togglePanel('p-bf')"><span>Blox Fruits</span><span>▼</span></button>
-      <div class="cat-panel" id="p-bf">
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Speed Hub X Keyless</span><span class="tag-keyless">Keyless (بدون كود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Xero Hub Keyless</span><span class="tag-keyless">Keyless (بدون كود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://xero-hub.com/v2/loaders/bloxfruits.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Neva Hub Keyless</span><span class="tag-keyless">Keyless (بدون كود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/NevaHub/Keyless/main/BloxFruits.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Min Gaming Keyless</span><span class="tag-keyless">Keyless (بدون كود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/LuaCrack/Min/refs/heads/main/MinGamingVn"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Astral Hub BF Keyless</span><span class="tag-keyless">Keyless (بدون كود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/AstralHub/BloxFruits/main/Keyless.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Redz Hub</span><span class="tag-key">Key (بكود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/realredz/BloxFruits/refs/heads/main/Source.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Hoho Hub</span><span class="tag-key">Key (بكود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">W-Azure Hub</span><span class="tag-key">Key (بكود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/3b2169cf53bc6104dabe8e19562e5cc2.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Thunder Z Hub</span><span class="tag-key">Key (بكود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/ThunderZ-05/HUB/main/Script"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Mukuro Hub BF</span><span class="tag-key">Key (بكود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/xQuartyx/DonateMe/main/BF"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-      </div>
-    </div>
-
-    <!-- 3. Timebomb -->
-    <div class="cat-box">
-      <button class="cat-btn" type="button" onclick="togglePanel('p-tb')"><span>Timebomb</span><span>▼</span></button>
-      <div class="cat-panel" id="p-tb">
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Timebomb Keyless Hub</span><span class="tag-keyless">Keyless (بدون كود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/timebomb/main/keyless-hub.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Speed & Jump Keyless</span><span class="tag-keyless">Keyless (بدون كود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/timebomb/main/keyless-move.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Radar Keyless</span><span class="tag-keyless">Keyless (بدون كود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/timebomb/main/keyless-radar.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Lite Survival Keyless</span><span class="tag-keyless">Keyless (بدون كود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/timebomb/main/keyless-lite.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Instant Dodge Keyless</span><span class="tag-keyless">Keyless (بدون كود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/timebomb/main/keyless-dodge.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Timebomb Pro Hub</span><span class="tag-key">Key (بكود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/timebomb/main/pro.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Bomb Timer & ESP</span><span class="tag-key">Key (بكود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/timebomb/main/esp.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Auto Pass Bomb</span><span class="tag-key">Key (بكود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/timebomb/main/autopass.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Timebomb V2 Hub</span><span class="tag-key">Key (بكود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/timebomb/main/v2.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Timebomb VIP Hub</span><span class="tag-key">Key (بكود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/timebomb/main/vip.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-      </div>
-    </div>
-
-    <!-- 4. Brookhaven -->
-    <div class="cat-box">
-      <button class="cat-btn" type="button" onclick="togglePanel('p-bh')"><span>Brookhaven</span><span>▼</span></button>
-      <div class="cat-panel" id="p-bh">
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Redz Brookhaven Keyless</span><span class="tag-keyless">Keyless (بدون كود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/realredz/Brookhaven/main/Keyless.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Chaos RP Keyless</span><span class="tag-keyless">Keyless (بدون كود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/ChaosHub/Brookhaven/main/Keyless.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Vortex RP Keyless</span><span class="tag-keyless">Keyless (بدون كود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/VortexHub/Brookhaven/main/Keyless.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Simple RP Keyless</span><span class="tag-keyless">Keyless (بدون كود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/SimpleHub/Brookhaven/main/Keyless.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Fly & Car Keyless</span><span class="tag-keyless">Keyless (بدون كود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/brookhaven/main/keyless-car.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">R4D Brookhaven</span><span class="tag-key">Key (بكود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/M1dem1/Brookhaven/main/R4D.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">IceHub Brookhaven</span><span class="tag-key">Key (بكود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/IceMael7/NewIceHub/main/Brookhaven"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">JulHub Brookhaven</span><span class="tag-key">Key (بكود)</span></div><div class="sc-code">loadstring(game:Htt    <!-- 8. Grow Garden -->
-    <div class="cat-box">
-      <button class="cat-btn" type="button" onclick="togglePanel('p-gg')"><span>Grow Garden</span><span>▼</span></button>
-      <div class="cat-panel" id="p-gg">
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Grow Garden Keyless Hub</span><span class="tag-keyless">Keyless (بدون كود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/grow-garden/main/keyless-hub.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Auto Plant & Harvest Keyless</span><span class="tag-keyless">Keyless (بدون كود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/grow-garden/main/keyless-farm.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Auto Water & Grow Keyless</span><span class="tag-keyless">Keyless (بدون كود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/grow-garden/main/keyless-grow.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Auto Sell Crops Keyless</span><span class="tag-keyless">Keyless (بدون كود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/grow-garden/main/keyless-sell.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Seed Shop Auto Buy Keyless</span><span class="tag-keyless">Keyless (بدون كود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/grow-garden/main/keyless-seeds.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Grow a Garden Pro Hub</span><span class="tag-key">Key (بكود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/grow-garden/main/pro-hub.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Mutation & Crop ESP</span><span class="tag-key">Key (بكود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/grow-garden/main/esp.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Fast Money & Gear Farm</span><span class="tag-key">Key (بكود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/grow-garden/main/money-farm.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Auto Sprinkler & Event</span><span class="tag-key">Key (بكود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/grow-garden/main/event.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Grow Garden V2 Hub</span><span class="tag-key">Key (بكود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/grow-garden/main/v2.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-      </div>
-    </div>
-
-    <!-- 9. Keyboard -->
-    <div class="cat-box">
-      <button class="cat-btn" type="button" onclick="togglePanel('p-kb')"><span>Keyboard</span><span>▼</span></button>
-      <div class="cat-panel" id="p-kb">
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Keyboard Keyless Hub</span><span class="tag-keyless">Keyless (بدون كود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/keyboard/main/keyless-hub.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Auto Type & Fast Key Keyless</span><span class="tag-keyless">Keyless (بدون كود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/keyboard/main/keyless-autotype.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Speed & Movement Keyless</span><span class="tag-keyless">Keyless (بدون كود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/keyboard/main/keyless-speed.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Anti AFK Keyboard Keyless</span><span class="tag-keyless">Keyless (بدون كود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/keyboard/main/keyless-antiafk.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Lite Keyboard Helper Keyless</span><span class="tag-keyless">Keyless (بدون كود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/keyboard/main/keyless-lite.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Keyboard Pro Hub</span><span class="tag-key">Key (بكود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/keyboard/main/pro-hub.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Auto Win & Macro Bot</span><span class="tag-key">Key (بكود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/keyboard/main/macro.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Precision Key Assist</span><span class="tag-key">Key (بكود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/keyboard/main/assist.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Keyboard ESP & Stats</span><span class="tag-key">Key (بكود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/keyboard/main/stats.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Keyboard V2 Hub</span><span class="tag-key">Key (بكود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/keyboard/main/v2.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-      </div>
-    </div>
-
-    <!-- 10. 99 Nights -->
-    <div class="cat-box">
-      <button class="cat-btn" type="button" onclick="togglePanel('p-99n')"><span>99 Nights</span><span>▼</span></button>
-      <div class="cat-panel" id="p-99n">
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">99 Nights Keyless Hub</span><span class="tag-keyless">Keyless (بدون كود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/99-nights/main/keyless-hub.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Entity & Deer ESP Keyless</span><span class="tag-keyless">Keyless (بدون كود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/99-nights/main/keyless-esp.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Auto Wood & Scrap Keyless</span><span class="tag-keyless">Keyless (بدون كود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/99-nights/main/keyless-farm.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Speed & Flashlight Keyless</span><span class="tag-keyless">Keyless (بدون كود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/99-nights/main/keyless-speed.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Lite Survival 99 Keyless</span><span class="tag-keyless">Keyless (بدون كود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/99-nights/main/keyless-lite.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">99 Nights Pro Hub</span><span class="tag-key">Key (بكود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/99-nights/main/pro-hub.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Auto Campfire & Fuel</span><span class="tag-key">Key (بكود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/99-nights/main/campfire.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Kill Aura & Bring Items</span><span class="tag-key">Key (بكود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/99-nights/main/items.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Auto Rescue Kids</span><span class="tag-key">Key (بكود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/99-nights/main/rescue.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">99 Nights V2 Hub</span><span class="tag-key">Key (بكود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/99-nights/main/v2.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-      </div>
-    </div>
-
-    <!-- 11. Evade -->
-    <div class="cat-box">
-      <button class="cat-btn" type="button" onclick="togglePanel('p-evade')"><span>Evade</span><span>▼</span></button>
-      <div class="cat-panel" id="p-evade">
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Evade Keyless Hub</span><span class="tag-keyless">Keyless (بدون كود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/evade/main/keyless-hub.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Nextbot ESP Keyless</span><span class="tag-keyless">Keyless (بدون كود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/evade/main/keyless-esp.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Bhop & Speed Boost Keyless</span><span class="tag-keyless">Keyless (بدون كود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/evade/main/keyless-bhop.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Auto Revive Helper Keyless</span><span class="tag-keyless">Keyless (بدون كود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/evade/main/keyless-revive.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Lite Evade Runner Keyless</span><span class="tag-keyless">Keyless (بدون كود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/evade/main/keyless-lite.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Evade Pro Hub</span><span class="tag-key">Key (بكود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/evade/main/pro-hub.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Auto Farm Tickets & XP</span><span class="tag-key">Key (بكود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/evade/main/farm.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Emote Speed & Slide Pro</span><span class="tag-key">Key (بكود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/evade/main/emote-pro.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Full Player & Bot ESP</span><span class="tag-key">Key (بكود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/evade/main/full-esp.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Evade V2 Hub</span><span class="tag-key">Key (بكود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/evade/main/v2.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-      </div>
-    </div>
-
-    <!-- 12. BedWars -->
-    <div class="cat-box">
-      <button class="cat-btn" type="button" onclick="togglePanel('p-bw')"><span>BedWars</span><span>▼</span></button>
-      <div class="cat-panel" id="p-bw">
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">BedWars Keyless Hub</span><span class="tag-keyless">Keyless (بدون كود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/bedwars/main/keyless-hub.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Kill Aura & Reach Keyless</span><span class="tag-keyless">Keyless (بدون كود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/bedwars/main/keyless-aura.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Auto Bridge & Scaffold Keyless</span><span class="tag-keyless">Keyless (بدون كود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/bedwars/main/keyless-bridge.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Bed & Resource ESP Keyless</span><span class="tag-keyless">Keyless (بدون كود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/bedwars/main/keyless-esp.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Lite PvP BedWars Keyless</span><span class="tag-keyless">Keyless (بدون كود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/bedwars/main/keyless-lite.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">BedWars Pro Hub</span><span class="tag-key">Key (بكود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/bedwars/main/pro-hub.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Auto Bed Breaker & Win</span><span class="tag-key">Key (بكود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/bedwars/main/bedbreaker.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Speed & Velocity Combat</span><span class="tag-key">Key (بكود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/bedwars/main/combat.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Auto Shop & Upgrade</span><span class="tag-key">Key (بكود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/bedwars/main/shop.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">BedWars V2 Hub</span><span class="tag-key">Key (بكود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/bedwars/main/v2.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-      </div>
-    </div>
-
-    <!-- 13. Doors -->
-    <div class="cat-box">
-      <button class="cat-btn" type="button" onclick="togglePanel('p-doors')"><span>Doors</spa    <!-- 11. Evade -->
-    <div class="cat-box">
-      <button class="cat-btn" type="button" onclick="togglePanel('p-evade')"><span>Evade</span><span>▼</span></button>
-      <div class="cat-panel" id="p-evade">
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Evade Keyless Hub</span><span class="tag-keyless">Keyless (بدون كود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/evade/main/keyless-hub.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Nextbot ESP Keyless</span><span class="tag-keyless">Keyless (بدون كود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/evade/main/keyless-esp.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Bhop & Speed Boost Keyless</span><span class="tag-keyless">Keyless (بدون كود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/evade/main/keyless-bhop.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Auto Revive Helper Keyless</span><span class="tag-keyless">Keyless (بدون كود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/evade/main/keyless-revive.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Lite Evade Runner Keyless</span><span class="tag-keyless">Keyless (بدون كود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/evade/main/keyless-lite.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Evade Pro Hub</span><span class="tag-key">Key (بكود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/evade/main/pro-hub.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Auto Farm Tickets & XP</span><span class="tag-key">Key (بكود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/evade/main/farm.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Emote Speed & Slide Pro</span><span class="tag-key">Key (بكود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/evade/main/emote-pro.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Full Player & Bot ESP</span><span class="tag-key">Key (بكود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/evade/main/full-esp.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Evade V2 Hub</span><span class="tag-key">Key (بكود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/evade/main/v2.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-      </div>
-    </div>
-
-    <!-- 12. BedWars -->
-    <div class="cat-box">
-      <button class="cat-btn" type="button" onclick="togglePanel('p-bw')"><span>BedWars</span><span>▼</span></button>
-      <div class="cat-panel" id="p-bw">
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">BedWars Keyless Hub</span><span class="tag-keyless">Keyless (بدون كود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/bedwars/main/keyless-hub.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Kill Aura & Reach Keyless</span><span class="tag-keyless">Keyless (بدون كود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/bedwars/main/keyless-aura.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Auto Bridge & Scaffold Keyless</span><span class="tag-keyless">Keyless (بدون كود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/bedwars/main/keyless-bridge.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Bed & Resource ESP Keyless</span><span class="tag-keyless">Keyless (بدون كود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/bedwars/main/keyless-esp.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Lite PvP BedWars Keyless</span><span class="tag-keyless">Keyless (بدون كود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/bedwars/main/keyless-lite.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">BedWars Pro Hub</span><span class="tag-key">Key (بكود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/bedwars/main/pro-hub.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Auto Bed Breaker & Win</span><span class="tag-key">Key (بكود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/bedwars/main/bedbreaker.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Speed & Velocity Combat</span><span class="tag-key">Key (بكود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/bedwars/main/combat.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Auto Shop & Upgrade</span><span class="tag-key">Key (بكود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/bedwars/main/shop.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">BedWars V2 Hub</span><span class="tag-key">Key (بكود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/bedwars/main/v2.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-      </div>
-    </div>
-
-    <!-- 13. Doors -->
-    <div class="cat-box">
-      <button class="cat-btn" type="button" onclick="togglePanel('p-doors')"><span>Doors</span><span>▼</span></button>
-      <div class="cat-panel" id="p-doors">
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Doors Keyless Hub</span><span class="tag-keyless">Keyless (بدون كود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/doors/main/keyless-hub.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Entity Notifier & ESP Keyless</span><span class="tag-keyless">Keyless (بدون كود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/doors/main/keyless-esp.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Key & Lever Finder Keyless</span><span class="tag-keyless">Keyless (بدون كود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/doors/main/keyless-keys.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Fullbright & Speed Keyless</span><span class="tag-keyless">Keyless (بدون كود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/doors/main/keyless-light.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Lite Doors Helper Keyless</span><span class="tag-keyless">Keyless (بدون كود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/doors/main/keyless-lite.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Doors Pro Hub</span><span class="tag-key">Key (بكود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/doors/main/pro-hub.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Auto Escape Rooms</span><span class="tag-key">Key (بكود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/doors/main/escape.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Seek & Figure Bypass</span><span class="tag-key">Key (بكود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/doors/main/bypass.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Library Code & Lock Solver</span><span class="tag-key">Key (بكود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/doors/main/solver.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Doors V2 Hub</span><span class="tag-key">Key (بكود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/doors/main/v2.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-      </div>
-    </div>
-
-    <!-- 14. Fishing (صيد السمك) -->
-    <div class="cat-box">
-      <button class="cat-btn" type="button" onclick="togglePanel('p-fishing')"><span>Fishing (صيد السمك)</span><span>▼</span></button>
-      <div class="cat-panel" id="p-fishing">
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Auto Fish Keyless Hub</span><span class="tag-keyless">Keyless (بدون كود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/fishing/main/keyless-hub.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Instant Reel & Cast Keyless</span><span class="tag-keyless">Keyless (بدون كود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/fishing/main/keyless-reel.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Auto Sell Fish Keyless</span><span class="tag-keyless">Keyless (بدون كود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/fishing/main/keyless-sell.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Rod & Bait Helper Keyless</span><span class="tag-keyless">Keyless (بدون كود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/fishing/main/keyless-rods.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Anti AFK Fishing Keyless</span><span class="tag-keyless">Keyless (بدون كود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/fishing/main/keyless-afk.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Fishing Pro Hub</span><span class="tag-key">Key (بكود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/fishing/main/pro-hub.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Rare Fish & Zone TP</span><span class="tag-key">Key (بكود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/fishing/main/zones.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Fast Money Farm & Rod Upgrade</span><span class="tag-key">Key (بكود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/fishing/main/money-farm.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Fish Radar & Mutation ESP</span><span class="tag-key">Key (بكود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/fishing/main/radar.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-        <div class="sc-item"><div class="sc-head"><span class="sc-name">Fishing V2 Hub</span><span class="tag-key">Key (بكود)</span></div><div class="sc-code">loadstring(game:HttpGet("https://raw.githubusercontent.com/nexus-scripts/fishing/main/v2.lua"))()</div><button class="cp-btn" type="button" onclick="copyCode(this)">نسخ السكريبت</button></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- زر الديسكورد تحت القوائم -->
-  <div class="footer-discord">
-    <a class="discord-btn rainbow-txt color-item" href="https://discord.gg/t3a5uuKTC" target="_blank" rel="noopener noreferrer">DISCORD ON</a>
-  </div>
-
-  <!-- الإعلان: كل 30 ثانية لمدة 10 ثواني، ويُفتح زر الإغلاق بعد 5 ثواني -->
-  <div class="ad-overlay" id="adOverlay">
-    <div class="ad-box">
-      <div class="ad-top">
-        <span id="adCounter" style="font-size: 13px; color: #cbd5e1;">10s</span>
-        <button class="ad-x" id="adCloseX" type="button" onclick="hideAd()" disabled>×</button>
+  <!-- الإعلان: يظهر كل 30 ثانية لمدة 10 ثواني، ويُفتح زر الإغلاق بعد 5 ثواني -->
+  <div class="ad-modal-backdrop" id="adModalBackdrop">
+    <div class="ad-modal-card">
+      <div class="ad-modal-top">
+        <span id="adTimerLabel" style="font-size: 13px; color: #e2e8f0; font-weight: 700;">10s</span>
+        <button class="ad-close-btn" id="adCloseBtn" type="button" onclick="closeAdModal()" disabled>×</button>
       </div>
 
-      <div class="ad-prize">
+      <div class="ad-reward-box">
         <h3>أول ما تخش الديسكورد تربح 100 روبوكس</h3>
-        <p>Join Discord and get 100 ROBUX!</p>
+        <p style="font-size: 13px; color: #d1fae5;">Join Discord and get 100 ROBUX!</p>
       </div>
 
-      <div class="ad-bedrock">
+      <div class="ad-mc-box">
         <strong>سيرفر ماين كرافت للبدروك (Bedrock)</strong><br />
-        <span>IP: play.nexusnetwork.mc | Port: 19132</span>
+        <span style="color: #93c5fd;">IP: play.nexusnetwork.mc | Port: 19132</span>
       </div>
 
-      <div class="ad-dc-wrap">
-        <a class="discord-btn rainbow-txt color-item" href="https://discord.gg/t3a5uuKTC" target="_blank" rel="noopener noreferrer">DISCORD ON</a>
+      <div class="ad-actions">
+        <span class="rainbow-text color-cycle">NEXUS NETWORK</span>
+        <a class="discord-pill rainbow-text color-cycle" href="https://discord.gg/t3a5uuKTC" target="_blank" rel="noopener noreferrer">Discord Server</a>
       </div>
     </div>
   </div>
 
-  <div class="toast-msg" id="toastMsg">Copied!</div>
+  <div class="toast-popup" id="toastPopup">تم النسخ!</div>
 
   <script>
-    function togglePanel(id) {
-      var el = document.getElementById(id);
-      if (el) {
-        if (el.classList.contains("open")) el.classList.remove("open");
-        else el.classList.add("open");
+    function toggleMap(cardId) {
+      var card = document.getElementById(cardId);
+      if (card) {
+        card.classList.toggle("open");
       }
     }
 
-    function showToast(text) {
-      var t = document.getElementById("toastMsg");
-      t.textContent = text || "Copied!";
-      t.classList.add("show");
-      setTimeout(function () { t.classList.remove("show"); }, 1500);
+    function setFilter(btn, cardId, type) {
+      var card = document.getElementById(cardId);
+      if (!card) return;
+      var btns = card.querySelectorAll(".filter-btn");
+      for (var i = 0; i < btns.length; i++) {
+        btns[i].classList.remove("active");
+      }
+      btn.classList.add("active");
+
+      var items = card.querySelectorAll(".script-item");
+      for (var j = 0; j < items.length; j++) {
+        var itemType = items[j].getAttribute("data-type");
+        if (type === "all" || itemType === type) {
+          items[j].classList.remove("hidden-by-filter");
+        } else {
+          items[j].classList.add("hidden-by-filter");
+        }
+      }
+    }
+
+    function showToast(msg) {
+      var toast = document.getElementById("toastPopup");
+      toast.textContent = msg || "تم النسخ!";
+      toast.classList.add("show");
+      setTimeout(function () {
+        toast.classList.remove("show");
+      }, 1500);
     }
 
     function copyCode(btn) {
-      var card = btn.parentNode;
-      var codeBox = card.querySelector(".sc-code");
-      var val = codeBox ? codeBox.textContent : "";
-      if (!val) return;
+      var item = btn.closest(".script-item");
+      var codeBox = item ? item.querySelector(".code-box") : null;
+      var codeText = codeBox ? codeBox.textContent : "";
+      if (!codeText) return;
+
       if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(val).then(function () {
-          showToast("Copied!");
+        navigator.clipboard.writeText(codeText).then(function () {
+          showToast("تم نسخ السكريبت!");
         }).catch(function () {
-          copyFallback(val);
+          fallbackCopy(codeText);
         });
       } else {
-        copyFallback(val);
+        fallbackCopy(codeText);
       }
     }
 
-    function copyFallback(val) {
+    function fallbackCopy(text) {
       var ta = document.createElement("textarea");
-      ta.value = val;
+      ta.value = text;
       document.body.appendChild(ta);
       ta.select();
       document.execCommand("copy");
       document.body.removeChild(ta);
-      showToast("Copied!");
+      showToast("تم نسخ السكريبت!");
     }
 
-    var PALETTE = ["#ff4d6d", "#00f5d4", "#ffd166", "#4cc9f0", "#c77dff", "#80ed99", "#ff9f1c", "#f72585"];
+    var COLORS = ["#ff4d6d", "#00f5d4", "#ffd166", "#4cc9f0", "#c77dff", "#80ed99", "#ff9f1c", "#f72585"];
     setInterval(function () {
-      var c1 = PALETTE[Math.floor(Math.random() * PALETTE.length)];
-      var c2 = PALETTE[Math.floor(Math.random() * PALETTE.length)];
-      var els = document.querySelectorAll(".color-item");
-      for (var i = 0; i < els.length; i++) {
-        els[i].style.color = c1;
-        els[i].style.textShadow = "0 0 12px " + c2;
+      var c1 = COLORS[Math.floor(Math.random() * COLORS.length)];
+      var c2 = COLORS[Math.floor(Math.random() * COLORS.length)];
+      var targets = document.querySelectorAll(".color-cycle");
+      for (var i = 0; i < targets.length; i++) {
+        targets[i].style.color = c1;
+        targets[i].style.textShadow = "0 0 12px " + c2;
       }
-    }, 800);
+    }, 850);
 
-    var adLoop = null;
-    function hideAd() {
-      var xBtn = document.getElementById("adCloseX");
-      if (xBtn && xBtn.disabled) return;
-      var overlay = document.getElementById("adOverlay");
-      overlay.classList.remove("show");
-      if (adLoop) {
-        clearInterval(adLoop);
-        adLoop = null;
+    var adCountdownInterval = null;
+    var nextAdSeconds = 30;
+    var adBarStatus = document.getElementById("adBarStatus");
+
+    setInterval(function () {
+      var modal = document.getElementById("adModalBackdrop");
+      if (modal && !modal.classList.contains("open")) {
+        nextAdSeconds -= 1;
+        if (nextAdSeconds <= 0) {
+          nextAdSeconds = 30;
+          openAdModal();
+        } else if (adBarStatus) {
+          adBarStatus.textContent = "إعلان كل 30 ث • القادم خلال " + nextAdSeconds + " ث";
+        }
+      }
+    }, 1000);
+
+    function closeAdModal() {
+      var closeBtn = document.getElementById("adCloseBtn");
+      if (closeBtn && closeBtn.disabled) return;
+      var modal = document.getElementById("adModalBackdrop");
+      if (modal) modal.classList.remove("open");
+      if (adCountdownInterval) {
+        clearInterval(adCountdownInterval);
+        adCountdownInterval = null;
+      }
+      nextAdSeconds = 30;
+      if (adBarStatus) {
+        adBarStatus.textContent = "إعلان كل 30 ث • القادم خلال " + nextAdSeconds + " ث";
       }
     }
 
-    function triggerAd() {
-      var sec = 0;
-      var maxSec = 10;
-      var allowCloseSec = 5;
+    function openAdModal() {
+      var elapsed = 0;
+      var duration = 10;
+      var unlockAt = 5;
 
-      var counter = document.getElementById("adCounter");
-      var xBtn = document.getElementById("adCloseX");
-      var overlay = document.getElementById("adOverlay");
+      var label = document.getElementById("adTimerLabel");
+      var closeBtn = document.getElementById("adCloseBtn");
+      var modal = document.getElementById("adModalBackdrop");
 
-      xBtn.disabled = true;
-      counter.textContent = "10s (إغلاق بعد 5s)";
-      overlay.classList.add("show");
+      closeBtn.disabled = true;
+      label.textContent = "10s (إغلاق بعد 5s)";
+      modal.classList.add("open");
 
-      if (adLoop) clearInterval(adLoop);
-      adLoop = setInterval(function () {
-        sec += 1;
-        var rem = maxSec - sec;
+      if (adCountdownInterval) clearInterval(adCountdownInterval);
+      adCountdownInterval = setInterval(function () {
+        elapsed += 1;
+        var left = duration - elapsed;
 
-        if (sec >= allowCloseSec) {
-          xBtn.disabled = false;
+        if (elapsed >= unlockAt) {
+          closeBtn.disabled = false;
         }
 
-        if (rem > 0) {
-          if (sec < allowCloseSec) {
-            counter.textContent = rem + "s (إغلاق بعد " + (allowCloseSec - sec) + "s)";
+        if (left > 0) {
+          if (elapsed < unlockAt) {
+            label.textContent = left + "s (إغلاق بعد " + (unlockAt - elapsed) + "s)";
           } else {
-            counter.textContent = rem + "s (يمكن الإغلاق)";
+            label.textContent = left + "s (يمكن الإغلاق)";
           }
         } else {
-          xBtn.disabled = false;
-          hideAd();
+          closeBtn.disabled = false;
+          closeAdModal();
         }
       }, 1000);
     }
-
-    setInterval(triggerAd, 30000);
   </script>
-<
+</body>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+</html>
